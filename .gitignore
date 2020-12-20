@@ -12,6 +12,16 @@ node_modules/
 
 # production
 /build
+web-build/
+
+# native
+.expo
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
 
 # misc
 .DS_Store
