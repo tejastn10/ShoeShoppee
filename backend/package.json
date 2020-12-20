@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Shoe Shoppee backend server",
+  "main": "app.js",
+  "scripts": {
+    "watch-ts": "tsc -w",
+    "server": "nodemon dist/app.js",
+    "web": "yarn --cwd ../frontend/web/ start",
+    "mobile": "yarn --cwd ../frontend/mobile/ start",
+    "start": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node\" -c \"blue.bold,yellow.bold\" \"yarn run watch-ts\" \"yarn run server\"",
+    "dev1": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node,React\" -c \"blue.bold,yellow.bold,cyan.bold\" \"yarn run watch-ts\" \"yarn run server\" \"yarn run web\"",
+    "dev2": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node,RN\" -c \"blue.bold,yellow.bold,cyan.bold\" \"yarn run watch-ts\" \"yarn run server\" \"yarn run mobile\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.9",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
+  }
+}
