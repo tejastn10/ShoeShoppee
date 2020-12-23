@@ -26,3 +26,20 @@
   margin: 1%;
   width: 98%;
 }
+
+/* Components */
+
+.header {
+  display: flex;
+  font-weight: bold;
+  justify-content: space-between;
+}
+
+.header button {
+  margin-left: 1rem;
+}
+
+.search {
+  width: 55%;
+  margin: auto;
+}
