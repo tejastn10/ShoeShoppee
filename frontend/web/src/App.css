@@ -1,0 +1,28 @@
+/* Layout */
+
+.bg {
+  background: #ffffff;
+}
+
+.hdr {
+  position: fixed;
+  width: 98%;
+  margin: 1%;
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0.1rem 2rem 0 rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+.cnt {
+  background-color: #e5e5e5;
+  margin: 0 1%;
+  margin-top: 6rem;
+  width: 98%;
+}
+
+.ftr {
+  background-color: #e5e5e5;
+  margin: 1%;
+  width: 98%;
+}
