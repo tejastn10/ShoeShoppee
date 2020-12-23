@@ -1,3 +1,9 @@
+import { Landing } from "../components/Landing";
+
 export const Routes = () => {
-  return <></>;
+  return (
+    <>
+      <Landing />
+    </>
+  );
 };
