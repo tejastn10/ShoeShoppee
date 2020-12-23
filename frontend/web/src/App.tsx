@@ -3,6 +3,7 @@ import { Layout } from "antd";
 import "./App.css";
 
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 
 const App = () => {
   return (
@@ -11,7 +12,9 @@ const App = () => {
         <Header />
       </Layout.Header>
       <Layout.Content className="cnt"></Layout.Content>
-      <Layout.Footer className="ftr"></Layout.Footer>
+      <Layout.Footer className="ftr">
+        <Footer />
+      </Layout.Footer>
     </Layout>
   );
 };

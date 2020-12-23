@@ -43,3 +43,13 @@
   width: 55%;
   margin: auto;
 }
+
+.footer {
+  height: 15vh;
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Containers */
