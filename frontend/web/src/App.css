@@ -82,4 +82,28 @@
   cursor: pointer;
 }
 
+.form {
+  background: #fff;
+  margin: 5% 25% 2% 25%;
+  padding: 5% 10%;
+}
+
+.ant-form > h2 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.ant-row {
+  padding-bottom: 2%;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3%;
+  padding-top: 0;
+}
+
 /* Containers */
