@@ -20,11 +20,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
+require("colors");
 const dotenv_1 = require("dotenv");
+const db_1 = require("./config/db");
 dotenv_1.config();
 const app = express_1.default();
+db_1.connectDB();
 app.use(express_1.json());
 app.get("/", (_req, res) => res.send("API Running on Port 5000"));
 const PORT = process.env.PORT || 5000;
 const ENV = process.env.NODE_ENV || "development";
-app.listen(PORT, () => console.log(`Backend server running in ${ENV} mode on port ${PORT}`));
+app.listen(PORT, () => console.log(` 📡 Backend server: `.inverse.yellow.bold +
+    ` Running in ${ENV} mode on port ${PORT}`));
