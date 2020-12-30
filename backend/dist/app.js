@@ -23,11 +23,16 @@ const express_1 = __importStar(require("express"));
 require("colors");
 const dotenv_1 = require("dotenv");
 const db_1 = require("./config/db");
+const error_1 = require("./middleware/error");
+const product_1 = require("./routes/product");
 dotenv_1.config();
 const app = express_1.default();
 db_1.connectDB();
 app.use(express_1.json());
 app.get("/", (_req, res) => res.send("API Running on Port 5000"));
+app.use("/api/products", product_1.router);
+app.use(error_1.notFound);
+app.use(error_1.errorHandler);
 const PORT = process.env.PORT || 5000;
 const ENV = process.env.NODE_ENV || "development";
 app.listen(PORT, () => console.log(` 📡 Backend server: `.inverse.yellow.bold +
