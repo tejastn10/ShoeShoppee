@@ -4,6 +4,8 @@
   "description": "Shoe Shoppee backend server",
   "main": "app.js",
   "scripts": {
+    "data:import": "node dist/seeder",
+    "data:destroy": "node dist/seeder -d",
     "watch-ts": "tsc -w",
     "server": "nodemon dist/app.js",
     "web": "yarn --cwd ../frontend/web/ start",
