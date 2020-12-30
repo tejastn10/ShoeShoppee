@@ -1,11 +1,5 @@
 import { Document, Schema } from "mongoose";
 
-interface IReview extends Document {
-  name: string;
-  rating: number;
-  comment: string;
-}
-
 export interface IProduct extends Document {
   user: Schema.Types.ObjectId;
   name: string;
@@ -15,7 +9,11 @@ export interface IProduct extends Document {
   type: string;
   description: string;
   rating: number;
-  reviews: [IReview];
+  reviews: {
+    name: string;
+    rating: number;
+    comment: string;
+  }[];
   numReviews: number;
   price: number;
   count: number;
