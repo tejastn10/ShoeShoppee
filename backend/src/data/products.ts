@@ -3,7 +3,7 @@ export const products = [
   // nike
   {
     name: "Nike Air Zoom SuperRep 2",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Men",
     type: "Sports",
@@ -17,7 +17,7 @@ export const products = [
   },
   {
     name: "Nike AF 1/1",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Men",
     type: "Casual",
@@ -31,7 +31,7 @@ export const products = [
   },
   {
     name: "Nike Blazer Mid '77 Vintage",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Men",
     type: "Casual",
@@ -45,7 +45,7 @@ export const products = [
   },
   {
     name: "Jordan Crater",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Men",
     type: "Casual",
@@ -59,7 +59,7 @@ export const products = [
   },
   {
     name: "LeBron Witness 5 EP",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Men",
     type: "Casual",
@@ -74,7 +74,7 @@ export const products = [
   //adidas
   {
     name: "Men's adidas Running Teebon Shoes",
-    image: "",
+    image: "images/file.jpg",
     brand: "Adidas",
     category: "Men",
     type: "Sports",
@@ -88,7 +88,7 @@ export const products = [
   },
   {
     name: "Men's adidas Running Astound Shoes",
-    image: "",
+    image: "images/file.jpg",
     brand: "Adidas",
     category: "Men",
     type: "Sports",
@@ -102,7 +102,7 @@ export const products = [
   },
   {
     name: "Men's adidas Outdor Zan Trail Shoes",
-    image: "",
+    image: "images/file.jpg",
     brand: "Adidas",
     category: "Men",
     type: "Sports",
@@ -116,7 +116,7 @@ export const products = [
   },
   {
     name: "Men's adidas Outdoor Argo Trek 19 Shoes",
-    image: "",
+    image: "images/file.jpg",
     brand: "Adidas",
     category: "Men",
     type: "Sports",
@@ -130,7 +130,7 @@ export const products = [
   },
   {
     name: "Men's adidas Originals Americana Decon Shoes",
-    image: "",
+    image: "images/file.jpg",
     brand: "Adidas",
     category: "Men",
     type: "Casual",
@@ -146,7 +146,7 @@ export const products = [
   //nike
   {
     name: "Nike React Infinity Run Flyknit Premium",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Women",
     type: "Sports",
@@ -160,7 +160,7 @@ export const products = [
   },
   {
     name: "Nike Air Zoom Tempo NEXT%",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Women",
     type: "Sports",
@@ -174,7 +174,7 @@ export const products = [
   },
   {
     name: "Nike Air Max Up",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Women",
     type: "Casual",
@@ -188,7 +188,7 @@ export const products = [
   },
   {
     name: "Nike Air Zoom Pegasus 37",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Women",
     type: "Casual",
@@ -202,7 +202,7 @@ export const products = [
   },
   {
     name: "Nike Air Zoom Winflo 7",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Women",
     type: "Sports",
@@ -218,7 +218,7 @@ export const products = [
   // nike
   {
     name: "Kyrie Flytrap 3 SE",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Children",
     type: "Casual",
@@ -232,7 +232,7 @@ export const products = [
   },
   {
     name: "Kyrie 6",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Children",
     type: "Casual",
@@ -246,7 +246,7 @@ export const products = [
   },
   {
     name: "Nike Team Hustle D 9",
-    image: "",
+    image: "images/file.jpg",
     brand: "Nike",
     category: "Children",
     type: "Casual",
