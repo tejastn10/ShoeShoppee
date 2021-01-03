@@ -18,8 +18,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
+const cors_1 = __importDefault(require("cors"));
 require("colors");
 const dotenv_1 = require("dotenv");
 const db_1 = require("./config/db");
@@ -28,6 +32,7 @@ const product_1 = require("./routes/product");
 dotenv_1.config();
 const app = express_1.default();
 db_1.connectDB();
+app.use(cors_1.default());
 app.use(express_1.json());
 app.get("/", (_req, res) => res.send("API Running on Port 5000"));
 app.use("/api/products", product_1.router);

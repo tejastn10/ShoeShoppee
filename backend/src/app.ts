@@ -1,4 +1,5 @@
 import express, { json, Application, Request, Response } from "express";
+import cors from "cors";
 import "colors";
 import { config } from "dotenv";
 
@@ -12,6 +13,7 @@ config();
 const app: Application = express();
 
 connectDB();
+app.use(cors());
 app.use(json());
 
 app.get("/", (_req: Request, res: Response) =>
