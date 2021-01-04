@@ -1,4 +1,10 @@
-import { ShoppingFilled } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+
+import {
+  ShoppingFilled,
+  LoginOutlined,
+  UserAddOutlined,
+} from "@ant-design/icons";
 import { Button, Input } from "antd";
 
 const { Search } = Input;
@@ -6,10 +12,12 @@ const { Search } = Input;
 export const Header = () => {
   return (
     <div className="header">
-      <div>
-        <ShoppingFilled />
-        ShoeShoppee
-      </div>
+      <Link to="/">
+        <div>
+          <ShoppingFilled />
+          ShoeShoppee
+        </div>
+      </Link>
       <Search
         className="search"
         allowClear
@@ -18,8 +26,18 @@ export const Header = () => {
         enterButton
       />
       <div>
-        <Button type="primary">Log In</Button>
-        <Button>Register</Button>
+        <Link to="/login">
+          <Button type="primary">
+            <LoginOutlined />
+            Log In
+          </Button>
+        </Link>
+        <Link to="/register">
+          <Button>
+            <UserAddOutlined />
+            Register
+          </Button>
+        </Link>
       </div>
     </div>
   );
