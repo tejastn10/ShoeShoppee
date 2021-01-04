@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
 import { Button, Divider, Form, Input } from "antd";
 
@@ -83,7 +85,9 @@ export const Register = () => {
       </div>
       <div className="option">
         <Divider />
-        <Button type="link">Already a customer! Log In</Button>
+        <Link to="/login">
+          <Button type="link">Already a customer! Log In</Button>
+        </Link>
       </div>
     </>
   );
