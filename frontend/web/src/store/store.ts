@@ -4,8 +4,11 @@ import { createInjectorsEnhancer } from "redux-injectors";
 
 import { rootReducer } from "./reducers/reducer";
 import { rootSaga } from "./sagas/saga";
+import { ProductListState } from "./@types";
 
-export type ApplicationState = {};
+export type ApplicationState = {
+  productList: ProductListState;
+};
 
 export const configureAppStore = (initialState: ApplicationState) => {
   const reduxSagaMonitorOptions = {};
