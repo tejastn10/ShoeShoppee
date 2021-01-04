@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Divider, Form, Input } from "antd";
 
@@ -60,7 +62,9 @@ export const LogIn = () => {
       </div>
       <div className="option">
         <Divider />
-        <Button type="link">Don't have an account? Register here</Button>
+        <Link to="/register">
+          <Button type="link">Don't have an account? Register here</Button>
+        </Link>
       </div>
     </>
   );
