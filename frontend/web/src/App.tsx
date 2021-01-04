@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import { Layout } from "antd";
 
 import "./App.css";
@@ -8,17 +9,19 @@ import { Routes } from "./routes/Routes";
 
 const App = () => {
   return (
-    <Layout className="bg">
-      <Layout.Header className="hdr">
-        <Header />
-      </Layout.Header>
-      <Layout.Content className="cnt">
-        <Routes />
-      </Layout.Content>
-      <Layout.Footer className="ftr">
-        <Footer />
-      </Layout.Footer>
-    </Layout>
+    <BrowserRouter>
+      <Layout className="bg">
+        <Layout.Header className="hdr">
+          <Header />
+        </Layout.Header>
+        <Layout.Content className="cnt">
+          <Routes />
+        </Layout.Content>
+        <Layout.Footer className="ftr">
+          <Footer />
+        </Layout.Footer>
+      </Layout>
+    </BrowserRouter>
   );
 };
 
