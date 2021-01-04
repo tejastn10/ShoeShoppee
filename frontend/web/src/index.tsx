@@ -6,8 +6,11 @@ import reportWebVitals from "./reportWebVitals";
 
 import { Provider } from "react-redux";
 import { ApplicationState, configureAppStore } from "./store/store";
+import { ProductListInitialState } from "./store/reducers/product";
 
-const initialState: ApplicationState = {};
+const initialState: ApplicationState = {
+  productList: ProductListInitialState,
+};
 const store = configureAppStore(initialState);
 
 ReactDOM.render(
