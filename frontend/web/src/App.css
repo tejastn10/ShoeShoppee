@@ -107,3 +107,14 @@
 }
 
 /* Containers */
+.loading {
+  background: #ffffff;
+  font-size: 12rem;
+  text-align: center;
+  padding: 10rem;
+}
+
+.empty {
+  padding: 16rem;
+  background: #ffffff;
+}
