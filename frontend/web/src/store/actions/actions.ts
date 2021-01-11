@@ -2,6 +2,6 @@ import {
   getProductListRequest,
   getProductListSuccess,
   getProductListError,
-} from "./product";
+} from "./productList";
 
 export { getProductListRequest, getProductListSuccess, getProductListError };
