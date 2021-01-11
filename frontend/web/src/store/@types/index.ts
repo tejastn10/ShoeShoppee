@@ -1,4 +1,4 @@
-import { ProductListState, ProductListActionTypes } from "./product";
+import { ProductListState, ProductListActionTypes } from "./productList";
 
 export { ProductListActionTypes };
 export type { ProductListState };
