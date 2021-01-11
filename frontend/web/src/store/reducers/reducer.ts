@@ -1,5 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { ProductListStatereducer } from "./product";
+import { ProductListStatereducer } from "./productList";
 
 const reducers = {
   productList: ProductListStatereducer,
