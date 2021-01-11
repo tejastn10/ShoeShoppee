@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 
-import { LogIn } from "../components/auth/LogIn";
-import { Register } from "../components/auth/Register";
+import { LogIn } from "../containers/auth/LogIn";
+import { Register } from "../containers/auth/Register";
 import { Landing } from "../components/Landing";
 import { Search } from "../containers/Search";
 
