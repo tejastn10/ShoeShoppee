@@ -7,13 +7,8 @@ export const Landing = () => {
     <div>
       <Carousel className="container" effect="fade" autoplay>
         <div>
-          <Link to={`/search/new_releases`}>
-            <h3>New Releases</h3>
-          </Link>
-        </div>
-        <div>
-          <Link to={`/search/top_selling`}>
-            <h3>Top Selling</h3>
+          <Link to={`/search/`}>
+            <h3>All Products</h3>
           </Link>
         </div>
         <div>
