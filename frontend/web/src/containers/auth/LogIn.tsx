@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, UserOutlined, LoginOutlined } from "@ant-design/icons";
 import { Button, Divider, Form, Input } from "antd";
 
 export const LogIn = () => {
@@ -19,7 +19,10 @@ export const LogIn = () => {
           }}
           onFinish={onFinish}
         >
-          <h2>Log In</h2>
+          <h2>
+            Log In
+            <LoginOutlined />
+          </h2>
           <Form.Item
             name="email"
             rules={[
@@ -55,6 +58,7 @@ export const LogIn = () => {
               htmlType="submit"
               className="login-form-button"
             >
+              <LoginOutlined />
               Log in
             </Button>
           </Form.Item>
