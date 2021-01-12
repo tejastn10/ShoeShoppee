@@ -41,7 +41,7 @@ export const Search = () => {
       <div>
         {isLoading ? (
           <Loading />
-        ) : errors ? (
+        ) : errors.results ? (
           <div className="empty">
             <Empty />
           </div>
