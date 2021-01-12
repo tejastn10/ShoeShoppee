@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 
-import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
+import {
+  LockOutlined,
+  UserOutlined,
+  MailOutlined,
+  UserAddOutlined,
+} from "@ant-design/icons";
 import { Button, Divider, Form, Input } from "antd";
 
 export const Register = () => {
@@ -18,7 +23,10 @@ export const Register = () => {
           }}
           onFinish={onFinish}
         >
-          <h2>Register</h2>
+          <h2>
+            Register
+            <UserAddOutlined />
+          </h2>
           <Form.Item
             name="name"
             rules={[{ required: true, message: "Please enter your name" }]}
@@ -78,6 +86,7 @@ export const Register = () => {
               htmlType="submit"
               className="login-form-button"
             >
+              <UserAddOutlined />
               Register
             </Button>
           </Form.Item>
