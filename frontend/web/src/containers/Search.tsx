@@ -46,15 +46,10 @@ export const Search = () => {
             <Empty />
           </div>
         ) : (
-          <Row gutter={16}>
-            <CardItem />
-            <CardItem />
-            <CardItem />
-            <CardItem />
-            <CardItem />
-            <CardItem />
-            <CardItem />
-            <CardItem />
+          <Row gutter={6}>
+            {products?.map((p) => (
+              <CardItem product={p} />
+            ))}
           </Row>
         )}
       </div>
