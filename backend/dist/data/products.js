@@ -6,7 +6,7 @@ exports.products = [
     // nike
     {
         name: "Nike Air Zoom SuperRep 2",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Men",
         type: "Sports",
@@ -19,7 +19,7 @@ exports.products = [
     },
     {
         name: "Nike AF 1/1",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Men",
         type: "Casual",
@@ -32,7 +32,7 @@ exports.products = [
     },
     {
         name: "Nike Blazer Mid '77 Vintage",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Men",
         type: "Casual",
@@ -45,7 +45,7 @@ exports.products = [
     },
     {
         name: "Jordan Crater",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Men",
         type: "Casual",
@@ -58,7 +58,7 @@ exports.products = [
     },
     {
         name: "LeBron Witness 5 EP",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Men",
         type: "Casual",
@@ -72,7 +72,7 @@ exports.products = [
     //adidas
     {
         name: "Men's adidas Running Teebon Shoes",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Adidas",
         category: "Men",
         type: "Sports",
@@ -85,7 +85,7 @@ exports.products = [
     },
     {
         name: "Men's adidas Running Astound Shoes",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Adidas",
         category: "Men",
         type: "Sports",
@@ -98,7 +98,7 @@ exports.products = [
     },
     {
         name: "Men's adidas Outdor Zan Trail Shoes",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Adidas",
         category: "Men",
         type: "Sports",
@@ -111,7 +111,7 @@ exports.products = [
     },
     {
         name: "Men's adidas Outdoor Argo Trek 19 Shoes",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Adidas",
         category: "Men",
         type: "Sports",
@@ -124,7 +124,7 @@ exports.products = [
     },
     {
         name: "Men's adidas Originals Americana Decon Shoes",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Adidas",
         category: "Men",
         type: "Casual",
@@ -139,7 +139,7 @@ exports.products = [
     //nike
     {
         name: "Nike React Infinity Run Flyknit Premium",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Women",
         type: "Sports",
@@ -152,7 +152,7 @@ exports.products = [
     },
     {
         name: "Nike Air Zoom Tempo NEXT%",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Women",
         type: "Sports",
@@ -165,7 +165,7 @@ exports.products = [
     },
     {
         name: "Nike Air Max Up",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Women",
         type: "Casual",
@@ -178,7 +178,7 @@ exports.products = [
     },
     {
         name: "Nike Air Zoom Pegasus 37",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Women",
         type: "Casual",
@@ -191,7 +191,7 @@ exports.products = [
     },
     {
         name: "Nike Air Zoom Winflo 7",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Women",
         type: "Sports",
@@ -206,7 +206,7 @@ exports.products = [
     // nike
     {
         name: "Kyrie Flytrap 3 SE",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Children",
         type: "Casual",
@@ -219,7 +219,7 @@ exports.products = [
     },
     {
         name: "Kyrie 6",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Children",
         type: "Casual",
@@ -232,7 +232,7 @@ exports.products = [
     },
     {
         name: "Nike Team Hustle D 9",
-        image: "images/file.jpg",
+        image: "/images/file.jpg",
         brand: "Nike",
         category: "Children",
         type: "Casual",
