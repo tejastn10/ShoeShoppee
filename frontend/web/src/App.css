@@ -119,3 +119,13 @@
 .card {
   margin: 2%;
 }
+
+.img,
+.prod-info {
+  margin: 5%;
+  padding: 2.5%;
+}
+
+.cart-btn {
+  float: right;
+}
