@@ -12,3 +12,9 @@ export const fetchProductList: any = () => {
 
   return API.get(URL);
 };
+
+export const fetchProductDetails: any = (id: string) => {
+  const URL = `${API_ENDPOINT}/api/products/${id}`;
+
+  return API.get(URL);
+};
