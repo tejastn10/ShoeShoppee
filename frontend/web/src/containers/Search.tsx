@@ -48,7 +48,7 @@ export const Search = () => {
         ) : (
           <Row gutter={6}>
             {products?.map((p) => (
-              <CardItem product={p} />
+              <CardItem product={p} key={p._id} />
             ))}
           </Row>
         )}
