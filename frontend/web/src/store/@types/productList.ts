@@ -1,23 +1,5 @@
 import { CustomError } from "../../utils/api-helper";
-
-export interface Product {
-  user: string;
-  name: string;
-  image: string;
-  brand: string;
-  category: string;
-  type: string;
-  description: string;
-  rating: number;
-  reviews: {
-    name: string;
-    rating: number;
-    comment: string;
-  }[];
-  numReviews: number;
-  price: number;
-  count: number;
-}
+import { Product } from "./productDetails";
 
 export interface Errors {
   results: CustomError | null;
