@@ -21,7 +21,6 @@ const getProductList = function* (action: Action) {
       } else {
         yield put(getProductListSuccess(data));
       }
-    } else {
     }
   } catch (error) {
     yield put(getProductListError(getCustomError(error)));
