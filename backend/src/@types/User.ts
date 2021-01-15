@@ -5,4 +5,5 @@ export interface IUser extends Document {
   email: string;
   password: string;
   isAdmin: boolean;
+  matchPassword: (password: string) => string;
 }
