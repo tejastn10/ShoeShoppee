@@ -7,6 +7,7 @@ import { connectDB } from "./config/db";
 import { notFound, errorHandler } from "./middleware/error";
 
 import { router as productRoutes } from "./routes/product";
+import { router as userRoutes } from "./routes/user";
 
 config();
 
@@ -21,6 +22,7 @@ app.get("/", (_req: Request, res: Response) =>
 );
 
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
