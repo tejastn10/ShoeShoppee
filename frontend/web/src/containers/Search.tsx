@@ -17,7 +17,6 @@ export const Search = () => {
     (state) => state.productList
   );
   const { products, isLoading, errors } = productList;
-  console.log(products);
 
   useEffect(() => {
     dispatch(getProductListRequest());
