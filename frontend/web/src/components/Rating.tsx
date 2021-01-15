@@ -7,9 +7,9 @@ type RateProps = {
 
 export const Rating = ({ rating, reviews }: RateProps) => {
   return (
-    <p>
+    <>
       <Rate allowHalf defaultValue={rating} />
-      <p>{reviews} Reviews</p>
-    </p>
+      <span>{reviews} Reviews</span>
+    </>
   );
 };
