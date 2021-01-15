@@ -4,6 +4,7 @@ import { LogIn } from "../containers/auth/LogIn";
 import { Register } from "../containers/auth/Register";
 import { Landing } from "../components/Landing";
 import { Search } from "../containers/Search";
+import { Product } from "../containers/Product";
 
 export const Routes = () => {
   return (
@@ -13,6 +14,7 @@ export const Routes = () => {
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/search/*" component={Search} />
+        <Route path="/product/:id" component={Product} />
       </Switch>
     </>
   );

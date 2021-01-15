@@ -27,8 +27,6 @@
   width: 98%;
 }
 
-/* Components */
-
 .header {
   display: flex;
   font-weight: bold;
@@ -106,7 +104,6 @@
   padding-top: 0;
 }
 
-/* Containers */
 .loading {
   background: #ffffff;
   font-size: 12rem;
@@ -117,4 +114,18 @@
 .empty {
   padding: 16rem;
   background: #ffffff;
+}
+
+.card {
+  margin: 2%;
+}
+
+.img,
+.prod-info {
+  margin: 5%;
+  padding: 2.5%;
+}
+
+.cart-btn {
+  float: right;
 }
