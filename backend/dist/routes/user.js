@@ -17,3 +17,7 @@ exports.router.post("/login", express_async_handler_1.default(user_1.postAuthUse
 // @route    GET /api/users/profile
 // @access   Private
 exports.router.get("/profile", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(user_1.getUserProfile));
+// @desc     Register a New User
+// @route    POST /api/users
+// @access   Public
+exports.router.post("/", express_async_handler_1.default(user_1.postRegisterUser));
