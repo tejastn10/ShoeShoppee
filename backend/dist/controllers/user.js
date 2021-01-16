@@ -9,12 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postUser = void 0;
+exports.getUserProfile = exports.postUser = void 0;
 const generateToken_1 = require("../utils/generateToken");
-const User_model_1 = require("./../models/User.model");
+const models_1 = require("./../models");
 const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = yield req.body;
-    const user = yield User_model_1.User.findOne({ email });
+    const user = yield models_1.User.findOne({ email });
     if (user && (yield user.matchPassword(password))) {
         res.json({
             _id: user._id,
@@ -30,3 +30,19 @@ const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.postUser = postUser;
+const getUserProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield models_1.User.findById(req.body.user._id);
+    if (user) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+        });
+    }
+    else {
+        res.status(404);
+        throw new Error("❌ User Not Found!");
+    }
+});
+exports.getUserProfile = getUserProfile;
