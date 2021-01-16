@@ -9,10 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserProfile = exports.postUser = void 0;
+exports.getUserProfile = exports.postAuthUser = void 0;
 const generateToken_1 = require("../utils/generateToken");
 const models_1 = require("./../models");
-const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const postAuthUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = yield req.body;
     const user = yield models_1.User.findOne({ email });
     if (user && (yield user.matchPassword(password))) {
@@ -29,7 +29,7 @@ const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         throw new Error("Invalid Email or Password!");
     }
 });
-exports.postUser = postUser;
+exports.postAuthUser = postAuthUser;
 const getUserProfile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield models_1.User.findById(req.body.user._id);
     if (user) {

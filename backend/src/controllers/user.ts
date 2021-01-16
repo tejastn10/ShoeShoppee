@@ -3,7 +3,7 @@ import { generateToken } from "../utils/generateToken";
 
 import { User } from "./../models";
 
-export const postUser = async (req: Request, res: Response) => {
+export const postAuthUser = async (req: Request, res: Response) => {
   const { email, password } = await req.body;
 
   const user = await User.findOne({ email });

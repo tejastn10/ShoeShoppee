@@ -12,7 +12,7 @@ exports.router = express_1.Router();
 // @desc     Authenticate User and get Token
 // @route    POST /api/users/login
 // @access   Public
-exports.router.post("/login", express_async_handler_1.default(user_1.postUser));
+exports.router.post("/login", express_async_handler_1.default(user_1.postAuthUser));
 // @desc     Get User Profile
 // @route    GET /api/users/profile
 // @access   Private
