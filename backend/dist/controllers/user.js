@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserProfile = exports.postAuthUser = void 0;
+exports.postRegisterUser = exports.getUserProfile = exports.postAuthUser = void 0;
 const generateToken_1 = require("../utils/generateToken");
 const models_1 = require("./../models");
 const postAuthUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -46,3 +46,26 @@ const getUserProfile = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getUserProfile = getUserProfile;
+const postRegisterUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, email, password } = yield req.body;
+    const userExists = yield models_1.User.findOne({ email });
+    if (userExists) {
+        res.status(400);
+        throw new Error("User Already Registered!");
+    }
+    const user = yield models_1.User.create({ name, email, password });
+    if (user) {
+        res.status(201).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            token: generateToken_1.generateToken(user._id),
+        });
+    }
+    else {
+        res.status(400);
+        throw new Error("Invalid User data!");
+    }
+});
+exports.postRegisterUser = postRegisterUser;
