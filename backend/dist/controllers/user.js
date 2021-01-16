@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postUser = void 0;
+const generateToken_1 = require("../utils/generateToken");
 const User_model_1 = require("./../models/User.model");
 const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = yield req.body;
@@ -20,7 +21,7 @@ const postUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
-            token: null,
+            token: generateToken_1.generateToken(user._id),
         });
     }
     else {

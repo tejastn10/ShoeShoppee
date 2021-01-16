@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { generateToken } from "../utils/generateToken";
 
 import { User } from "./../models/User.model";
 
@@ -13,7 +14,7 @@ export const postUser = async (req: Request, res: Response) => {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      token: null,
+      token: generateToken(user._id),
     });
   } else {
     res.status(401);
