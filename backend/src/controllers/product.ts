@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import { Product } from "./../models/Product.model";
+import { Product } from "./../models";
 
 export const getAllPoducts = async (_req: Request, res: Response) => {
   const products = await Product.find({});

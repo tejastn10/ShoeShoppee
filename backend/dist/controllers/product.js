@@ -10,14 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProductById = exports.getAllPoducts = void 0;
-const Product_model_1 = require("./../models/Product.model");
+const models_1 = require("./../models");
 const getAllPoducts = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const products = yield Product_model_1.Product.find({});
+    const products = yield models_1.Product.find({});
     res.json(products);
 });
 exports.getAllPoducts = getAllPoducts;
 const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const product = yield Product_model_1.Product.findById(req.params.id);
+    const product = yield models_1.Product.findById(req.params.id);
     if (product) {
         res.json(product);
     }
