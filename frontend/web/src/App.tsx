@@ -3,7 +3,7 @@ import { Layout } from "antd";
 
 import "./App.css";
 
-import { Header } from "./components/Header";
+import { Header } from "./containers/Header";
 import { Footer } from "./components/Footer";
 import { Routes } from "./routes/Routes";
 
