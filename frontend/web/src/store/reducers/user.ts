@@ -3,7 +3,7 @@ import {
   userLoginRequest,
   userLoginSuccess,
   userLoginError,
-  userLogoutRequest,
+  logoutUser,
 } from "../actions/actions";
 import { UserState } from "../@types";
 import {
@@ -38,7 +38,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.isLoading = false;
       state.errors.results = action.payload;
     })
-    .addCase(userLogoutRequest, (state, _action) => {
+    .addCase(logoutUser, (state, _action) => {
       clearFromLocalStorage("user");
       state.isLoading = false;
       state.user = null;

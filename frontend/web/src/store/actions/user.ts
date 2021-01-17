@@ -25,6 +25,4 @@ export const userLoginError = createAction(
     };
   }
 );
-export const userLogoutRequest = createAction(
-  UserActionTypes.USER_LOGOUT_REQUEST
-);
+export const logoutUser = createAction(UserActionTypes.LOGOUT_USER);
