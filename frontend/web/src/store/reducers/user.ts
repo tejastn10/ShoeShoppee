@@ -4,6 +4,9 @@ import {
   userLoginSuccess,
   userLoginError,
   logoutUser,
+  userRegisterRequest,
+  userRegisterSuccess,
+  userRegisterError,
 } from "../actions/actions";
 import { UserState } from "../@types";
 import {
@@ -23,17 +26,17 @@ const initialState: UserState = {
 
 const reducer = createReducer(initialState, (builder) => {
   return builder
-    .addCase(userLoginRequest, (state, _action) => {
+    .addCase(userLoginRequest || userRegisterRequest, (state, _action) => {
       state.isLoading = true;
       state.errors.results = null;
       state.user = null;
     })
-    .addCase(userLoginSuccess, (state, action) => {
+    .addCase(userLoginSuccess || userRegisterSuccess, (state, action) => {
       saveToLocalStorage("user", action.payload);
       state.isLoading = false;
       state.user = action.payload;
     })
-    .addCase(userLoginError, (state, action) => {
+    .addCase(userLoginError || userRegisterError, (state, action) => {
       clearFromLocalStorage("user");
       state.isLoading = false;
       state.errors.results = action.payload;
