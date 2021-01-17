@@ -23,7 +23,7 @@ const getProductList = function* (action: Action) {
       }
     }
   } catch (error) {
-    yield put(getProductListError(getCustomError(error)));
+    yield put(getProductListError(getCustomError(error.response.data)));
   }
 };
 
