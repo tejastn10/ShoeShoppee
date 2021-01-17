@@ -16,7 +16,9 @@ const initialState: UserState = {
   errors: {
     results: null,
   },
-  user: null,
+  user: localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user")!)
+    : null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
