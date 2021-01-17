@@ -21,8 +21,10 @@ export const Search = () => {
   const { products, isLoading, errors } = productList;
 
   useEffect(() => {
-    dispatch(getProductListRequest());
-  }, [dispatch]);
+    if (!products) {
+      dispatch(getProductListRequest());
+    }
+  }, [dispatch, products]);
 
   useEffect(() => {
     if (errors.results) {
