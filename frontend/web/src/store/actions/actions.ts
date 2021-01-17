@@ -13,6 +13,9 @@ import {
   userLoginSuccess,
   userLoginError,
   logoutUser,
+  userRegisterRequest,
+  userRegisterSuccess,
+  userRegisterError,
 } from "./user";
 
 export {
@@ -26,4 +29,7 @@ export {
   userLoginSuccess,
   userLoginError,
   logoutUser,
+  userRegisterRequest,
+  userRegisterSuccess,
+  userRegisterError,
 };

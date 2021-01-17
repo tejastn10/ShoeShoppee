@@ -26,3 +26,28 @@ export const userLoginError = createAction(
   }
 );
 export const logoutUser = createAction(UserActionTypes.LOGOUT_USER);
+
+export const userRegisterRequest = createAction(
+  UserActionTypes.USER_REGISTER_REQUEST,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const userRegisterSuccess = createAction(
+  UserActionTypes.USER_REGISTER_SUCCESS,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const userRegisterError = createAction(
+  UserActionTypes.USER_REGISTER_ERROR,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
