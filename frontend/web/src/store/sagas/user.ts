@@ -17,7 +17,6 @@ const getUser = function* (action: Action) {
       const res = yield call(API.fetchUser, action.payload);
       const data = res.data;
       if (res.status !== 200) {
-        console.log(res.data.error.message);
         yield put(userLoginError(data.error));
       } else {
         yield put(userLoginSuccess(data));
