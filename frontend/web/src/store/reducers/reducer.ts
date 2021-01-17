@@ -7,10 +7,12 @@ import {
   ProductDetailsStateReducer,
   ProductDetailsInitialState,
 } from "./productDetails";
+import { UserStateReducer, UserInitialState } from "./user";
 
 const reducers = {
-  productList: ProductListStatereducer,
+  productList: ProductListStateReducer,
   productDetails: ProductDetailsStateReducer,
+  user: UserStateReducer,
 };
 
 export const rootReducer = () => {
@@ -21,4 +23,5 @@ export const rootReducer = () => {
 export {
   ProductListInitialState,
   ProductDetailsInitialState,
+  UserInitialState,
 };
