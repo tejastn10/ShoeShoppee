@@ -9,6 +9,9 @@ import {
   userLoginRequest,
   userLoginSuccess,
   userLoginError,
+  userRegisterRequest,
+  userRegisterSuccess,
+  userRegisterError,
 } from "../actions/actions";
 
 const getUser = function* (action: Action) {
@@ -27,10 +30,31 @@ const getUser = function* (action: Action) {
   }
 };
 
+const registerUser = function* (action: Action) {
+  try {
+    if (userRegisterRequest.match(action)) {
+      const res = yield call(API.registerUser, action.payload);
+      const data = res.data;
+      console.log(res.status);
+      if (res.status !== 201) {
+        yield put(userRegisterError(data.error));
+      } else {
+        yield put(userRegisterSuccess(data));
+      }
+    }
+  } catch (error) {
+    yield put(userRegisterError(getCustomError(error.response.data)));
+  }
+};
+
 const watchUserRequest = function* () {
   yield takeLatest(userLoginRequest.type, getUser);
 };
 
+const watchRegisterUserRequest = function* () {
+  yield takeLatest(userRegisterRequest.type, registerUser);
+};
+
 export default function* userSaga() {
-  yield all([fork(watchUserRequest)]);
+  yield all([fork(watchUserRequest), fork(watchRegisterUserRequest)]);
 }
