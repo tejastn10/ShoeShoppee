@@ -34,5 +34,5 @@ const reducer = createReducer(initialState, (builder) => {
 
 export {
   initialState as ProductListInitialState,
-  reducer as ProductListStatereducer,
+  reducer as ProductListStateReducer,
 };
