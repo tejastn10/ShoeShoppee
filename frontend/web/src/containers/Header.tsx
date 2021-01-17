@@ -11,11 +11,10 @@ import {
   UserOutlined,
   DownOutlined,
 } from "@ant-design/icons";
-import { Button, Dropdown, Input, Menu } from "antd";
+import { Button, Dropdown, Input, Menu, message } from "antd";
 
 import { ApplicationState } from "../store/store";
 import { UserState } from "../store/@types";
-import React from "react";
 import { userLogoutRequest } from "../store/actions/actions";
 
 const { Search } = Input;
@@ -48,6 +47,7 @@ export const Header = () => {
   const dispatch = useDispatch();
 
   const logout = () => {
+    message.success("You have successfully logged out!");
     dispatch(userLogoutRequest());
   };
 
