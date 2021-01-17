@@ -1,6 +1,12 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { ProductListStatereducer } from "./productList";
-import { ProductDetailsStateReducer } from "./productDetails";
+import {
+  ProductListStateReducer,
+  ProductListInitialState,
+} from "./productList";
+import {
+  ProductDetailsStateReducer,
+  ProductDetailsInitialState,
+} from "./productDetails";
 
 const reducers = {
   productList: ProductListStatereducer,
@@ -10,4 +16,9 @@ const reducers = {
 export const rootReducer = () => {
   const reducer = combineReducers({ ...reducers });
   return reducer;
+};
+
+export {
+  ProductListInitialState,
+  ProductDetailsInitialState,
 };
