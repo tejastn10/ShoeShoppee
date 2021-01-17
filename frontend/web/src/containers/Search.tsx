@@ -20,8 +20,6 @@ export const Search = () => {
   );
   const { products, isLoading, errors } = productList;
 
-  // TODO: Check breaking code
-
   useEffect(() => {
     if (!products) {
       dispatch(getProductListRequest());

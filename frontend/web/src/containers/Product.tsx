@@ -36,8 +36,6 @@ export const Product = () => {
   );
   const { productDetail, isLoading, errors } = product;
 
-  // TODO: Check breaking code
-
   useEffect(() => {
     dispatch(getProductRequest(id));
   }, [dispatch, id]);
