@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 import {
   LockOutlined,
@@ -6,11 +8,46 @@ import {
   MailOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
-import { Button, Divider, Form, Input } from "antd";
+import { Button, Divider, Form, Input, message } from "antd";
+
+import { ApplicationState } from "../../store/store";
+import { UserState } from "../../store/@types";
+import { userRegisterRequest } from "../../store/actions/actions";
+
+type submitProps = {
+  name: string;
+  email: string;
+  password: string;
+  password2: string;
+};
 
 export const Register = () => {
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const userState = useSelector<ApplicationState, UserState>(
+    (state) => state.user
+  );
+  const { errors, user } = userState;
+
+  useEffect(() => {
+    if (errors.results) {
+      message.error(errors.results.message);
+    }
+  }, [errors.results]);
+
+  useEffect(() => {
+    if (user) {
+      history.goBack();
+    }
+  }, [history, user]);
+
+  const onFinish = ({ name, email, password, password2 }: submitProps) => {
+    if (password !== password2) {
+      message.error("Passwords do not match!");
+    } else {
+      dispatch(userRegisterRequest({ name, email, password }));
+    }
   };
   return (
     <>
