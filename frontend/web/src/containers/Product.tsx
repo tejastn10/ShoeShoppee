@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import {
   Col,
@@ -28,6 +28,7 @@ interface ProductPramas {
 
 export const Product = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { id }: ProductPramas = useParams();
 
   const product = useSelector<ApplicationState, ProductDetailsState>(
@@ -55,7 +56,7 @@ export const Product = () => {
     <div className="container">
       <PageHeader
         className="site-page-header"
-        onBack={() => null}
+        onBack={() => history.goBack()}
         title="Product"
         subTitle="Info"
       />
