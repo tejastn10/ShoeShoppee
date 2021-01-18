@@ -11,8 +11,8 @@ import {
 import { Button, Divider, Form, Input, message } from "antd";
 
 import { ApplicationState } from "../../store/store";
-import { UserState } from "../../store/@types";
-import { userRegisterRequest } from "../../store/actions/actions";
+import { AuthState } from "../../store/@types";
+import { registerAuthRequest } from "../../store/actions/actions";
 
 type submitProps = {
   name: string;
@@ -25,10 +25,10 @@ export const Register = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const userState = useSelector<ApplicationState, UserState>(
-    (state) => state.user
+  const userState = useSelector<ApplicationState, AuthState>(
+    (state) => state.authState
   );
-  const { errors, user } = userState;
+  const { errors, auth } = userState;
 
   useEffect(() => {
     if (errors.results) {
@@ -37,16 +37,16 @@ export const Register = () => {
   }, [errors.results]);
 
   useEffect(() => {
-    if (user) {
+    if (auth) {
       history.goBack();
     }
-  }, [history, user]);
+  }, [history, auth]);
 
   const onFinish = ({ name, email, password, password2 }: submitProps) => {
     if (password !== password2) {
       message.error("Passwords do not match!");
     } else {
-      dispatch(userRegisterRequest({ name, email, password }));
+      dispatch(registerAuthRequest({ name, email, password }));
     }
   };
   return (
