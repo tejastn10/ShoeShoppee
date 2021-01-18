@@ -9,14 +9,14 @@ import {
   getProductError,
 } from "./productDetails";
 import {
-  userLoginRequest,
-  userLoginSuccess,
-  userLoginError,
+  loginAuthRequest,
+  loginAuthSuccess,
+  loginAuthError,
   logoutUser,
-  userRegisterRequest,
-  userRegisterSuccess,
-  userRegisterError,
-} from "./user";
+  registerAuthRequest,
+  registerAuthSuccess,
+  registerAuthError,
+} from "./auth";
 
 export {
   getProductListRequest,
@@ -25,11 +25,11 @@ export {
   getProductRequest,
   getProductSuccess,
   getProductError,
-  userLoginRequest,
-  userLoginSuccess,
-  userLoginError,
+  loginAuthRequest,
+  loginAuthSuccess,
+  loginAuthError,
   logoutUser,
-  userRegisterRequest,
-  userRegisterSuccess,
-  userRegisterError,
+  registerAuthRequest,
+  registerAuthSuccess,
+  registerAuthError,
 };
