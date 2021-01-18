@@ -30,3 +30,9 @@ export const registerUser: any = ({ name, email, password }: any) => {
 
   return API.post(URL, { name, email, password });
 };
+
+export const fetchUserProfile: any = () => {
+  const URL = `${API_ENDPOINT}/api/users/profile`;
+
+  return API.get(URL);
+};
