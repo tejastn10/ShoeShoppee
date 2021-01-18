@@ -18,8 +18,6 @@ const postAuthUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     if (user && (yield user.matchPassword(password))) {
         res.json({
             _id: user._id,
-            name: user.name,
-            email: user.email,
             isAdmin: user.isAdmin,
             token: generateToken_1.generateToken(user._id),
         });
@@ -80,8 +78,6 @@ const postRegisterUser = (req, res) => __awaiter(void 0, void 0, void 0, functio
     if (user) {
         res.status(201).json({
             _id: user._id,
-            name: user.name,
-            email: user.email,
             isAdmin: user.isAdmin,
             token: generateToken_1.generateToken(user._id),
         });

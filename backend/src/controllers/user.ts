@@ -11,8 +11,6 @@ export const postAuthUser = async (req: Request, res: Response) => {
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
-      name: user.name,
-      email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
     });
@@ -79,8 +77,6 @@ export const postRegisterUser = async (req: Request, res: Response) => {
   if (user) {
     res.status(201).json({
       _id: user._id,
-      name: user.name,
-      email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
     });
