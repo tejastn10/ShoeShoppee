@@ -10,10 +10,15 @@ import { protect } from "../middleware/auth";
 
 export const router: Router = Router();
 
-// @desc     Authenticate User and get Token
+// @desc     Authenticate and Login User
 // @route    POST /api/users/login
 // @access   Public
 router.post("/login", asyncHandler(postAuthUser));
+
+// @desc     Authenticate and Register a New User
+// @route    POST /api/users
+// @access   Public
+router.post("/", asyncHandler(postRegisterUser));
 
 // @desc     Get User Profile
 // @route    GET /api/users/profile
@@ -24,8 +29,3 @@ router.get("/profile", asyncHandler(protect), asyncHandler(getUserProfile));
 // @route    PUT /api/users/profile
 // @access   Private
 router.put("/profile", asyncHandler(protect), asyncHandler(putUpdateUser));
-
-// @desc     Register a New User
-// @route    POST /api/users
-// @access   Public
-router.post("/", asyncHandler(postRegisterUser));

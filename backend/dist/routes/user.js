@@ -9,10 +9,14 @@ const express_async_handler_1 = __importDefault(require("express-async-handler")
 const user_1 = require("../controllers/user");
 const auth_1 = require("../middleware/auth");
 exports.router = express_1.Router();
-// @desc     Authenticate User and get Token
+// @desc     Authenticate and Login User
 // @route    POST /api/users/login
 // @access   Public
 exports.router.post("/login", express_async_handler_1.default(user_1.postAuthUser));
+// @desc     Authenticate and Register a New User
+// @route    POST /api/users
+// @access   Public
+exports.router.post("/", express_async_handler_1.default(user_1.postRegisterUser));
 // @desc     Get User Profile
 // @route    GET /api/users/profile
 // @access   Private
@@ -21,7 +25,3 @@ exports.router.get("/profile", express_async_handler_1.default(auth_1.protect), 
 // @route    PUT /api/users/profile
 // @access   Private
 exports.router.put("/profile", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(user_1.putUpdateUser));
-// @desc     Register a New User
-// @route    POST /api/users
-// @access   Public
-exports.router.post("/", express_async_handler_1.default(user_1.postRegisterUser));
