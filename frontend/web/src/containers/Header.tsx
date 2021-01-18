@@ -15,7 +15,7 @@ import { Button, Dropdown, Input, Menu, message } from "antd";
 
 import { ApplicationState } from "../store/store";
 import { AuthState } from "../store/@types";
-import { logoutUser } from "../store/actions/actions";
+import { clearUserProfile, logoutUser } from "../store/actions/actions";
 
 const { Search } = Input;
 
@@ -49,6 +49,7 @@ export const Header = () => {
   const logout = () => {
     message.success("You have successfully logged out!");
     dispatch(logoutUser());
+    dispatch(clearUserProfile());
   };
 
   return (
