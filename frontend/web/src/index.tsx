@@ -9,13 +9,13 @@ import { ApplicationState, configureAppStore } from "./store/store";
 import {
   ProductListInitialState,
   ProductDetailsInitialState,
-  UserInitialState,
+  AuthInitialState,
 } from "./store/reducers/reducer";
 
 const initialState: ApplicationState = {
   productList: ProductListInitialState,
   productDetails: ProductDetailsInitialState,
-  user: UserInitialState,
+  authState: AuthInitialState,
 };
 const store = configureAppStore(initialState);
 

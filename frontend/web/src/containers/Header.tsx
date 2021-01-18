@@ -14,7 +14,7 @@ import {
 import { Button, Dropdown, Input, Menu, message } from "antd";
 
 import { ApplicationState } from "../store/store";
-import { UserState } from "../store/@types";
+import { AuthState } from "../store/@types";
 import { logoutUser } from "../store/actions/actions";
 
 const { Search } = Input;
@@ -41,8 +41,8 @@ const menu = (
 );
 
 export const Header = () => {
-  const userState = useSelector<ApplicationState, UserState>(
-    (state) => state.user
+  const authState = useSelector<ApplicationState, AuthState>(
+    (state) => state.authState
   );
   const dispatch = useDispatch();
 
@@ -66,7 +66,7 @@ export const Header = () => {
         placeholder="Search"
         enterButton
       />
-      {userState.user ? (
+      {authState.auth ? (
         <div>
           <Dropdown overlay={menu} trigger={["click"]}>
             <Button type="link" onClick={(e) => e.preventDefault}>
