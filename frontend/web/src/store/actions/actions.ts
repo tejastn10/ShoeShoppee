@@ -17,6 +17,12 @@ import {
   registerAuthSuccess,
   registerAuthError,
 } from "./auth";
+import {
+  getUserProfileRequest,
+  getUserProfileSuccess,
+  getUserProfileError,
+  clearUserProfile,
+} from "./user";
 
 export {
   getProductListRequest,
@@ -32,4 +38,8 @@ export {
   registerAuthRequest,
   registerAuthSuccess,
   registerAuthError,
+  getUserProfileRequest,
+  getUserProfileSuccess,
+  getUserProfileError,
+  clearUserProfile,
 };
