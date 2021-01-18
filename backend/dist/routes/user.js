@@ -17,6 +17,10 @@ exports.router.post("/login", express_async_handler_1.default(user_1.postAuthUse
 // @route    GET /api/users/profile
 // @access   Private
 exports.router.get("/profile", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(user_1.getUserProfile));
+// @desc     Update User Profile
+// @route    PUT /api/users/profile
+// @access   Private
+exports.router.put("/profile", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(user_1.putUpdateUser));
 // @desc     Register a New User
 // @route    POST /api/users
 // @access   Public

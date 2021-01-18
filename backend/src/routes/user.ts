@@ -3,6 +3,7 @@ import asyncHandler from "express-async-handler";
 import {
   postAuthUser,
   getUserProfile,
+  putUpdateUser,
   postRegisterUser,
 } from "../controllers/user";
 import { protect } from "../middleware/auth";
@@ -18,6 +19,11 @@ router.post("/login", asyncHandler(postAuthUser));
 // @route    GET /api/users/profile
 // @access   Private
 router.get("/profile", asyncHandler(protect), asyncHandler(getUserProfile));
+
+// @desc     Update User Profile
+// @route    PUT /api/users/profile
+// @access   Private
+router.put("/profile", asyncHandler(protect), asyncHandler(putUpdateUser));
 
 // @desc     Register a New User
 // @route    POST /api/users
