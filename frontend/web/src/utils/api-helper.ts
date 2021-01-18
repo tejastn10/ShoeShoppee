@@ -26,9 +26,9 @@ export const getCustomError = (err: any) => {
   return error;
 };
 
-export const getFromLocalStorage = async (key: string) => {
+export const getFromLocalStorage = (key: string) => {
   try {
-    const serializedState = await localStorage.getItem(key);
+    const serializedState = localStorage.getItem(key);
     if (serializedState === null) {
       return undefined;
     }
