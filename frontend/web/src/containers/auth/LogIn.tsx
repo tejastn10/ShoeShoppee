@@ -6,8 +6,8 @@ import { LockOutlined, UserOutlined, LoginOutlined } from "@ant-design/icons";
 import { Button, Divider, Form, Input, message } from "antd";
 
 import { ApplicationState } from "../../store/store";
-import { UserState } from "../../store/@types";
-import { userLoginRequest } from "../../store/actions/actions";
+import { AuthState } from "../../store/@types";
+import { loginAuthRequest } from "../../store/actions/actions";
 
 type submitProps = {
   email: string;
@@ -18,10 +18,10 @@ export const LogIn = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const userState = useSelector<ApplicationState, UserState>(
-    (state) => state.user
+  const authState = useSelector<ApplicationState, AuthState>(
+    (state) => state.authState
   );
-  const { errors, user } = userState;
+  const { errors, auth } = authState;
 
   useEffect(() => {
     if (errors.results) {
@@ -30,13 +30,13 @@ export const LogIn = () => {
   }, [errors.results]);
 
   useEffect(() => {
-    if (user) {
+    if (auth) {
       history.goBack();
     }
-  }, [history, user]);
+  }, [history, auth]);
 
   const onFinish = ({ email, password }: submitProps) => {
-    dispatch(userLoginRequest({ email, password }));
+    dispatch(loginAuthRequest({ email, password }));
   };
 
   return (
