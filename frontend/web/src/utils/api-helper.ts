@@ -58,13 +58,15 @@ export const clearFromLocalStorage = async (key: string) => {
 
 async function getRequestConfig(apiConfig?: any) {
   let config = Object.assign({}, requestConfig);
-  // const session = await getFromLocalStorage("user");
+  const session = await getFromLocalStorage("user");
   if (apiConfig) {
     config = Object.assign({}, requestConfig, apiConfig);
   }
-  // if (session) {
-  //   config.headers["Authorization"] = `${JSON.parse(session).token}`;
-  // }
+  if (session) {
+    config.headers["Authorization"] = `Bearer ${
+      JSON.parse(JSON.stringify(session)).token
+    }`;
+  }
   return config;
 }
 
