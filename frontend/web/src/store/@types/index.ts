@@ -5,6 +5,20 @@ import {
   ProductDetailsActionTypes,
 } from "./productDetails";
 import { Auth, AuthState, AuthActionTypes } from "./auth";
+import { Profile, UserProfileState, UserProfileActionTypes } from "./user";
 
-export { ProductListActionTypes, ProductDetailsActionTypes, AuthActionTypes };
-export type { Product, ProductListState, ProductDetailsState, Auth, AuthState };
+export {
+  ProductListActionTypes,
+  ProductDetailsActionTypes,
+  AuthActionTypes,
+  UserProfileActionTypes,
+};
+export type {
+  Product,
+  ProductListState,
+  ProductDetailsState,
+  Auth,
+  AuthState,
+  Profile,
+  UserProfileState,
+};
