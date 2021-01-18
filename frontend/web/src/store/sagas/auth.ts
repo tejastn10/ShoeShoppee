@@ -55,6 +55,6 @@ const watchRegisterRequest = function* () {
   yield takeLatest(registerAuthRequest.type, registerAuth);
 };
 
-export default function* userSaga() {
+export default function* authSaga() {
   yield all([fork(watchLoginRequest), fork(watchRegisterRequest)]);
 }
