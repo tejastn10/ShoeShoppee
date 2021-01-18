@@ -19,7 +19,7 @@ export const fetchProductDetails: any = (id: string) => {
   return API.get(URL);
 };
 
-export const fetchUser: any = ({ email, password }: any) => {
+export const loginUser: any = ({ email, password }: any) => {
   const URL = `${API_ENDPOINT}/api/users/login`;
 
   return API.post(URL, { email, password });
