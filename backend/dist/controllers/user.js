@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postRegisterUser = exports.getUserProfile = exports.postAuthUser = void 0;
+exports.postRegisterUser = exports.putUpdateUser = exports.getUserProfile = exports.postAuthUser = void 0;
 const generateToken_1 = require("../utils/generateToken");
 const models_1 = require("./../models");
 const postAuthUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -46,6 +46,29 @@ const getUserProfile = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getUserProfile = getUserProfile;
+const putUpdateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield models_1.User.findById(req.body.user._id);
+    if (user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        if (req.body.password) {
+            user.password = req.body.password;
+        }
+        const updatedUser = yield user.save();
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            token: generateToken_1.generateToken(updatedUser._id),
+        });
+    }
+    else {
+        res.status(404);
+        throw new Error("❌ User Not Found!");
+    }
+});
+exports.putUpdateUser = putUpdateUser;
 const postRegisterUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, email, password } = yield req.body;
     const userExists = yield models_1.User.findOne({ email });
