@@ -27,7 +27,6 @@ export const loginUser: any = ({ email, password }: any) => {
 
 export const registerUser: any = ({ name, email, password }: any) => {
   const URL = `${API_ENDPOINT}/api/users`;
-  console.log({ name, email, password });
 
   return API.post(URL, { name, email, password });
 };
