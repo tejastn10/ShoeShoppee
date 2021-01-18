@@ -10,12 +10,14 @@ import {
   ProductListInitialState,
   ProductDetailsInitialState,
   AuthInitialState,
+  UserProfileInitialState,
 } from "./store/reducers/reducer";
 
 const initialState: ApplicationState = {
   productList: ProductListInitialState,
   productDetails: ProductDetailsInitialState,
   authState: AuthInitialState,
+  userProfile: UserProfileInitialState,
 };
 const store = configureAppStore(initialState);
 
