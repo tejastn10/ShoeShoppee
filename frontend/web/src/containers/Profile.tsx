@@ -32,6 +32,7 @@ export const Profile = () => {
       history.push("/login");
     } else {
       if (!profile) {
+        // TODO: Get profile by id
         dispatch(getUserProfileRequest());
       }
     }
