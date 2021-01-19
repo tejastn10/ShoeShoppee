@@ -54,13 +54,27 @@ export const Product = () => {
 
   return (
     <div className="container">
-      <PageHeader
-        className="site-page-header"
-        onBack={() => history.goBack()}
-        title="Product"
-        subTitle="Info"
-      />
-      <Divider />
+      <Card>
+        <PageHeader
+          className="site-page-header"
+          onBack={() => history.goBack()}
+          title={productDetail ? productDetail?.brand : "Product"}
+          extra={[
+            productDetail?.count! > 0 ? (
+              <Button className="cart-btn" type="primary">
+                <ShoppingCartOutlined />
+                Add To Cart
+              </Button>
+            ) : (
+              <Button className="cart-btn" type="primary" disabled>
+                <ShoppingCartOutlined />
+                Add To Cart
+              </Button>
+            ),
+          ]}
+        />
+      </Card>
+      {/* <Divider /> */}
       <div>
         {isLoading ? (
           <Loading />
@@ -69,49 +83,43 @@ export const Product = () => {
             <Empty />
           </div>
         ) : (
-          <>
+          <Card>
             <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
               <Col className="gutter-row" span={8}>
                 <Image className="img" src={productDetail?.image} />
               </Col>
               <Col className="gutter-row" span={16}>
-                <Card className="prod-info">
-                  <Divider>{productDetail?.brand}</Divider>
+                <Card className="prod-info" bordered={false}>
                   <h2>{productDetail?.name}</h2>
-                  <p>CATEGORY: {productDetail?.category}</p>
-                  <p>DESCRIPTION: {productDetail?.description}</p>
-                  <h4>PRICE: ₹ {productDetail?.price}</h4>
-                  <h4>
-                    RATING: <Rating rating={productDetail?.rating!} />
-                  </h4>
-                  <>
-                    <h4>IN STOCK: {productDetail?.count} Products</h4>
-                    {productDetail?.count! > 0 ? (
-                      <Button className="cart-btn" type="primary">
-                        <ShoppingCartOutlined />
-                        Add To Cart
-                      </Button>
-                    ) : (
-                      <Button className="cart-btn" type="primary" disabled>
-                        <ShoppingCartOutlined />
-                        Add To Cart
-                      </Button>
-                    )}
-                  </>
+                  <p>{productDetail?.category}</p>
+
+                  <Divider />
+                  <h4>DESCRIPTION</h4>
+                  <p>{productDetail?.description}</p>
+                  <h2>PRICE: ₹ {productDetail?.price}</h2>
+                  <h4>RATING</h4>
+                  <p>
+                    <Rating rating={productDetail?.rating!} />
+                  </p>
+                  <div>
+                    <h4>IN STOCK</h4>
+                    <p>{productDetail?.count} Products</p>
+                  </div>
                 </Card>
               </Col>
             </Row>
-            <Divider>Reviews</Divider>
-            <div>
-              {productDetail?.reviews ? (
-                <Empty />
-              ) : (
-                productDetail?.reviews.map((review) => {
-                  return <>{review}</>;
-                })
-              )}
-            </div>
-          </>
+            <Card title="Reviews">
+              <div>
+                {productDetail?.reviews ? (
+                  <Empty />
+                ) : (
+                  productDetail?.reviews.map((review) => {
+                    return <>{review}</>;
+                  })
+                )}
+              </div>
+            </Card>
+          </Card>
         )}
       </div>
     </div>
