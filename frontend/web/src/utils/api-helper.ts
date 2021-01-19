@@ -26,9 +26,9 @@ export const getCustomError = (err: any) => {
   return error;
 };
 
-export const getFromLocalStorage = async (key: string) => {
+export const getFromLocalStorage = (key: string) => {
   try {
-    const serializedState = await localStorage.getItem(key);
+    const serializedState = localStorage.getItem(key);
     if (serializedState === null) {
       return undefined;
     }
@@ -63,7 +63,9 @@ async function getRequestConfig(apiConfig?: any) {
     config = Object.assign({}, requestConfig, apiConfig);
   }
   if (session) {
-    config.headers["Authorization"] = `${JSON.parse(session).token}`;
+    config.headers["Authorization"] = `Bearer ${
+      JSON.parse(JSON.stringify(session)).token
+    }`;
   }
   return config;
 }

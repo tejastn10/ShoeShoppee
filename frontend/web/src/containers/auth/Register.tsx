@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 import {
   LockOutlined,
@@ -6,11 +8,46 @@ import {
   MailOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
-import { Button, Divider, Form, Input } from "antd";
+import { Button, Divider, Form, Input, message } from "antd";
+
+import { ApplicationState } from "../../store/store";
+import { AuthState } from "../../store/@types";
+import { registerAuthRequest } from "../../store/actions/actions";
+
+type submitProps = {
+  name: string;
+  email: string;
+  password: string;
+  password2: string;
+};
 
 export const Register = () => {
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const userState = useSelector<ApplicationState, AuthState>(
+    (state) => state.authState
+  );
+  const { errors, auth } = userState;
+
+  useEffect(() => {
+    if (errors.results) {
+      message.error(errors.results.message);
+    }
+  }, [errors.results]);
+
+  useEffect(() => {
+    if (auth) {
+      history.goBack();
+    }
+  }, [history, auth]);
+
+  const onFinish = ({ name, email, password, password2 }: submitProps) => {
+    if (password !== password2) {
+      message.error("Passwords do not match!");
+    } else {
+      dispatch(registerAuthRequest({ name, email, password }));
+    }
   };
   return (
     <>

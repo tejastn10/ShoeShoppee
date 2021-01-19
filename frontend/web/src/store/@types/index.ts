@@ -4,6 +4,21 @@ import {
   ProductDetailsState,
   ProductDetailsActionTypes,
 } from "./productDetails";
+import { Auth, AuthState, AuthActionTypes } from "./auth";
+import { Profile, UserProfileState, UserProfileActionTypes } from "./user";
 
-export { ProductListActionTypes, ProductDetailsActionTypes };
-export type { Product, ProductListState, ProductDetailsState };
+export {
+  ProductListActionTypes,
+  ProductDetailsActionTypes,
+  AuthActionTypes,
+  UserProfileActionTypes,
+};
+export type {
+  Product,
+  ProductListState,
+  ProductDetailsState,
+  Auth,
+  AuthState,
+  Profile,
+  UserProfileState,
+};

@@ -8,6 +8,24 @@ import {
   getProductSuccess,
   getProductError,
 } from "./productDetails";
+import {
+  loginAuthRequest,
+  loginAuthSuccess,
+  loginAuthError,
+  logoutUser,
+  registerAuthRequest,
+  registerAuthSuccess,
+  registerAuthError,
+} from "./auth";
+import {
+  getUserProfileRequest,
+  getUserProfileSuccess,
+  getUserProfileError,
+  clearUserProfile,
+  updateUserProfileRequest,
+  updateUserProfileSuccess,
+  updateUserProfileError,
+} from "./user";
 
 export {
   getProductListRequest,
@@ -16,4 +34,18 @@ export {
   getProductRequest,
   getProductSuccess,
   getProductError,
+  loginAuthRequest,
+  loginAuthSuccess,
+  loginAuthError,
+  logoutUser,
+  registerAuthRequest,
+  registerAuthSuccess,
+  registerAuthError,
+  getUserProfileRequest,
+  getUserProfileSuccess,
+  getUserProfileError,
+  clearUserProfile,
+  updateUserProfileRequest,
+  updateUserProfileSuccess,
+  updateUserProfileError,
 };

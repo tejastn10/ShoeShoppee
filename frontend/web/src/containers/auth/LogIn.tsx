@@ -1,11 +1,42 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 import { LockOutlined, UserOutlined, LoginOutlined } from "@ant-design/icons";
-import { Button, Divider, Form, Input } from "antd";
+import { Button, Divider, Form, Input, message } from "antd";
+
+import { ApplicationState } from "../../store/store";
+import { AuthState } from "../../store/@types";
+import { loginAuthRequest } from "../../store/actions/actions";
+
+type submitProps = {
+  email: string;
+  password: string;
+};
 
 export const LogIn = () => {
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const authState = useSelector<ApplicationState, AuthState>(
+    (state) => state.authState
+  );
+  const { errors, auth } = authState;
+
+  useEffect(() => {
+    if (errors.results) {
+      message.error(errors.results.message);
+    }
+  }, [errors.results]);
+
+  useEffect(() => {
+    if (auth) {
+      history.goBack();
+    }
+  }, [history, auth]);
+
+  const onFinish = ({ email, password }: submitProps) => {
+    dispatch(loginAuthRequest({ email, password }));
   };
 
   return (

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { Divider, Empty, message, PageHeader, Row } from "antd";
 import { CardItem } from "../components/CardItem";
@@ -12,6 +13,7 @@ import { Loading } from "../components/Loading";
 
 export const Search = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const productList = useSelector<ApplicationState, ProductListState>(
     (state) => state.productList
@@ -19,8 +21,10 @@ export const Search = () => {
   const { products, isLoading, errors } = productList;
 
   useEffect(() => {
-    dispatch(getProductListRequest());
-  }, [dispatch]);
+    if (!products) {
+      dispatch(getProductListRequest());
+    }
+  }, [dispatch, products]);
 
   useEffect(() => {
     if (errors.results) {
@@ -32,7 +36,7 @@ export const Search = () => {
     <div className="container">
       <PageHeader
         className="site-page-header"
-        onBack={() => null}
+        onBack={() => history.goBack()}
         title="Search/Filter"
         subTitle="Results..."
       />
