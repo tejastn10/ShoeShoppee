@@ -36,3 +36,9 @@ export const fetchUserProfile: any = () => {
 
   return API.get(URL);
 };
+
+export const updateUserProfile: any = ({ name, email, password }: any) => {
+  const URL = `${API_ENDPOINT}/api/users/profile`;
+
+  return API.put(URL, { name, email, password });
+};
