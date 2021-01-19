@@ -9,6 +9,9 @@ import {
   getUserProfileRequest,
   getUserProfileSuccess,
   getUserProfileError,
+  updateUserProfileRequest,
+  updateUserProfileSuccess,
+  updateUserProfileError,
 } from "../actions/actions";
 
 const getUserProfile = function* (action: Action) {
@@ -27,10 +30,33 @@ const getUserProfile = function* (action: Action) {
   }
 };
 
+const updateUserProfile = function* (action: Action) {
+  try {
+    if (updateUserProfileRequest.match(action)) {
+      const res = yield call(API.updateUserProfile, action.payload);
+      const data = res.data;
+      if (res.status !== 200) {
+        yield put(updateUserProfileError(data.error));
+      } else {
+        yield put(updateUserProfileSuccess(data));
+      }
+    }
+  } catch (error) {
+    yield put(updateUserProfileError(getCustomError(error.response.data)));
+  }
+};
+
 const watchUserProfileRequest = function* () {
   yield takeLatest(getUserProfileRequest.type, getUserProfile);
 };
 
+const watchUpdateUserProfileRequest = function* () {
+  yield takeLatest(updateUserProfileRequest.type, updateUserProfile);
+};
+
 export default function* userSaga() {
-  yield all([fork(watchUserProfileRequest)]);
+  yield all([
+    fork(watchUserProfileRequest),
+    fork(watchUpdateUserProfileRequest),
+  ]);
 }
