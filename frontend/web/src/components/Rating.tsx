@@ -9,7 +9,7 @@ export const Rating = ({ rating, reviews }: RateProps) => {
   return (
     <>
       <Rate allowHalf defaultValue={rating} />
-      {reviews ? <span>{reviews} Reviews</span> : null}
+      {reviews ? <span> of {reviews} Reviews</span> : null}
     </>
   );
 };
