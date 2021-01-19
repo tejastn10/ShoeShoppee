@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { Divider, Empty, message, PageHeader, Row } from "antd";
+import { Empty, message, PageHeader, Row, Card } from "antd";
 import { CardItem } from "../components/CardItem";
 
 import { ProductListState } from "../store/@types";
@@ -34,14 +34,15 @@ export const Search = () => {
 
   return (
     <div className="container">
-      <PageHeader
-        className="site-page-header"
-        onBack={() => history.goBack()}
-        title="Search/Filter"
-        subTitle="Results..."
-      />
-      <Divider />
-      <div>
+      <Card>
+        <PageHeader
+          className="site-page-header"
+          onBack={() => history.goBack()}
+          title="Search/Filter"
+          subTitle="Results..."
+        />
+      </Card>
+      <Card>
         {isLoading ? (
           <Loading />
         ) : errors.results ? (
@@ -55,7 +56,7 @@ export const Search = () => {
             ))}
           </Row>
         )}
-      </div>
+      </Card>
     </div>
   );
 };
