@@ -22,6 +22,9 @@ import {
   getUserProfileSuccess,
   getUserProfileError,
   clearUserProfile,
+  updateUserProfileRequest,
+  updateUserProfileSuccess,
+  updateUserProfileError,
 } from "./user";
 
 export {
@@ -42,4 +45,7 @@ export {
   getUserProfileSuccess,
   getUserProfileError,
   clearUserProfile,
+  updateUserProfileRequest,
+  updateUserProfileSuccess,
+  updateUserProfileError,
 };
