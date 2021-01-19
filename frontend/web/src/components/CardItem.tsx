@@ -15,11 +15,17 @@ export const CardItem = ({ product }: CardProps) => {
         <Card
           className="card"
           hoverable
+          title={product.name}
           cover={<img alt="example" src={product.image} />}
         >
-          <Card.Meta title={product.name} description="Rating" />
-          <Rating rating={product.rating} reviews={product.numReviews} />
-          <h2>₹ {product.price}</h2>
+          <Card.Meta
+            description={
+              <Rating rating={product.rating} reviews={product.numReviews} />
+            }
+          />
+          <Card.Meta description={product.category} />
+          <p></p>
+          <Card.Meta title={`PRICE: ₹ ${product.price}`} />
         </Card>
       </Link>
     </Col>
