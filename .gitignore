@@ -23,6 +23,9 @@ web-build/
 *.mobileprovision
 *.orig.*
 
+# antd Theme
+theme.css
+
 # misc
 .DS_Store
 .env
