@@ -4,17 +4,17 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
-    "@types/jest": "^26.0.19",
-    "@types/node": "^14.14.14",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@types/react-redux": "^7.1.14",
+    "@types/react-redux": "^7.1.15",
     "@types/react-router-dom": "^5.1.7",
-    "antd": "^4.9.4",
-    "axios": "^0.21.0",
+    "antd": "^4.10.3",
+    "axios": "^0.21.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
@@ -23,7 +23,7 @@
     "redux-injectors": "^1.3.0",
     "redux-saga": "^1.1.3",
     "typescript": "^4.1.3",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
