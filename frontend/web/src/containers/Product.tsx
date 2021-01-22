@@ -74,7 +74,6 @@ export const Product = () => {
           ]}
         />
       </Card>
-      {/* <Divider /> */}
       <div>
         {isLoading ? (
           <Loading />
