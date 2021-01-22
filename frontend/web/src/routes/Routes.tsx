@@ -7,6 +7,7 @@ import { Profile } from "../containers/Profile";
 import { Landing } from "../components/Landing";
 import { Search } from "../containers/Search";
 import { Product } from "../containers/Product";
+import { Cart } from "../containers/Cart";
 
 export const Routes = () => {
   return (
@@ -18,6 +19,7 @@ export const Routes = () => {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/search/*" component={Search} />
         <Route path="/product/:id" component={Product} />
+        <Route path="/cart/:id?" component={Cart} />
       </Switch>
     </>
   );
