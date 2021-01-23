@@ -6,12 +6,14 @@ import {
 } from "./productDetails";
 import { Auth, AuthState, AuthActionTypes } from "./auth";
 import { Profile, UserProfileState, UserProfileActionTypes } from "./user";
+import { CartItem, CartState, CartActionTypes } from "./cart";
 
 export {
   ProductListActionTypes,
   ProductDetailsActionTypes,
   AuthActionTypes,
   UserProfileActionTypes,
+  CartActionTypes,
 };
 export type {
   Product,
@@ -21,4 +23,6 @@ export type {
   AuthState,
   Profile,
   UserProfileState,
+  CartItem,
+  CartState,
 };
