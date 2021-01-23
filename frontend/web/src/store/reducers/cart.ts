@@ -10,7 +10,7 @@ import {
 const initialState: CartState = {
   cartList:
     getFromLocalStorage("cart") === undefined
-      ? null
+      ? []
       : getFromLocalStorage("cart"),
 };
 
