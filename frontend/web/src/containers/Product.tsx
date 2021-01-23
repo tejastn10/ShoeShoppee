@@ -13,13 +13,14 @@ import {
   Card,
   Button,
   Select,
+  Statistic,
 } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
 import { ProductDetailsState } from "../store/@types";
-
 import { getProductRequest } from "../store/actions/actions";
 import { ApplicationState } from "../store/store";
+
 import { Loading } from "../components/Loading";
 import { Rating } from "../components/Rating";
 
@@ -76,7 +77,9 @@ export const Product = () => {
                   onChange={(num) => setQty(num)}
                 >
                   {[...Array(productDetail?.count).keys()].map((c) => (
-                    <Option value={c + 1}>{c + 1}</Option>
+                    <Option value={c + 1} key={c}>
+                      {c + 1}
+                    </Option>
                   ))}
                 </Select>
 
@@ -109,18 +112,22 @@ export const Product = () => {
               </Col>
               <Col className="gutter-row" span={16}>
                 <Card className="prod-info" bordered={false}>
-                  <h2>{productDetail?.name}</h2>
-                  <p>{productDetail?.category}</p>
+                  <Statistic title="Name" value={productDetail?.name} />
 
+                  <Statistic title="Category" value={productDetail?.category} />
                   <Divider />
-                  <h4>DESCRIPTION</h4>
                   <p>{productDetail?.description}</p>
-                  <h2>PRICE: ₹ {productDetail?.price}</h2>
+                  <Statistic
+                    title="Price"
+                    prefix="₹"
+                    value={productDetail?.price}
+                  />
+                  <Divider />
                   <h4>RATING</h4>
-                  <p>
-                    <Rating rating={productDetail?.rating!} />
-                  </p>
                   <div>
+                    <div style={{ marginBottom: "10px" }}>
+                      <Rating rating={productDetail?.rating!} />
+                    </div>
                     <h4>IN STOCK</h4>
                     <p>{productDetail?.count} Products</p>
                   </div>
