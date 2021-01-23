@@ -11,6 +11,7 @@ import {
   ProductDetailsInitialState,
   AuthInitialState,
   UserProfileInitialState,
+  CartInitialState,
 } from "./store/reducers/reducer";
 
 const initialState: ApplicationState = {
@@ -18,6 +19,7 @@ const initialState: ApplicationState = {
   productDetails: ProductDetailsInitialState,
   authState: AuthInitialState,
   userProfile: UserProfileInitialState,
+  cart: CartInitialState,
 };
 const store = configureAppStore(initialState);
 
