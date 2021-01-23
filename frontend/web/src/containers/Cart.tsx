@@ -2,17 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 
-import {
-  Button,
-  Card,
-  PageHeader,
-  Row,
-  Col,
-  Statistic,
-  Tag,
-  message,
-  Empty,
-} from "antd";
+import { Button, Card, PageHeader, Row, Col, Tag, message, Empty } from "antd";
 
 import {
   ShoppingCartOutlined,
@@ -91,7 +81,11 @@ export const Cart = () => {
             <Button
               key="1"
               type="primary"
-              disabled={true ? cart.cartList!.length === 0 : false}
+              disabled={
+                true
+                  ? cart.cartList?.length === 0 || cart.cartList === null
+                  : false
+              }
             >
               <MoneyCollectOutlined />
               Proceed to checkout
@@ -103,17 +97,16 @@ export const Cart = () => {
         <Row>
           <Col span={18}>
             <Card title="List Items" bordered={false}>
-              <Card bordered={false}>
-                <Button onClick={emptyCartHandler}>
-                  <DeleteOutlined />
-                  Empty Cart
-                </Button>
-              </Card>
-
               {cart.cartList?.length === 0 || cart.cartList === null ? (
                 <Empty description="Your shopping cart is empty" />
               ) : (
                 <>
+                  <Card bordered={false}>
+                    <Button onClick={emptyCartHandler} danger type="primary">
+                      <DeleteOutlined />
+                      Empty Cart
+                    </Button>
+                  </Card>
                   {cart.cartList.map((item) => {
                     return (
                       <CartItem
