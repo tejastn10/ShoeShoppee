@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { Button, Card, Col, Row, Select, Image } from "antd";
+import { Button, Card, Col, Row, Select, Image, Statistic } from "antd";
 import { DeleteRowOutlined } from "@ant-design/icons";
 
 import { CartItem as item } from "../store/@types";
@@ -18,40 +18,40 @@ export const CartItem = ({ item, removeFromCart, addToCart }: CartProps) => {
 
   return (
     <Card>
-      <Row>
-        <Col span={6}>
+      <Row style={{ paddingBottom: "0" }}>
+        <Col span={4}>
           <Card bordered={false}>
-            <Image src={image} preview={false} style={{ height: "10rem" }} />
+            <Image src={image} preview={false} style={{ height: "14rem" }} />
           </Card>
         </Col>
-        <Col span={18}>
+        <Col span={20}>
           <Card bordered={false}>
             <Link to={`/product/${id}`}>
-              <h2>{name}</h2>
-              <h2>PRICE: ₹ {price}</h2>
+              <Statistic title="Name" value={name} />
+              <Statistic title="Price" prefix="₹" value={price} />
             </Link>
-            <>
-              <Select
-                value={qty}
-                style={{ width: 60 }}
-                onChange={(num) =>
-                  addToCart({ id, name, image, price, count, qty: num })
-                }
-              >
-                {[...Array(item.count).keys()].map((c) => (
-                  <Option value={c + 1}>{c + 1}</Option>
-                ))}
-              </Select>
+            <div>Quantity</div>
+            <p></p>
+            <Select
+              value={qty}
+              style={{ width: 60 }}
+              onChange={(num) =>
+                addToCart({ id, name, image, price, count, qty: num })
+              }
+            >
+              {[...Array(item.count).keys()].map((c) => (
+                <Option value={c + 1}>{c + 1}</Option>
+              ))}
+            </Select>
 
-              <Button
-                className="cart-btn"
-                type="primary"
-                onClick={() => removeFromCart(item.id)}
-              >
-                <DeleteRowOutlined />
-                Remove From Cart
-              </Button>
-            </>
+            <Button
+              className="cart-btn"
+              danger
+              onClick={() => removeFromCart(item.id)}
+            >
+              <DeleteRowOutlined />
+              Remove Product
+            </Button>
           </Card>
         </Col>
       </Row>
