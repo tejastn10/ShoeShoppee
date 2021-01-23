@@ -86,8 +86,10 @@ export const LogIn = () => {
           <Form.Item>
             <Button
               type="primary"
+              size="large"
               htmlType="submit"
               className="login-form-button"
+              block
             >
               <LoginOutlined />
               Log in

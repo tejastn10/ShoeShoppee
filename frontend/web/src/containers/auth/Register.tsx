@@ -119,6 +119,8 @@ export const Register = () => {
           </Form.Item>
           <Form.Item>
             <Button
+              block
+              size="large"
               type="primary"
               htmlType="submit"
               className="login-form-button"
