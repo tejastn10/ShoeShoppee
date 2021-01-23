@@ -1,0 +1,48 @@
+import { createReducer } from "@reduxjs/toolkit";
+import { addToCart, removeFromCart, emptyCart } from "../actions/actions";
+import { CartState } from "../@types";
+import {
+  clearFromLocalStorage,
+  getFromLocalStorage,
+  saveToLocalStorage,
+} from "../../utils/api-helper";
+
+const initialState: CartState = {
+  cartList:
+    getFromLocalStorage("cart") === undefined
+      ? null
+      : getFromLocalStorage("cart"),
+};
+
+const reducer = createReducer(initialState, (builder) => {
+  return builder
+    .addCase(addToCart, (state, action) => {
+      if (state.cartList === null) {
+        state.cartList = [action.payload];
+      } else {
+        const item = action.payload;
+        const existingItem = state.cartList?.find((i) => i.id === item.id);
+        console.log(existingItem);
+        if (existingItem) {
+          state.cartList = state.cartList.map((i) =>
+            i.id === existingItem.id ? item : i
+          );
+        } else {
+          state.cartList = [...state.cartList, action.payload];
+        }
+      }
+      saveToLocalStorage("cart", state.cartList);
+    })
+    .addCase(removeFromCart, (state, action) => {
+      state.cartList = state.cartList!.filter(
+        (i) => i.id !== action.payload.id
+      );
+      saveToLocalStorage("cart", state.cartList);
+    })
+    .addCase(emptyCart, (state, _action) => {
+      state.cartList = [];
+      clearFromLocalStorage("cart");
+    });
+});
+
+export { initialState as CartInitialState, reducer as CartStateReducer };
