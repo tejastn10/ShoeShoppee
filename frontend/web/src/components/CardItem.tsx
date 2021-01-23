@@ -1,7 +1,8 @@
-import { Col, Card } from "antd";
-import React from "react";
+import { Col, Card, Statistic } from "antd";
 import { Link } from "react-router-dom";
+
 import { Product } from "../store/@types";
+
 import { Rating } from "./Rating";
 
 type CardProps = {
@@ -18,14 +19,9 @@ export const CardItem = ({ product }: CardProps) => {
           title={product.name}
           cover={<img alt="example" src={product.image} />}
         >
-          <Card.Meta
-            description={
-              <Rating rating={product.rating} reviews={product.numReviews} />
-            }
-          />
-          <Card.Meta description={product.category} />
-          <p></p>
-          <Card.Meta title={`PRICE: ₹ ${product.price}`} />
+          <Statistic title="Category" value={product.category} />
+          <Statistic title="Price" prefix="₹" value={product.price} />
+          <Rating rating={product.rating} reviews={product.numReviews} />
         </Card>
       </Link>
     </Col>
