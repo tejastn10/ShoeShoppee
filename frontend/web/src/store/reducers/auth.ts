@@ -20,7 +20,10 @@ const initialState: AuthState = {
   errors: {
     results: null,
   },
-  auth: getFromLocalStorage("user"),
+  auth:
+    getFromLocalStorage("user") === undefined
+      ? null
+      : getFromLocalStorage("user"),
 };
 
 const reducer = createReducer(initialState, (builder) => {
