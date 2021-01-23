@@ -1,0 +1,192 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useHistory, useLocation } from "react-router-dom";
+
+import {
+  Button,
+  Card,
+  PageHeader,
+  Row,
+  Col,
+  Statistic,
+  Tag,
+  message,
+  Empty,
+} from "antd";
+
+import {
+  ShoppingCartOutlined,
+  MoneyCollectOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
+
+import {
+  ProductDetailsState,
+  CartState,
+  CartItem as item,
+} from "../store/@types";
+import { addToCart, emptyCart, removeFromCart } from "../store/actions/actions";
+import { ApplicationState } from "../store/store";
+
+import { CartItem } from "../components/CartItem";
+
+interface ProductPramas {
+  id: string;
+}
+
+export const Cart = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
+  const { id }: ProductPramas = useParams();
+  const qty: number = location.search
+    ? Number(location.search.split("=")[1])
+    : 1;
+
+  const product = useSelector<ApplicationState, ProductDetailsState>(
+    (state) => state.productDetails
+  );
+  const { productDetail } = product;
+
+  const cart = useSelector<ApplicationState, CartState>((state) => state.cart);
+
+  useEffect(() => {
+    if (id && productDetail) {
+      const { name, image, price, count } = productDetail!;
+      dispatch(addToCart({ id, name, image, price, count, qty }));
+    }
+  }, [dispatch, id, productDetail, qty]);
+
+  useEffect(() => {
+    if (cart.cartList === null || cart.cartList.length === 0) {
+      message.warning("Your Cart is Empty! ");
+    }
+  }, [cart.cartList]);
+
+  const removeFromCartHandler = (id: string) => {
+    dispatch(removeFromCart({ id }));
+  };
+
+  const addToCartHandler = ({ id, name, image, price, count, qty }: item) => {
+    dispatch(addToCart({ id, name, image, price, count, qty }));
+  };
+
+  const emptyCartHandler = () => {
+    dispatch(emptyCart());
+  };
+
+  return (
+    <div className="container">
+      <Card>
+        <PageHeader
+          onBack={() => history.goBack()}
+          title="Shopping Cart"
+          tags={<Tag color="green">Transaction in process...</Tag>}
+          extra={[
+            <Button key="2">
+              <ShoppingCartOutlined />
+              Continue Shopping
+            </Button>,
+            <Button
+              key="1"
+              type="primary"
+              disabled={true ? cart.cartList!.length === 0 : false}
+            >
+              <MoneyCollectOutlined />
+              Proceed to checkout
+            </Button>,
+          ]}
+        />
+      </Card>
+      <Card>
+        <Row>
+          <Col span={18}>
+            <Card title="List Items" bordered={false}>
+              <Card bordered={false}>
+                <Button onClick={emptyCartHandler}>
+                  <DeleteOutlined />
+                  Empty Cart
+                </Button>
+              </Card>
+
+              {cart.cartList?.length === 0 || cart.cartList === null ? (
+                <Empty description="Your shopping cart is empty" />
+              ) : (
+                <>
+                  {cart.cartList.map((item) => {
+                    return (
+                      <CartItem
+                        item={item}
+                        removeFromCart={removeFromCartHandler}
+                        addToCart={addToCartHandler}
+                        key={item.id}
+                      />
+                    );
+                  })}
+                </>
+              )}
+            </Card>
+          </Col>
+          <Col span={6}>
+            <Card type="inner" bordered={false}>
+              <Card.Grid hoverable={false}>
+                <Statistic
+                  title="Total Items"
+                  value={cart.cartList!.reduce(
+                    (acc, item) => acc + item.qty,
+                    0
+                  )}
+                />
+              </Card.Grid>
+              <Card.Grid hoverable={false}>
+                <Statistic
+                  title="Price"
+                  prefix="₹"
+                  value={cart.cartList!.reduce(
+                    (acc, item) => acc + item.qty * item.price,
+                    0
+                  )}
+                />
+              </Card.Grid>
+              <Card.Grid hoverable={false}>
+                <Statistic
+                  title="Tax"
+                  prefix="₹"
+                  value={cart.cartList!.reduce(
+                    (acc, item) => acc + item.qty * 50,
+                    0
+                  )}
+                />
+              </Card.Grid>
+              <Card.Grid hoverable={false}>
+                <Statistic
+                  title="Shipping Charges"
+                  prefix="₹"
+                  value={cart.cartList!.reduce(
+                    (acc, item) => acc + item.qty * 10,
+                    0
+                  )}
+                />
+              </Card.Grid>
+            </Card>
+            <Card title="Total Price">
+              <Card.Grid>
+                <Statistic
+                  prefix="₹"
+                  value={cart.cartList!.reduce(
+                    (acc, item) =>
+                      acc +
+                      item.qty * item.price +
+                      item.qty * 50 +
+                      item.qty * 10,
+                    0
+                  )}
+                />
+              </Card.Grid>
+            </Card>
+          </Col>
+        </Row>
+      </Card>
+    </div>
+  );
+};

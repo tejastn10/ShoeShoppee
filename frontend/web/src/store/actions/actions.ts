@@ -26,6 +26,7 @@ import {
   updateUserProfileSuccess,
   updateUserProfileError,
 } from "./user";
+import { addToCart, removeFromCart, emptyCart } from "./cart";
 
 export {
   getProductListRequest,
@@ -48,4 +49,7 @@ export {
   updateUserProfileRequest,
   updateUserProfileSuccess,
   updateUserProfileError,
+  addToCart,
+  removeFromCart,
+  emptyCart,
 };

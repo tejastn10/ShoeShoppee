@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 
@@ -12,6 +12,7 @@ import {
   Image,
   Card,
   Button,
+  Select,
 } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
@@ -22,6 +23,8 @@ import { ApplicationState } from "../store/store";
 import { Loading } from "../components/Loading";
 import { Rating } from "../components/Rating";
 
+const { Option } = Select;
+
 interface ProductPramas {
   id: string;
 }
@@ -30,6 +33,7 @@ export const Product = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id }: ProductPramas = useParams();
+  const [qty, setQty] = useState(1);
 
   const product = useSelector<ApplicationState, ProductDetailsState>(
     (state) => state.productDetails
@@ -52,6 +56,10 @@ export const Product = () => {
     }
   }, [productDetail]);
 
+  const addToCart = () => {
+    history.push(`/cart/${productDetail?._id}?qty=${qty}`);
+  };
+
   return (
     <div className="container">
       <Card>
@@ -61,10 +69,22 @@ export const Product = () => {
           title={productDetail ? productDetail?.brand : "Product"}
           extra={[
             productDetail?.count! > 0 ? (
-              <Button className="cart-btn" type="primary">
-                <ShoppingCartOutlined />
-                Add To Cart
-              </Button>
+              <>
+                <Select
+                  value={qty}
+                  style={{ width: 60 }}
+                  onChange={(num) => setQty(num)}
+                >
+                  {[...Array(productDetail?.count).keys()].map((c) => (
+                    <Option value={c + 1}>{c + 1}</Option>
+                  ))}
+                </Select>
+
+                <Button className="cart-btn" type="primary" onClick={addToCart}>
+                  <ShoppingCartOutlined />
+                  Add To Cart
+                </Button>
+              </>
             ) : (
               <Button className="cart-btn" type="primary" disabled>
                 <ShoppingCartOutlined />
