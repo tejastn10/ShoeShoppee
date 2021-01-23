@@ -29,6 +29,7 @@ import { addToCart, emptyCart, removeFromCart } from "../store/actions/actions";
 import { ApplicationState } from "../store/store";
 
 import { CartItem } from "../components/CartItem";
+import { CartSummary } from "../components/CartSummary";
 
 interface ProductPramas {
   id: string;
@@ -128,62 +129,7 @@ export const Cart = () => {
             </Card>
           </Col>
           <Col span={6}>
-            <Card type="inner" bordered={false}>
-              <Card.Grid hoverable={false}>
-                <Statistic
-                  title="Total Items"
-                  value={cart.cartList!.reduce(
-                    (acc, item) => acc + item.qty,
-                    0
-                  )}
-                />
-              </Card.Grid>
-              <Card.Grid hoverable={false}>
-                <Statistic
-                  title="Price"
-                  prefix="₹"
-                  value={cart.cartList!.reduce(
-                    (acc, item) => acc + item.qty * item.price,
-                    0
-                  )}
-                />
-              </Card.Grid>
-              <Card.Grid hoverable={false}>
-                <Statistic
-                  title="Tax"
-                  prefix="₹"
-                  value={cart.cartList!.reduce(
-                    (acc, item) => acc + item.qty * 50,
-                    0
-                  )}
-                />
-              </Card.Grid>
-              <Card.Grid hoverable={false}>
-                <Statistic
-                  title="Shipping Charges"
-                  prefix="₹"
-                  value={cart.cartList!.reduce(
-                    (acc, item) => acc + item.qty * 10,
-                    0
-                  )}
-                />
-              </Card.Grid>
-            </Card>
-            <Card title="Total Price">
-              <Card.Grid>
-                <Statistic
-                  prefix="₹"
-                  value={cart.cartList!.reduce(
-                    (acc, item) =>
-                      acc +
-                      item.qty * item.price +
-                      item.qty * 50 +
-                      item.qty * 10,
-                    0
-                  )}
-                />
-              </Card.Grid>
-            </Card>
+            <CartSummary list={cart.cartList!} />
           </Col>
         </Row>
       </Card>
