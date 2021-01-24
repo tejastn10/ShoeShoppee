@@ -12,8 +12,8 @@ import {
   Image,
   Card,
   Button,
-  Select,
   Statistic,
+  InputNumber,
 } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
@@ -23,8 +23,6 @@ import { ApplicationState } from "../store/store";
 
 import { Loading } from "../components/Loading";
 import { Rating } from "../components/Rating";
-
-const { Option } = Select;
 
 interface ProductPramas {
   id: string;
@@ -69,31 +67,24 @@ export const Product = () => {
           onBack={() => history.goBack()}
           title={productDetail ? productDetail?.brand : "Product"}
           extra={[
-            productDetail?.count! > 0 ? (
-              <>
-                <Select
-                  value={qty}
-                  style={{ width: 60 }}
-                  onChange={(num) => setQty(num)}
-                >
-                  {[...Array(productDetail?.count).keys()].map((c) => (
-                    <Option value={c + 1} key={c}>
-                      {c + 1}
-                    </Option>
-                  ))}
-                </Select>
-
-                <Button className="cart-btn" type="primary" onClick={addToCart}>
-                  <ShoppingCartOutlined />
-                  Add To Cart
-                </Button>
-              </>
-            ) : (
-              <Button className="cart-btn" type="primary" disabled>
+            <>
+              <InputNumber
+                disabled={productDetail?.count === 0 ? true : false}
+                defaultValue={1}
+                min={1}
+                max={productDetail?.count}
+                onChange={(num: any) => setQty(num)}
+              />
+              <Button
+                disabled={productDetail?.count === 0 ? true : false}
+                className="cart-btn"
+                type="primary"
+                onClick={addToCart}
+              >
                 <ShoppingCartOutlined />
                 Add To Cart
               </Button>
-            ),
+            </>,
           ]}
         />
       </Card>
