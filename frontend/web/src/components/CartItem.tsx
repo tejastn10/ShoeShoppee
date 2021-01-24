@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 
-import { Button, Card, Col, Row, Select, Image, Statistic } from "antd";
+import { Button, Card, Col, Row, Image, Statistic, InputNumber } from "antd";
 import { DeleteRowOutlined } from "@ant-design/icons";
 
 import { CartItem as item } from "../store/@types";
-
-const { Option } = Select;
 
 type CartProps = {
   item: any;
@@ -32,18 +30,15 @@ export const CartItem = ({ item, removeFromCart, addToCart }: CartProps) => {
             </Link>
             <div>Quantity</div>
             <p></p>
-            <Select
-              value={qty}
-              style={{ width: 60 }}
-              onChange={(num) =>
+            <InputNumber
+              defaultValue={qty}
+              min={1}
+              max={item.count}
+              onChange={(num: any) =>
                 addToCart({ id, name, image, price, count, qty: num })
               }
-            >
-              {[...Array(item.count).keys()].map((c) => (
-                <Option value={c + 1}>{c + 1}</Option>
-              ))}
-            </Select>
-
+              disabled={item.count === 0 ? true : false}
+            />
             <Button
               className="cart-btn"
               danger
