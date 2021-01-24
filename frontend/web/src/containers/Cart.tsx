@@ -74,7 +74,7 @@ export const Cart = () => {
           title="Shopping Cart"
           tags={<Tag color="green">Transaction in process...</Tag>}
           extra={[
-            <Button key="2">
+            <Button key="2" onClick={() => history.goBack()}>
               <ShoppingCartOutlined />
               Continue Shopping
             </Button>,
