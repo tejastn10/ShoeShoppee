@@ -18,3 +18,12 @@ export const removeFromCart = createAction(
   }
 );
 export const emptyCart = createAction(CartActionTypes.EMPTY_CART);
+
+export const saveAddress = createAction(
+  CartActionTypes.SAVE_SHIPPING_ADDRESS,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
