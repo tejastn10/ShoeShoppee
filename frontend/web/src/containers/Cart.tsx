@@ -81,6 +81,7 @@ export const Cart = () => {
             <Button
               key="1"
               type="primary"
+              onClick={() => history.push("/checkout")}
               disabled={
                 true
                   ? cart.cartList?.length === 0 || cart.cartList === null
