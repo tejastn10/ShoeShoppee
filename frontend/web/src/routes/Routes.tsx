@@ -8,6 +8,7 @@ import { Landing } from "../components/Landing";
 import { Search } from "../containers/Search";
 import { Product } from "../containers/Product";
 import { Cart } from "../containers/Cart";
+import { Checkout } from "../containers/Checkout";
 
 export const Routes = () => {
   return (
@@ -20,6 +21,7 @@ export const Routes = () => {
         <Route exact path="/search/*" component={Search} />
         <Route path="/product/:id" component={Product} />
         <Route path="/cart/:id?" component={Cart} />
+        <Route path="/checkout" component={Checkout} />
       </Switch>
     </>
   );
