@@ -4,6 +4,7 @@ import {
   removeFromCart,
   emptyCart,
   saveAddress,
+  savePaymentMethod,
 } from "../actions/actions";
 import { CartState } from "../@types";
 import {
@@ -21,6 +22,10 @@ const initialState: CartState = {
     getFromLocalStorage("shippingAddress") === undefined
       ? null
       : getFromLocalStorage("shippingAddress"),
+  paymentMethod:
+    getFromLocalStorage("paymentMethod") === undefined
+      ? "PayPal"
+      : getFromLocalStorage("paymentMethod"),
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -55,6 +60,10 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(saveAddress, (state, action) => {
       state.shippingAddress = action.payload;
       saveToLocalStorage("shippingAddress", state.shippingAddress);
+    })
+    .addCase(savePaymentMethod, (state, action) => {
+      state.paymentMethod = action.payload;
+      saveToLocalStorage("paymentMethod", state.shippingAddress);
     });
 });
 
