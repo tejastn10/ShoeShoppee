@@ -26,7 +26,13 @@ import {
   updateUserProfileSuccess,
   updateUserProfileError,
 } from "./user";
-import { addToCart, removeFromCart, emptyCart, saveAddress } from "./cart";
+import {
+  addToCart,
+  removeFromCart,
+  emptyCart,
+  saveAddress,
+  savePaymentMethod,
+} from "./cart";
 
 export {
   getProductListRequest,
@@ -53,4 +59,5 @@ export {
   removeFromCart,
   emptyCart,
   saveAddress,
+  savePaymentMethod,
 };

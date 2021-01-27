@@ -27,3 +27,12 @@ export const saveAddress = createAction(
     };
   }
 );
+
+export const savePaymentMethod = createAction(
+  CartActionTypes.SAVE_PAYMENT_METHOD,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
