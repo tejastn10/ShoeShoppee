@@ -21,6 +21,7 @@ export interface CartState {
     state: string;
     pincode: string;
   } | null;
+  paymentMethod: "PayPal" | "UPI" | "Cash";
 }
 
 export enum CartActionTypes {
@@ -28,4 +29,5 @@ export enum CartActionTypes {
   REMOVE_CART_ITEM = "@@cart/REMOVE_CART_ITEM",
   EMPTY_CART = "@@cart/EMPTY_CART",
   SAVE_SHIPPING_ADDRESS = "@@cart/SAVE_SHIPPING_ADDRESS",
+  SAVE_PAYMENT_METHOD = "@@cart/SAVE_PAYMENT_METHOD",
 }
