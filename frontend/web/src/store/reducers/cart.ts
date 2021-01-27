@@ -1,5 +1,10 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { addToCart, removeFromCart, emptyCart } from "../actions/actions";
+import {
+  addToCart,
+  removeFromCart,
+  emptyCart,
+  saveAddress,
+} from "../actions/actions";
 import { CartState } from "../@types";
 import {
   clearFromLocalStorage,
@@ -12,6 +17,10 @@ const initialState: CartState = {
     getFromLocalStorage("cart") === undefined
       ? []
       : getFromLocalStorage("cart"),
+  shippingAddress:
+    getFromLocalStorage("shippingAddress") === undefined
+      ? null
+      : getFromLocalStorage("shippingAddress"),
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -42,6 +51,10 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(emptyCart, (state, _action) => {
       state.cartList = [];
       clearFromLocalStorage("cart");
+    })
+    .addCase(saveAddress, (state, action) => {
+      state.shippingAddress = action.payload;
+      saveToLocalStorage("shippingAddress", state.shippingAddress);
     });
 });
 
