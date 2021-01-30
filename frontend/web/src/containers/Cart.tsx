@@ -18,7 +18,7 @@ import {
 import { addToCart, emptyCart, removeFromCart } from "../store/actions/actions";
 import { ApplicationState } from "../store/store";
 
-import { CartItem } from "../components/CartItem";
+import { OrderItem } from "../components/OrderItem";
 import { CartSummary } from "../components/CartSummary";
 
 interface ProductPramas {
@@ -110,7 +110,7 @@ export const Cart = () => {
                   </Card>
                   {cart.cartList.map((item) => {
                     return (
-                      <CartItem
+                      <OrderItem
                         item={item}
                         removeFromCart={removeFromCartHandler}
                         addToCart={addToCartHandler}
