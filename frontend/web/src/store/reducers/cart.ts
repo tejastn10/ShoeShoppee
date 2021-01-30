@@ -63,7 +63,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(savePaymentMethod, (state, action) => {
       state.paymentMethod = action.payload;
-      saveToLocalStorage("paymentMethod", state.shippingAddress);
+      saveToLocalStorage("paymentMethod", state.paymentMethod);
     });
 });
 
