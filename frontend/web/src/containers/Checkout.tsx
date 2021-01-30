@@ -4,6 +4,7 @@ import { Card, PageHeader, Steps } from "antd";
 
 import { Shipping } from "./Shipping";
 import { Payment } from "./Payment";
+import { PlaceOrder } from "./PlaceOrder";
 
 const { Step } = Steps;
 
@@ -20,6 +21,7 @@ export const Checkout = () => {
   const steps = [
     { title: "Shipping Address", content: <Shipping next={next} /> },
     { title: "Payment", content: <Payment prev={prev} next={next} /> },
+    { title: "Place Order", content: <PlaceOrder prev={prev} next={next} /> },
   ];
 
   return (
