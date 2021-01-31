@@ -11,46 +11,56 @@ import {
   UserOutlined,
   DownOutlined,
 } from "@ant-design/icons";
-import { Button, Dropdown, Input, Menu, message } from "antd";
+import { Badge, Button, Dropdown, Input, Menu, message } from "antd";
 
 import { ApplicationState } from "../store/store";
-import { AuthState } from "../store/@types";
+import { AuthState, CartState } from "../store/@types";
 import { clearUserProfile, logoutUser } from "../store/actions/actions";
 
 const { Search } = Input;
-
-const menu = (
-  <Menu>
-    <Menu.Item key="0">
-      <Link to="/profile">
-        <Button type="link">
-          <SolutionOutlined />
-          Profile
-        </Button>
-      </Link>
-    </Menu.Item>
-    <Menu.Item key="1">
-      <Link to="/cart">
-        <Button type="link">
-          <ShoppingCartOutlined />
-          Cart
-        </Button>
-      </Link>
-    </Menu.Item>
-  </Menu>
-);
 
 export const Header = () => {
   const authState = useSelector<ApplicationState, AuthState>(
     (state) => state.authState
   );
+  const cartState = useSelector<ApplicationState, CartState>(
+    (state) => state.cart
+  );
   const dispatch = useDispatch();
+
+  const qty = cartState.cartList?.reduce((acc, item) => acc + item.qty, 0);
 
   const logout = () => {
     message.success("You have successfully logged out!");
     dispatch(logoutUser());
     dispatch(clearUserProfile());
   };
+  const menu = (
+    <Menu>
+      <Menu.Item key="0">
+        <Link to="/profile">
+          <Button type="link">
+            <SolutionOutlined />
+            Profile
+          </Button>
+        </Link>
+      </Menu.Item>
+      <Menu.Item key="1">
+        <Link to="/cart">
+          <Badge
+            style={{ backgroundColor: "#000000" }}
+            count={qty}
+            overflowCount={10}
+          >
+            <Button type="link">
+              <ShoppingCartOutlined />
+              Cart
+            </Button>
+          </Badge>
+        </Link>
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <div className="header">
