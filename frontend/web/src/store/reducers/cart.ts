@@ -36,7 +36,6 @@ const reducer = createReducer(initialState, (builder) => {
       } else {
         const item = action.payload;
         const existingItem = state.cartList?.find((i) => i.id === item.id);
-        console.log(existingItem);
         if (existingItem) {
           state.cartList = state.cartList.map((i) =>
             i.id === existingItem.id ? item : i

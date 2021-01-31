@@ -31,7 +31,6 @@ export const Shipping = ({ next }: ShippingProps) => {
   const [pincode] = useState(shippingAddress ? shippingAddress.pincode : "");
 
   const onFinish = (fullAddress: Address) => {
-    console.log(fullAddress);
     dispatch(saveAddress(fullAddress));
     next();
   };
