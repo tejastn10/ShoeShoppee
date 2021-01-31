@@ -2,15 +2,15 @@ import { Schema, model } from "mongoose";
 import { IOrder } from "../@types/Order";
 
 const orderItemSchema: Schema = new Schema({
-  name: { type: String, required: true },
-  quantity: { type: Number, required: true },
-  image: { type: String, required: true },
-  price: { type: Number, required: true },
-  product: {
+  id: {
     type: Schema.Types.ObjectId,
     required: true,
     ref: "Product",
   },
+  name: { type: String, required: true },
+  image: { type: String, required: true },
+  price: { type: Number, required: true },
+  qty: { type: Number, required: true },
 });
 
 const orderSchema: Schema = new Schema(
@@ -24,7 +24,7 @@ const orderSchema: Schema = new Schema(
     shippingAddress: {
       address: { type: String, required: true },
       city: { type: String, required: true },
-      zipCode: { type: String, required: true },
+      pincode: { type: String, required: true },
       state: { type: String, required: true },
     },
     paymentMethod: {
@@ -36,6 +36,11 @@ const orderSchema: Schema = new Schema(
       status: { type: String },
       update_time: { type: String },
       email_address: { type: String },
+    },
+    itemsPrice: {
+      type: Number,
+      required: true,
+      default: 0,
     },
     taxPrice: {
       type: Number,
