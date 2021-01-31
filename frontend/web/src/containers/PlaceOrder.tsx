@@ -10,6 +10,7 @@ import {
   Statistic,
   Row,
   Col,
+  Tag,
 } from "antd";
 import { ArrowLeftOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
@@ -30,6 +31,7 @@ export const PlaceOrder = ({ prev }: PlaceOrderProps) => {
     <Card>
       <PageHeader
         title="Order Summary"
+        tags={<Tag color="green">Transaction in process...</Tag>}
         extra={[
           <Button key="2" onClick={prev}>
             <ArrowLeftOutlined />

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 
-import { Button, Card, PageHeader, Row, Col, Tag, message, Empty } from "antd";
+import { Button, Card, PageHeader, Row, Col, message, Empty } from "antd";
 
 import {
   ShoppingCartOutlined,
@@ -72,7 +72,6 @@ export const Cart = () => {
         <PageHeader
           onBack={() => history.goBack()}
           title="Shopping Cart"
-          tags={<Tag color="green">Transaction in process...</Tag>}
           extra={[
             <Button key="2" onClick={() => history.goBack()}>
               <ShoppingCartOutlined />
