@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { Card, PageHeader, Steps } from "antd";
+
+import { ApplicationState } from "../store/store";
+import { CartState } from "../store/@types";
 
 import { Shipping } from "./Shipping";
 import { Payment } from "./Payment";
@@ -10,6 +15,8 @@ const { Step } = Steps;
 
 export const Checkout = () => {
   const [current, setCurrent] = useState(0);
+  const history = useHistory();
+  const cart = useSelector<ApplicationState, CartState>((state) => state.cart);
   const next = () => {
     setCurrent(current + 1);
   };
@@ -17,6 +24,12 @@ export const Checkout = () => {
   const prev = () => {
     setCurrent(current - 1);
   };
+
+  useEffect(() => {
+    if (cart.totalItems === 0) {
+      history.push("/cart");
+    }
+  }, [cart.totalItems, history]);
 
   const steps = [
     { title: "Shipping Address", content: <Shipping next={next} /> },
