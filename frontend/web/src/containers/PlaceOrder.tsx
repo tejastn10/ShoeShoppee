@@ -18,7 +18,11 @@ import { OrderItem } from "../components/OrderItem";
 import { CartState } from "../store/@types";
 import { ApplicationState } from "../store/store";
 
-export const PlaceOrder = ({ prev }: any) => {
+type PlaceOrderProps = {
+  prev: () => void;
+};
+
+export const PlaceOrder = ({ prev }: PlaceOrderProps) => {
   const cart = useSelector<ApplicationState, CartState>((state) => state.cart);
 
   return (

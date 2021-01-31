@@ -8,7 +8,12 @@ import { ApplicationState } from "../store/store";
 import { CartState } from "../store/@types";
 import { savePaymentMethod } from "../store/actions/cart";
 
-export const Payment = ({ prev, next }: any) => {
+type PaymentProps = {
+  prev: () => void;
+  next: () => void;
+};
+
+export const Payment = ({ prev, next }: PaymentProps) => {
   const cartState = useSelector<ApplicationState, CartState>(
     (state) => state.cart
   );

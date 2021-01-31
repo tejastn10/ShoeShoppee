@@ -21,7 +21,7 @@ export const Checkout = () => {
   const steps = [
     { title: "Shipping Address", content: <Shipping next={next} /> },
     { title: "Payment", content: <Payment prev={prev} next={next} /> },
-    { title: "Place Order", content: <PlaceOrder prev={prev} next={next} /> },
+    { title: "Place Order", content: <PlaceOrder prev={prev} /> },
   ];
 
   return (
