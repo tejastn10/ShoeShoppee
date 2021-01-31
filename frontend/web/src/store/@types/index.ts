@@ -7,6 +7,7 @@ import {
 import { Auth, AuthState, AuthActionTypes } from "./auth";
 import { Profile, UserProfileState, UserProfileActionTypes } from "./user";
 import { CartItem, PriceSummary, CartState, CartActionTypes } from "./cart";
+import { Order, OrderState, OrderActionTypes } from "./order";
 
 export {
   ProductListActionTypes,
@@ -14,6 +15,7 @@ export {
   AuthActionTypes,
   UserProfileActionTypes,
   CartActionTypes,
+  OrderActionTypes,
 };
 export type {
   Product,
@@ -26,4 +28,6 @@ export type {
   CartItem,
   PriceSummary,
   CartState,
+  Order,
+  OrderState,
 };
