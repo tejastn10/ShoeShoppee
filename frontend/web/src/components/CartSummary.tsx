@@ -1,53 +1,44 @@
 import { Card, Statistic } from "antd";
 
-import { CartItem } from "../store/@types";
+import { PriceSummary } from "../store/@types";
 
 type SummaryProps = {
-  list: CartItem[];
+  totalItems: number;
+  price: PriceSummary;
 };
 
-export const CartSummary = ({ list }: SummaryProps) => {
+export const CartSummary = ({ totalItems, price }: SummaryProps) => {
   return (
     <>
       <Card type="inner" bordered={false}>
         <Card.Grid hoverable={false}>
-          <Statistic
-            title="Total Items"
-            value={list.reduce((acc, item) => acc + item.qty, 0)}
-          />
+          <Statistic title="Total Items" value={totalItems} />
         </Card.Grid>
         <Card.Grid hoverable={false}>
           <Statistic
             title="Price"
             prefix="₹"
-            value={list.reduce((acc, item) => acc + item.qty * item.price, 0)}
+            value={price ? price.itemsPrice : 0}
           />
         </Card.Grid>
         <Card.Grid hoverable={false}>
           <Statistic
             title="Tax"
             prefix="₹"
-            value={list.reduce((acc, item) => acc + item.qty * 50, 0)}
+            value={price ? price.taxPrice : 0}
           />
         </Card.Grid>
         <Card.Grid hoverable={false}>
           <Statistic
             title="Shipping Charges"
             prefix="₹"
-            value={list.reduce((acc, item) => acc + item.qty * 10, 0)}
+            value={price ? price.shippingPrice : 0}
           />
         </Card.Grid>
       </Card>
       <Card title="Total Price">
         <Card.Grid>
-          <Statistic
-            prefix="₹"
-            value={list.reduce(
-              (acc, item) =>
-                acc + item.qty * item.price + item.qty * 50 + item.qty * 10,
-              0
-            )}
-          />
+          <Statistic prefix="₹" value={price ? price.totalPrice : 0} />
         </Card.Grid>
       </Card>
     </>
