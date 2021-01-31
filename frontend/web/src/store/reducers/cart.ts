@@ -13,7 +13,41 @@ import {
   saveToLocalStorage,
 } from "../../utils/api-helper";
 
+const getTotalItems = () => {
+  if (getFromLocalStorage("cart") === undefined) {
+    return 0;
+  } else {
+    return getFromLocalStorage("cart").reduce(
+      (acc: any, item: any) => acc + item.qty,
+      0
+    );
+  }
+};
+
+const getPrice = () => {
+  if (getFromLocalStorage("cart") === undefined) {
+    return null;
+  } else {
+    const cartList = getFromLocalStorage("cart");
+    const itemsPrice: number = cartList.reduce(
+      (acc: number, item: any) => acc + item.qty * item.price,
+      0
+    );
+    const taxPrice: number = cartList.reduce(
+      (acc: number, item: any) => acc + item.qty * 50,
+      0
+    );
+    const shippingPrice: number = cartList.reduce(
+      (acc: number, item: any) => acc + item.qty * 10,
+      0
+    );
+    const totalPrice: number = itemsPrice + taxPrice + shippingPrice;
+    return { itemsPrice, taxPrice, shippingPrice, totalPrice };
+  }
+};
+
 const initialState: CartState = {
+  totalItems: getTotalItems(),
   cartList:
     getFromLocalStorage("cart") === undefined
       ? []
@@ -26,6 +60,7 @@ const initialState: CartState = {
     getFromLocalStorage("paymentMethod") === undefined
       ? "PayPal"
       : getFromLocalStorage("paymentMethod"),
+  price: getPrice(),
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -44,16 +79,28 @@ const reducer = createReducer(initialState, (builder) => {
           state.cartList = [...state.cartList, action.payload];
         }
       }
+      state.totalItems = state.cartList.reduce(
+        (acc, item) => acc + item.qty,
+        0
+      );
       saveToLocalStorage("cart", state.cartList);
+      state.price = getPrice();
     })
     .addCase(removeFromCart, (state, action) => {
       state.cartList = state.cartList!.filter(
         (i) => i.id !== action.payload.id
       );
+      state.totalItems = state.cartList.reduce(
+        (acc, item) => acc + item.qty,
+        0
+      );
       saveToLocalStorage("cart", state.cartList);
+      state.price = getPrice();
     })
     .addCase(emptyCart, (state, _action) => {
       state.cartList = [];
+      state.totalItems = 0;
+      state.price = null;
       clearFromLocalStorage("cart");
     })
     .addCase(saveAddress, (state, action) => {
