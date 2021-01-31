@@ -71,7 +71,7 @@ export const Cart = () => {
     <div className="container">
       <Card>
         <PageHeader
-          onBack={() => history.goBack()}
+          onBack={() => history.push("/")}
           title="Shopping Cart"
           extra={[
             <Button key="2" onClick={() => history.goBack()}>
