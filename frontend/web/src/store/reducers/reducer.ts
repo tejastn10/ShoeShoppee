@@ -10,6 +10,7 @@ import {
 import { AuthStateReducer, AuthInitialState } from "./auth";
 import { UserProfileStateReducer, UserProfileInitialState } from "./user";
 import { CartStateReducer, CartInitialState } from "./cart";
+import { OrderStateReducer, OrderInitialState } from "./order";
 
 const reducers = {
   productList: ProductListStateReducer,
@@ -17,6 +18,7 @@ const reducers = {
   authState: AuthStateReducer,
   userProfile: UserProfileStateReducer,
   cart: CartStateReducer,
+  orders: OrderStateReducer,
 };
 
 export const rootReducer = () => {
@@ -30,4 +32,5 @@ export {
   AuthInitialState,
   UserProfileInitialState,
   CartInitialState,
+  OrderInitialState,
 };
