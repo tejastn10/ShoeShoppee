@@ -1,5 +1,3 @@
-import { CustomError } from "../../utils/api-helper";
-
 export interface CartItem {
   id: string;
   name: string;
@@ -9,11 +7,15 @@ export interface CartItem {
   qty: number;
 }
 
-export interface Errors {
-  results: CustomError | null;
+export interface PriceSummary {
+  itemsPrice: number;
+  taxPrice: number;
+  shippingPrice: number;
+  totalPrice: number;
 }
 
 export interface CartState {
+  totalItems: number;
   cartList: CartItem[] | null;
   shippingAddress: {
     address: string;
@@ -22,6 +24,7 @@ export interface CartState {
     pincode: string;
   } | null;
   paymentMethod: "PayPal" | "UPI" | "Cash";
+  price: PriceSummary | null;
 }
 
 export enum CartActionTypes {
