@@ -40,6 +40,7 @@ export const Cart = () => {
   const { productDetail } = product;
 
   const cart = useSelector<ApplicationState, CartState>((state) => state.cart);
+  const { cartList, price, totalItems } = cart;
 
   useEffect(() => {
     if (id && productDetail) {
@@ -49,10 +50,10 @@ export const Cart = () => {
   }, [dispatch, id, productDetail, qty]);
 
   useEffect(() => {
-    if (cart.cartList === null || cart.cartList.length === 0) {
+    if (cartList === null || cartList.length === 0) {
       message.warning("Your Cart is Empty! ");
     }
-  }, [cart.cartList]);
+  }, [cartList]);
 
   const removeFromCartHandler = (id: string) => {
     dispatch(removeFromCart({ id }));
@@ -82,9 +83,7 @@ export const Cart = () => {
               type="primary"
               onClick={() => history.push("/checkout")}
               disabled={
-                true
-                  ? cart.cartList?.length === 0 || cart.cartList === null
-                  : false
+                true ? cartList?.length === 0 || cartList === null : false
               }
             >
               <MoneyCollectOutlined />
@@ -97,7 +96,7 @@ export const Cart = () => {
         <Row>
           <Col span={18}>
             <Card title="List Items" bordered={false}>
-              {cart.cartList?.length === 0 || cart.cartList === null ? (
+              {cartList?.length === 0 || cartList === null ? (
                 <Empty description="Your shopping cart is empty" />
               ) : (
                 <>
@@ -107,7 +106,7 @@ export const Cart = () => {
                       Empty Cart
                     </Button>
                   </Card>
-                  {cart.cartList.map((item) => {
+                  {cartList.map((item) => {
                     return (
                       <OrderItem
                         item={item}
@@ -122,7 +121,7 @@ export const Cart = () => {
             </Card>
           </Col>
           <Col span={6}>
-            <CartSummary list={cart.cartList!} />
+            <CartSummary totalItems={totalItems} price={price!} />
           </Col>
         </Row>
       </Card>
