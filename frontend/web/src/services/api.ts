@@ -42,3 +42,9 @@ export const updateUserProfile: any = ({ name, email, password }: any) => {
 
   return API.put(URL, { name, email, password });
 };
+
+export const createOrder: any = (order: any) => {
+  const URL = `${API_ENDPOINT}/api/orders`;
+
+  return API.post(URL, order);
+};
