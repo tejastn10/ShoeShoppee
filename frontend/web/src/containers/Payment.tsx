@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Card, Radio, Button, message } from "antd";
+import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { RadioChangeEvent } from "antd/lib/radio";
 
 import { ApplicationState } from "../store/store";
@@ -41,9 +42,11 @@ export const Payment = ({ prev, next }: PaymentProps) => {
         <Radio value={"Cash"}>Cash</Radio>
       </Radio.Group>
       <Button type="primary" onClick={onSubmit}>
+        <ArrowRightOutlined />
         Next
       </Button>
       <Button style={{ margin: "0 8px" }} onClick={prev}>
+        <ArrowLeftOutlined />
         Previous
       </Button>
     </Card>

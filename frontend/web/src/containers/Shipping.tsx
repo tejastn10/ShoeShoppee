@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Card, Form, Input, Button } from "antd";
-import { HomeOutlined } from "@ant-design/icons";
+import { HomeOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { ApplicationState } from "../store/store";
 import { CartState } from "../store/@types";
 import { saveAddress } from "../store/actions/actions";
@@ -91,6 +91,7 @@ export const Shipping = ({ next }: ShippingProps) => {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
+            <ArrowRightOutlined />
             Next
           </Button>
         </Form.Item>

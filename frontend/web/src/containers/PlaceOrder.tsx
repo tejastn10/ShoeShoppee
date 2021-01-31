@@ -11,6 +11,7 @@ import {
   Row,
   Col,
 } from "antd";
+import { ArrowLeftOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
 import { CartSummary } from "../components/CartSummary";
 import { OrderItem } from "../components/OrderItem";
@@ -31,6 +32,7 @@ export const PlaceOrder = ({ prev }: PlaceOrderProps) => {
         title="Order Summary"
         extra={[
           <Button key="2" onClick={prev}>
+            <ArrowLeftOutlined />
             Previous
           </Button>,
           <Button
@@ -38,6 +40,7 @@ export const PlaceOrder = ({ prev }: PlaceOrderProps) => {
             type="primary"
             onClick={() => message.success("Processing complete!")}
           >
+            <CheckCircleOutlined />
             Place Order
           </Button>,
         ]}
