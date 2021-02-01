@@ -35,3 +35,8 @@ export const postNewOrder = async (req: Request, res: Response) => {
     res.status(201).json(createdOrder);
   }
 };
+
+export const getOrders = async (req: Request, res: Response) => {
+  const orders = await Order.find({ user: req.body.user._id });
+  res.json(orders);
+};

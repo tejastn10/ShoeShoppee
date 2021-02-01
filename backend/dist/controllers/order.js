@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postNewOrder = void 0;
+exports.getOrders = exports.postNewOrder = void 0;
 const models_1 = require("./../models");
 const postNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { orderItems, totalItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice, } = yield req.body;
@@ -34,3 +34,8 @@ const postNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.postNewOrder = postNewOrder;
+const getOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const orders = yield models_1.Order.find({ user: req.body.user._id });
+    res.json(orders);
+});
+exports.getOrders = getOrders;
