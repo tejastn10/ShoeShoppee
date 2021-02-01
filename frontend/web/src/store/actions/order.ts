@@ -25,3 +25,4 @@ export const createOrderError = createAction(
     };
   }
 );
+export const resetOrder = createAction(OrderActionTypes.RESET_ORDER);

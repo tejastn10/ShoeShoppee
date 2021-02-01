@@ -37,6 +37,7 @@ import {
   createOrderRequest,
   createOrderSuccess,
   createOrderError,
+  resetOrder,
 } from "./order";
 
 export {
@@ -68,4 +69,5 @@ export {
   createOrderRequest,
   createOrderSuccess,
   createOrderError,
+  resetOrder,
 };
