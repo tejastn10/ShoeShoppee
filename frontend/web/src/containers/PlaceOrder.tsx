@@ -61,7 +61,7 @@ export const PlaceOrder = ({ prev }: PlaceOrderProps) => {
     if (success) {
       message.success("Order Placed Succesfully");
       dispatch(resetOrder());
-      dispatch(emptyCart); // TODO: Add Braces
+      dispatch(emptyCart());
       history.push(`orders/${orders![orders!.length - 1]._id}`);
     }
     if (errors.results !== null) {
