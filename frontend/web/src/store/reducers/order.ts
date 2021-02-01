@@ -3,6 +3,7 @@ import {
   createOrderRequest,
   createOrderSuccess,
   createOrderError,
+  resetOrder,
 } from "../actions/actions";
 import { OrderState } from "../@types";
 
@@ -34,6 +35,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(createOrderError, (state, action) => {
       state.isLoading = false;
       state.errors.results = action.payload;
+    })
+    .addCase(resetOrder, (state, _action) => {
+      state.success = null;
     })
     .addDefaultCase((state, _action) => {
       state.isLoading = false;
