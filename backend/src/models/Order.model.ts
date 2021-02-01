@@ -27,6 +27,10 @@ const orderSchema: Schema = new Schema(
       pincode: { type: String, required: true },
       state: { type: String, required: true },
     },
+    totalItems: {
+      type: Number,
+      required: true,
+    },
     paymentMethod: {
       type: String,
       required: true,
