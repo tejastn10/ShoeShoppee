@@ -36,3 +36,5 @@ export const savePaymentMethod = createAction(
     };
   }
 );
+
+export const clearCart = createAction(CartActionTypes.CLEAR_CART);
