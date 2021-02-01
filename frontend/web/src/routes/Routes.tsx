@@ -9,6 +9,7 @@ import { Search } from "../containers/Search";
 import { Product } from "../containers/Product";
 import { Cart } from "../containers/Cart";
 import { Checkout } from "../containers/Checkout";
+import { OrderDetails } from "../containers/OrderDetails";
 
 export const Routes = () => {
   return (
@@ -22,6 +23,7 @@ export const Routes = () => {
         <Route path="/product/:id" component={Product} />
         <Route path="/cart/:id?" component={Cart} />
         <Route path="/checkout" component={Checkout} />
+        <Route path="/orders/:id" component={OrderDetails} />
       </Switch>
     </>
   );
