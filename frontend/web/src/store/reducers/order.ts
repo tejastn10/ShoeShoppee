@@ -4,6 +4,10 @@ import {
   createOrderSuccess,
   createOrderError,
   resetOrder,
+  ordersListRequest,
+  ordersListSuccess,
+  ordersListError,
+  clearOrders,
 } from "../actions/actions";
 import { OrderState } from "../@types";
 
@@ -11,6 +15,9 @@ const initialState: OrderState = {
   isLoading: false,
   success: null,
   errors: {
+    results: null,
+  },
+  listError: {
     results: null,
   },
   orders: null,
@@ -37,6 +44,21 @@ const reducer = createReducer(initialState, (builder) => {
       state.errors.results = action.payload;
     })
     .addCase(resetOrder, (state, _action) => {
+      state.success = null;
+    })
+    .addCase(ordersListRequest, (state, _action) => {
+      state.isLoading = true;
+    })
+    .addCase(ordersListSuccess, (state, action) => {
+      state.isLoading = false;
+      state.orders = action.payload;
+    })
+    .addCase(ordersListError, (state, action) => {
+      state.isLoading = false;
+      state.listError = action.payload;
+    })
+    .addCase(clearOrders, (state, _action) => {
+      state.orders = null;
       state.success = null;
     })
     .addDefaultCase((state, _action) => {
