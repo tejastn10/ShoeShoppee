@@ -1,4 +1,6 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import {
   Button,
@@ -17,16 +19,62 @@ import { ArrowLeftOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import { CartSummary } from "../components/CartSummary";
 import { OrderItem } from "../components/OrderItem";
 
-import { CartState } from "../store/@types";
+import { CartState, OrderState } from "../store/@types";
 import { ApplicationState } from "../store/store";
+import {
+  createOrderRequest,
+  resetOrder,
+  emptyCart,
+} from "../store/actions/actions";
 
 type PlaceOrderProps = {
   prev: () => void;
 };
 
 export const PlaceOrder = ({ prev }: PlaceOrderProps) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const cart = useSelector<ApplicationState, CartState>((state) => state.cart);
   const { totalItems, shippingAddress, paymentMethod, cartList, price } = cart;
+
+  const orderState = useSelector<ApplicationState, OrderState>(
+    (state) => state.orders
+  );
+  const { success, errors, orders } = orderState;
+
+  const placeOrder = () => {
+    dispatch(
+      createOrderRequest({
+        orderItems: cartList,
+        totalItems,
+        shippingAddress,
+        paymentMethod,
+        itemsPrice: price?.itemsPrice,
+        taxPrice: price?.taxPrice,
+        shippingPrice: price?.shippingPrice,
+        totalPrice: price?.totalPrice,
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (success) {
+      message.success("Order Placed Succesfully");
+      dispatch(resetOrder());
+      dispatch(emptyCart); // TODO: Add Braces
+      history.push(`orders/${orders![orders!.length - 1]._id}`);
+    }
+    if (errors.results !== null) {
+      message.error(orderState.errors.results);
+    }
+  }, [
+    dispatch,
+    errors.results,
+    history,
+    orderState.errors.results,
+    orders,
+    success,
+  ]);
 
   return (
     <Card>
@@ -38,13 +86,9 @@ export const PlaceOrder = ({ prev }: PlaceOrderProps) => {
             <ArrowLeftOutlined />
             Previous
           </Button>,
-          <Button
-            key="1"
-            type="primary"
-            onClick={() => message.success("Processing complete!")}
-          >
-            <CheckCircleOutlined />
+          <Button key="1" type="primary" onClick={placeOrder}>
             Place Order
+            <CheckCircleOutlined />
           </Button>,
         ]}
       >
