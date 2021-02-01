@@ -38,7 +38,7 @@ export const Checkout = () => {
   ];
 
   return (
-    <>
+    <div className="container">
       <Card>
         <PageHeader>
           <Steps current={current} progressDot>
@@ -51,6 +51,6 @@ export const Checkout = () => {
       <Card>
         <div className="steps-content">{steps[current].content}</div>
       </Card>
-    </>
+    </div>
   );
 };

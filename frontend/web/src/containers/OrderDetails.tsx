@@ -37,21 +37,23 @@ export const OrderDetails = () => {
 
   if (orders === null) {
     return (
-      <Card>
-        <PageHeader
-          title="Order Not Found !!"
-          extra={[
-            <Button key="2" onClick={() => history.push("/")}>
-              <ShoppingCartOutlined />
-              Continue Shopping
-            </Button>,
-          ]}
-        />
-        <div className="empty">
-          {message.error("Order Not Found")}
-          <Empty />
-        </div>
-      </Card>
+      <div className="container">
+        <Card>
+          <PageHeader
+            title="Order Not Found !!"
+            extra={[
+              <Button key="2" onClick={() => history.push("/")}>
+                <ShoppingCartOutlined />
+                Continue Shopping
+              </Button>,
+            ]}
+          />
+          <div className="empty">
+            {message.error("Order Not Found")}
+            <Empty />
+          </div>
+        </Card>
+      </div>
     );
   }
 
@@ -65,7 +67,7 @@ export const OrderDetails = () => {
   };
 
   return (
-    <Card>
+    <div className="container">
       <Card>
         <PageHeader
           title="Your Order"
@@ -97,54 +99,56 @@ export const OrderDetails = () => {
           ]}
         />
       </Card>
-      <Row>
-        <Col span={18}>
-          <Card bordered={false}>
-            <Divider orientation="left">Order Details</Divider>
-            <Descriptions size="small" column={1}>
-              <Descriptions.Item label="Order Id">
-                {order!._id}
-              </Descriptions.Item>
-            </Descriptions>
-            <Divider orientation="left">Shipping Address</Divider>
-            <Descriptions size="small" column={1}>
-              <Descriptions.Item label="Address">
-                {order!.shippingAddress.address}
-              </Descriptions.Item>
-              <Descriptions.Item label="City">
-                {order!.shippingAddress.city}
-              </Descriptions.Item>
-              <Descriptions.Item label="PinCode">
-                {order!.shippingAddress.pincode}
-              </Descriptions.Item>
-              <Descriptions.Item label="State">
-                {order!.shippingAddress.state}
-              </Descriptions.Item>
-            </Descriptions>
-            <Divider orientation="left">Payment</Divider>
-            <Descriptions size="small" column={2}>
-              <Descriptions.Item>
-                <Statistic title="Status" value="Pending" />
-              </Descriptions.Item>
-              <Descriptions.Item>
-                <Statistic
-                  title="Payment Method"
-                  value={order!.paymentMethod}
-                />
-              </Descriptions.Item>
-            </Descriptions>
-            <Divider />
-            <Card title="List Items" bordered={false}>
-              {order!.orderItems.map((item) => {
-                return <OrderItem item={item} key={item.id} />;
-              })}
+      <Card>
+        <Row>
+          <Col span={18}>
+            <Card bordered={false}>
+              <Divider orientation="left">Order Details</Divider>
+              <Descriptions size="small" column={1}>
+                <Descriptions.Item label="Order Id">
+                  {order!._id}
+                </Descriptions.Item>
+              </Descriptions>
+              <Divider orientation="left">Shipping Address</Divider>
+              <Descriptions size="small" column={1}>
+                <Descriptions.Item label="Address">
+                  {order!.shippingAddress.address}
+                </Descriptions.Item>
+                <Descriptions.Item label="City">
+                  {order!.shippingAddress.city}
+                </Descriptions.Item>
+                <Descriptions.Item label="PinCode">
+                  {order!.shippingAddress.pincode}
+                </Descriptions.Item>
+                <Descriptions.Item label="State">
+                  {order!.shippingAddress.state}
+                </Descriptions.Item>
+              </Descriptions>
+              <Divider orientation="left">Payment</Divider>
+              <Descriptions size="small" column={2}>
+                <Descriptions.Item>
+                  <Statistic title="Status" value="Pending" />
+                </Descriptions.Item>
+                <Descriptions.Item>
+                  <Statistic
+                    title="Payment Method"
+                    value={order!.paymentMethod}
+                  />
+                </Descriptions.Item>
+              </Descriptions>
+              <Divider />
+              <Card title="List Items" bordered={false}>
+                {order!.orderItems.map((item) => {
+                  return <OrderItem item={item} key={item.id} />;
+                })}
+              </Card>
             </Card>
-          </Card>
-        </Col>
-        <Col span={6}>
-          <CartSummary totalItems={order!.totalItems} price={price} />
-        </Col>
-      </Row>
-    </Card>
+          </Col>
+          <Col span={6}>
+            <CartSummary totalItems={order!.totalItems} price={price} />
+          </Col>
+        </Row>
+      </Card>
+    </div>
   );
 };
