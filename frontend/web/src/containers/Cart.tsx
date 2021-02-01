@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 
-import { Button, Card, PageHeader, Row, Col, Tag, message, Empty } from "antd";
+import { Button, Card, PageHeader, Row, Col, message, Empty } from "antd";
 
 import {
   ShoppingCartOutlined,
@@ -18,7 +18,7 @@ import {
 import { addToCart, emptyCart, removeFromCart } from "../store/actions/actions";
 import { ApplicationState } from "../store/store";
 
-import { CartItem } from "../components/CartItem";
+import { OrderItem } from "../components/OrderItem";
 import { CartSummary } from "../components/CartSummary";
 
 interface ProductPramas {
@@ -40,6 +40,7 @@ export const Cart = () => {
   const { productDetail } = product;
 
   const cart = useSelector<ApplicationState, CartState>((state) => state.cart);
+  const { cartList, price, totalItems } = cart;
 
   useEffect(() => {
     if (id && productDetail) {
@@ -49,10 +50,10 @@ export const Cart = () => {
   }, [dispatch, id, productDetail, qty]);
 
   useEffect(() => {
-    if (cart.cartList === null || cart.cartList.length === 0) {
+    if (cartList === null || cartList.length === 0) {
       message.warning("Your Cart is Empty! ");
     }
-  }, [cart.cartList]);
+  }, [cartList]);
 
   const removeFromCartHandler = (id: string) => {
     dispatch(removeFromCart({ id }));
@@ -70,9 +71,8 @@ export const Cart = () => {
     <div className="container">
       <Card>
         <PageHeader
-          onBack={() => history.goBack()}
+          onBack={() => history.push("/")}
           title="Shopping Cart"
-          tags={<Tag color="green">Transaction in process...</Tag>}
           extra={[
             <Button key="2" onClick={() => history.goBack()}>
               <ShoppingCartOutlined />
@@ -81,10 +81,9 @@ export const Cart = () => {
             <Button
               key="1"
               type="primary"
+              onClick={() => history.push("/checkout")}
               disabled={
-                true
-                  ? cart.cartList?.length === 0 || cart.cartList === null
-                  : false
+                true ? cartList?.length === 0 || cartList === null : false
               }
             >
               <MoneyCollectOutlined />
@@ -97,7 +96,7 @@ export const Cart = () => {
         <Row>
           <Col span={18}>
             <Card title="List Items" bordered={false}>
-              {cart.cartList?.length === 0 || cart.cartList === null ? (
+              {cartList?.length === 0 || cartList === null ? (
                 <Empty description="Your shopping cart is empty" />
               ) : (
                 <>
@@ -107,9 +106,9 @@ export const Cart = () => {
                       Empty Cart
                     </Button>
                   </Card>
-                  {cart.cartList.map((item) => {
+                  {cartList.map((item) => {
                     return (
-                      <CartItem
+                      <OrderItem
                         item={item}
                         removeFromCart={removeFromCartHandler}
                         addToCart={addToCartHandler}
@@ -122,7 +121,7 @@ export const Cart = () => {
             </Card>
           </Col>
           <Col span={6}>
-            <CartSummary list={cart.cartList!} />
+            <CartSummary totalItems={totalItems} price={price!} />
           </Col>
         </Row>
       </Card>

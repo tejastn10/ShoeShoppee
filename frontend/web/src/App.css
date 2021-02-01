@@ -127,3 +127,25 @@
 .profile {
   padding: 2% 25%;
 }
+
+.shipping {
+  background: #fff;
+  margin: 2% 30%;
+}
+
+.payment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2% 3%;
+}
+
+.payment > label {
+  padding: 4%;
+}
+
+.payment > label > span {
+  font-weight: bold;
+  font-size: 1.5rem;
+}

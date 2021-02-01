@@ -6,6 +6,7 @@ import { config } from "dotenv";
 import { connectDB } from "./config/db";
 import { notFound, errorHandler } from "./middleware/error";
 
+import { router as orderRoutes } from "./routes/order";
 import { router as productRoutes } from "./routes/product";
 import { router as userRoutes } from "./routes/user";
 
@@ -21,6 +22,7 @@ app.get("/", (_req: Request, res: Response) =>
   res.send("API Running on Port 5000")
 );
 
+app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 

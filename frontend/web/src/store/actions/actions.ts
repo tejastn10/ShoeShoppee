@@ -26,7 +26,24 @@ import {
   updateUserProfileSuccess,
   updateUserProfileError,
 } from "./user";
-import { addToCart, removeFromCart, emptyCart } from "./cart";
+import {
+  addToCart,
+  removeFromCart,
+  emptyCart,
+  saveAddress,
+  savePaymentMethod,
+  clearCart,
+} from "./cart";
+import {
+  createOrderRequest,
+  createOrderSuccess,
+  createOrderError,
+  resetOrder,
+  ordersListRequest,
+  ordersListSuccess,
+  ordersListError,
+  clearOrders,
+} from "./order";
 
 export {
   getProductListRequest,
@@ -52,4 +69,15 @@ export {
   addToCart,
   removeFromCart,
   emptyCart,
+  saveAddress,
+  savePaymentMethod,
+  clearCart,
+  createOrderRequest,
+  createOrderSuccess,
+  createOrderError,
+  resetOrder,
+  ordersListRequest,
+  ordersListSuccess,
+  ordersListError,
+  clearOrders,
 };

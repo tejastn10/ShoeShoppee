@@ -10,6 +10,7 @@ import {
   AuthState,
   UserProfileState,
   CartState,
+  OrderState,
 } from "./@types";
 
 export type ApplicationState = {
@@ -18,6 +19,7 @@ export type ApplicationState = {
   authState: AuthState;
   userProfile: UserProfileState;
   cart: CartState;
+  orders: OrderState;
 };
 
 export const configureAppStore = (initialState: ApplicationState) => {

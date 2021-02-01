@@ -18,13 +18,16 @@ import {
   message,
   PageHeader,
   Avatar,
+  Table,
+  Tag,
 } from "antd";
 
 import { ApplicationState } from "../store/store";
-import { AuthState, UserProfileState } from "../store/@types";
+import { AuthState, UserProfileState, OrderState } from "../store/@types";
 import {
   getUserProfileRequest,
   updateUserProfileRequest,
+  ordersListRequest,
 } from "../store/actions/actions";
 
 import { Loading } from "../components/Loading";
@@ -53,9 +56,13 @@ export const Profile = () => {
   const profileState = useSelector<ApplicationState, UserProfileState>(
     (state) => state.userProfile
   );
+  const ordersState = useSelector<ApplicationState, OrderState>(
+    (state) => state.orders
+  );
 
   const { auth } = authState;
   const { profile, isLoading, errors } = profileState;
+  const { orders } = ordersState;
 
   useEffect(() => {
     if (errors.results) {
@@ -89,6 +96,10 @@ export const Profile = () => {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    dispatch(ordersListRequest());
+  }, [dispatch]);
+
   const onFinish = ({ name, email, password, password2 }: submitProps) => {
     if (password !== password2) {
       message.error("Passwords do not match!");
@@ -105,6 +116,68 @@ export const Profile = () => {
       }
     }
   };
+
+  const columns = [
+    {
+      title: "OrderID",
+      dataIndex: "_id",
+      key: "_id",
+    },
+    {
+      title: "Payment",
+      dataIndex: "isPaid",
+      key: "itemsPrice",
+      render: (isPaid: boolean) => {
+        return isPaid ? (
+          <Tag color="green" key="1">
+            Paid
+          </Tag>
+        ) : (
+          <Tag color="red" key="1">
+            Not Paid
+          </Tag>
+        );
+      },
+    },
+    {
+      title: "Delivered",
+      dataIndex: "isDelivered",
+      key: "shippingPrice",
+      render: (isDelivered: boolean) => {
+        return isDelivered ? (
+          <Tag color="green" key="0">
+            Delivered
+          </Tag>
+        ) : (
+          <Tag color="yellow" key="0">
+            Not Delivered
+          </Tag>
+        );
+      },
+    },
+    {
+      title: "Total Items",
+      dataIndex: "totalItems",
+      key: "totalItems",
+    },
+    {
+      title: "Total Price",
+      dataIndex: "totalPrice",
+      key: "totalPrice",
+    },
+    {
+      title: "Order Details",
+      key: "createdAt",
+      render: ({ _id }: any) => {
+        return (
+          <Button onClick={() => history.push(`orders/${_id}`)}>
+            View Details
+          </Button>
+        );
+      },
+    },
+  ];
+
   return (
     <div className="container">
       <div>
@@ -195,7 +268,11 @@ export const Profile = () => {
             </Card>
             <Divider />
             <Card title="Recent Orders">
-              <Empty />
+              {orders ? (
+                <Table columns={columns} dataSource={orders} />
+              ) : (
+                <Empty />
+              )}
             </Card>
           </>
         ) : (
