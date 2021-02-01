@@ -5,6 +5,7 @@ import {
   emptyCart,
   saveAddress,
   savePaymentMethod,
+  clearCart,
 } from "../actions/actions";
 import { CartState } from "../@types";
 import {
@@ -110,6 +111,15 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(savePaymentMethod, (state, action) => {
       state.paymentMethod = action.payload;
       saveToLocalStorage("paymentMethod", state.paymentMethod);
+    })
+    .addCase(clearCart, (state, _action) => {
+      state.cartList = null;
+      state.price = null;
+      state.shippingAddress = null;
+      state.totalItems = 0;
+      clearFromLocalStorage("cart");
+      clearFromLocalStorage("paymentMethod");
+      clearFromLocalStorage("shippingAddress");
     });
 });
 
