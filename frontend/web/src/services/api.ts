@@ -48,3 +48,9 @@ export const createOrder: any = (order: any) => {
 
   return API.post(URL, order);
 };
+
+export const getOrderList: any = () => {
+  const URL = `${API_ENDPOINT}/api/orders/all`;
+
+  return API.get(URL);
+};
