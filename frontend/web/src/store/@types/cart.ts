@@ -35,4 +35,5 @@ export enum CartActionTypes {
   EMPTY_CART = "@@cart/EMPTY_CART",
   SAVE_SHIPPING_ADDRESS = "@@cart/SAVE_SHIPPING_ADDRESS",
   SAVE_PAYMENT_METHOD = "@@cart/SAVE_PAYMENT_METHOD",
+  CLEAR_CART = "@@cart/CLEAR_CART",
 }
