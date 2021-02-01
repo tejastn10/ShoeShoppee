@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.postNewOrder = void 0;
 const models_1 = require("./../models");
 const postNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice, } = yield req.body;
+    const { orderItems, totalItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice, } = yield req.body;
     if (orderItems && orderItems.length === 0) {
         res.status(400);
         throw new Error("No Items in the Order");
@@ -21,6 +21,7 @@ const postNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const order = new models_1.Order({
             user: req.body.user._id,
             orderItems,
+            totalItems,
             shippingAddress,
             paymentMethod,
             itemsPrice,

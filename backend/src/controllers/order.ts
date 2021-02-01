@@ -5,6 +5,7 @@ import { Order } from "./../models";
 export const postNewOrder = async (req: Request, res: Response) => {
   const {
     orderItems,
+    totalItems,
     shippingAddress,
     paymentMethod,
     itemsPrice,
@@ -20,6 +21,7 @@ export const postNewOrder = async (req: Request, res: Response) => {
     const order = new Order({
       user: req.body.user._id,
       orderItems,
+      totalItems,
       shippingAddress,
       paymentMethod,
       itemsPrice,
