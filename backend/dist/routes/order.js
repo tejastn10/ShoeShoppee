@@ -13,3 +13,7 @@ exports.router = express_1.Router();
 // @route    POST /api/orders
 // @access   Private
 exports.router.post("/", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(order_1.postNewOrder));
+// @desc     Get all Orders of User
+// @route    GET /api/orders/all
+// @access   Private
+exports.router.get("/all", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(order_1.getOrders));
