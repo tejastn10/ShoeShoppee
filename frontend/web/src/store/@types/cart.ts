@@ -14,15 +14,17 @@ export interface PriceSummary {
   totalPrice: number;
 }
 
+export interface ShippingAddress {
+  address: string;
+  city: string;
+  state: string;
+  pincode: string;
+}
+
 export interface CartState {
   totalItems: number;
   cartList: CartItem[] | null;
-  shippingAddress: {
-    address: string;
-    city: string;
-    state: string;
-    pincode: string;
-  } | null;
+  shippingAddress: ShippingAddress | null;
   paymentMethod: "PayPal" | "UPI" | "Cash";
   price: PriceSummary | null;
 }
