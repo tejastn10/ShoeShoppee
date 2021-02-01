@@ -26,3 +26,24 @@ export const createOrderError = createAction(
   }
 );
 export const resetOrder = createAction(OrderActionTypes.RESET_ORDER);
+
+export const ordersListRequest = createAction(
+  OrderActionTypes.ORDER_LIST_REQUEST
+);
+export const ordersListSuccess = createAction(
+  OrderActionTypes.ORDER_LIST_SUCCESS,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const ordersListError = createAction(
+  OrderActionTypes.ORDER_LIST_ERROR,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const clearOrders = createAction(OrderActionTypes.CLEAR_ORDERS);
