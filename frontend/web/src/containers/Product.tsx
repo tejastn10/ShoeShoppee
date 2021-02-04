@@ -14,11 +14,12 @@ import {
   Button,
   Statistic,
   InputNumber,
+  notification,
 } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 
 import { ProductDetailsState } from "../store/@types";
-import { getProductRequest } from "../store/actions/actions";
+import { addToCart, getProductRequest } from "../store/actions/actions";
 import { ApplicationState } from "../store/store";
 
 import { Loading } from "../components/Loading";
@@ -55,8 +56,17 @@ export const Product = () => {
     }
   }, [productDetail]);
 
-  const addToCart = () => {
-    history.push(`/cart/${productDetail?._id}?qty=${qty}`);
+  const addToCartHandler = () => {
+    if (productDetail) {
+      const { name, image, price, count } = productDetail!;
+      dispatch(addToCart({ id, name, image, price, count, qty }));
+
+      notification.success({
+        message: "Cart Updated",
+        description: `Product ${name} added to cart`,
+        placement: "bottomRight",
+      });
+    }
   };
 
   return (
@@ -79,7 +89,7 @@ export const Product = () => {
                 disabled={productDetail?.count === 0 ? true : false}
                 className="cart-btn"
                 type="primary"
-                onClick={addToCart}
+                onClick={addToCartHandler}
               >
                 <ShoppingCartOutlined />
                 Add To Cart
