@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { Button, Card, PageHeader, Row, Col, message, Empty } from "antd";
 
@@ -10,44 +10,19 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 
-import {
-  ProductDetailsState,
-  CartState,
-  CartItem as item,
-} from "../store/@types";
+import { CartState, CartItem as item } from "../store/@types";
 import { addToCart, emptyCart, removeFromCart } from "../store/actions/actions";
 import { ApplicationState } from "../store/store";
 
 import { OrderItem } from "../components/OrderItem";
 import { CartSummary } from "../components/CartSummary";
 
-interface ProductPramas {
-  id: string;
-}
-
 export const Cart = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
-  const { id }: ProductPramas = useParams();
-  const qty: number = location.search
-    ? Number(location.search.split("=")[1])
-    : 1;
-
-  const product = useSelector<ApplicationState, ProductDetailsState>(
-    (state) => state.productDetails
-  );
-  const { productDetail } = product;
 
   const cart = useSelector<ApplicationState, CartState>((state) => state.cart);
   const { cartList, price, totalItems } = cart;
-
-  useEffect(() => {
-    if (id && productDetail) {
-      const { name, image, price, count } = productDetail!;
-      dispatch(addToCart({ id, name, image, price, count, qty }));
-    }
-  }, [dispatch, id, productDetail, qty]);
 
   useEffect(() => {
     if (cartList === null || cartList.length === 0) {
