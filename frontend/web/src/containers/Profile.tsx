@@ -121,12 +121,10 @@ export const Profile = () => {
     {
       title: "OrderID",
       dataIndex: "_id",
-      key: "_id",
     },
     {
       title: "Payment",
       dataIndex: "isPaid",
-      key: "itemsPrice",
       render: (isPaid: boolean) => {
         return isPaid ? (
           <Tag color="green" key="1">
@@ -142,7 +140,6 @@ export const Profile = () => {
     {
       title: "Delivered",
       dataIndex: "isDelivered",
-      key: "shippingPrice",
       render: (isDelivered: boolean) => {
         return isDelivered ? (
           <Tag color="green" key="0">
@@ -158,16 +155,13 @@ export const Profile = () => {
     {
       title: "Total Items",
       dataIndex: "totalItems",
-      key: "totalItems",
     },
     {
       title: "Total Price",
       dataIndex: "totalPrice",
-      key: "totalPrice",
     },
     {
       title: "Order Details",
-      key: "createdAt",
       render: ({ _id }: any) => {
         return (
           <Button onClick={() => history.push(`orders/${_id}`)}>
@@ -269,7 +263,11 @@ export const Profile = () => {
             <Divider />
             <Card title="Recent Orders">
               {orders ? (
-                <Table columns={columns} dataSource={orders} />
+                <Table
+                  columns={columns}
+                  dataSource={orders}
+                  rowKey={(order) => order._id}
+                />
               ) : (
                 <Empty />
               )}
