@@ -10,6 +10,7 @@ import {
   UserAddOutlined,
   UserOutlined,
   DownOutlined,
+  VerifiedOutlined,
 } from "@ant-design/icons";
 import { Badge, Button, Dropdown, Input, Menu, message } from "antd";
 
@@ -20,6 +21,7 @@ import {
   logoutUser,
   clearCart,
   clearOrders,
+  clearAdminState,
 } from "../store/actions/actions";
 
 const { Search } = Input;
@@ -41,7 +43,11 @@ export const Header = () => {
     dispatch(clearUserProfile());
     dispatch(clearCart());
     dispatch(clearOrders());
+    if (authState.auth?.isAdmin) {
+      dispatch(clearAdminState());
+    }
   };
+
   const menu = (
     <Menu>
       <Menu.Item key="0">
@@ -52,6 +58,16 @@ export const Header = () => {
           </Button>
         </Link>
       </Menu.Item>
+      {authState.auth?.isAdmin ? (
+        <Menu.Item key="2">
+          <Link to="/adminpanel">
+            <Button type="link">
+              <VerifiedOutlined />
+              Admin
+            </Button>
+          </Link>
+        </Menu.Item>
+      ) : null}
       <Menu.Item key="1">
         <Link to="/cart">
           <Badge
