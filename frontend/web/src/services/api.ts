@@ -61,3 +61,9 @@ export const getUsers: any = () => {
   return API.get(URL);
 };
 
+export const updateUserPrivilege: any = ({ id, isAdmin }: any) => {
+  const URL = `${API_ENDPOINT}/api/users/${id}`;
+
+  return API.put(URL, { isAdmin });
+};
+
