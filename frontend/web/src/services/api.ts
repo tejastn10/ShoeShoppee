@@ -67,3 +67,8 @@ export const updateUserPrivilege: any = ({ id, isAdmin }: any) => {
   return API.put(URL, { isAdmin });
 };
 
+export const deleteUser: any = (id: any) => {
+  const URL = `${API_ENDPOINT}/api/users/${id}`;
+
+  return API.deleteResource(URL);
+};
