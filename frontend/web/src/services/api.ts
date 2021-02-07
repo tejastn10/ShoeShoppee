@@ -54,3 +54,10 @@ export const getOrderList: any = () => {
 
   return API.get(URL);
 };
+
+export const getUsers: any = () => {
+  const URL = `${API_ENDPOINT}/api/users`;
+
+  return API.get(URL);
+};
+
