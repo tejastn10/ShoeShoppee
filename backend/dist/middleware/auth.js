@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.protect = void 0;
+exports.admin = exports.protect = void 0;
 const jsonwebtoken_1 = require("jsonwebtoken");
 const models_1 = require("../models");
 const protect = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -33,3 +33,13 @@ const protect = (req, res, next) => __awaiter(void 0, void 0, void 0, function* 
     next();
 });
 exports.protect = protect;
+const admin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.body.user && req.body.user.isAdmin) {
+        next();
+    }
+    else {
+        res.status(401);
+        throw new Error("Not Authorized as an Admin");
+    }
+});
+exports.admin = admin;
