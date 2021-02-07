@@ -85,3 +85,35 @@ export const postRegisterUser = async (req: Request, res: Response) => {
     throw new Error("Invalid User data!");
   }
 };
+
+export const getUsers = async (_req: Request, res: Response) => {
+  const users = await User.find({});
+  res.json(users);
+};
+
+export const putUpdateUserById = async (req: Request, res: Response) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.isAdmin = req.body.isAdmin;
+
+    const updatedUser = await user.save();
+
+    res.json({ message: "User Privileges updated" });
+  } else {
+    res.status(404);
+    throw new Error("❌ User Not Found!");
+  }
+};
+
+export const deleteUser = async (req: Request, res: Response) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    await user.remove();
+    res.json({ message: "User deleted!" });
+  } else {
+    res.status(404);
+    throw new Error("User Not found!");
+  }
+};
