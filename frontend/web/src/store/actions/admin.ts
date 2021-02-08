@@ -70,4 +70,53 @@ export const updatePrivilegeError = createAction(
   }
 );
 
+export const productDeleteRequest = createAction(
+  AdminActionTypes.PRODUCT_DELETE_REQUEST,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const productDeleteSuccess = createAction(
+  AdminActionTypes.PRODUCT_DELETE_SUCCESS,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const productDeleteError = createAction(
+  AdminActionTypes.PRODUCT_DELETE_ERROR,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const updateProductRequest = createAction(
+  AdminActionTypes.UPDATE_PRODUCT_REQUEST,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const updateProductSuccess = createAction(
+  AdminActionTypes.UPDATE_PRODUCT_SUCCESS,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const updateProductError = createAction(
+  AdminActionTypes.UPDATE_PRODUCT_ERROR,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+
 export const clearAdminState = createAction(AdminActionTypes.CLEAR_ADMIN_STATE);

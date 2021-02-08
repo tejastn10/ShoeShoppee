@@ -55,6 +55,12 @@ import {
   updatePrivilegeRequest,
   updatePrivilegeSuccess,
   updatePrivilegeError,
+  productDeleteRequest,
+  productDeleteSuccess,
+  productDeleteError,
+  updateProductRequest,
+  updateProductSuccess,
+  updateProductError,
   clearAdminState,
 } from "./admin";
 
@@ -103,5 +109,11 @@ export {
   updatePrivilegeRequest,
   updatePrivilegeSuccess,
   updatePrivilegeError,
+  productDeleteRequest,
+  productDeleteSuccess,
+  productDeleteError,
+  updateProductRequest,
+  updateProductSuccess,
+  updateProductError,
   clearAdminState,
 };
