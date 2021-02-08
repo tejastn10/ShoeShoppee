@@ -15,6 +15,12 @@ import {
   userDeleteRequest,
   userDeleteSuccess,
   userDeleteError,
+  productDeleteRequest,
+  productDeleteSuccess,
+  productDeleteError,
+  updateProductRequest,
+  updateProductSuccess,
+  updateProductError,
 } from "../actions/actions";
 
 const getUsers = function* (action: Action) {
@@ -65,22 +71,64 @@ const deleteUser = function* (action: Action) {
   }
 };
 
+const updateProduct = function* (action: Action) {
+  try {
+    if (updateProductRequest.match(action)) {
+      const res = yield call(API.updateProduct, action.payload);
+      const data = res.data;
+      if (res.status !== 200) {
+        yield put(updateProductError(data.error));
+      } else {
+        yield put(updateProductSuccess(data));
+      }
+    }
+  } catch (error) {
+    yield put(updateProductError(getCustomError(error.response.data)));
+  }
+};
+
+const deleteProduct = function* (action: Action) {
+  try {
+    if (productDeleteRequest.match(action)) {
+      const res = yield call(API.deleteProduct, action.payload);
+      const data = res.data;
+      if (res.status !== 200) {
+        yield put(productDeleteError(data.error));
+      } else {
+        yield put(productDeleteSuccess(data));
+      }
+    }
+  } catch (error) {
+    yield put(productDeleteError(getCustomError(error.response.data)));
+  }
+};
+
 const watchUsersRequest = function* () {
   yield takeLatest(getUserListRequest.type, getUsers);
 };
 
-const watchUpdateRequest = function* () {
+const watchUpdateUserRequest = function* () {
   yield takeLatest(updatePrivilegeRequest.type, updateUserPrivilege);
 };
 
-const watchDeleteRequest = function* () {
+const watchUpdateProductRequest = function* () {
+  yield takeLatest(updateProductRequest.type, updateProduct);
+};
+
+const watchDeleteUserRequest = function* () {
   yield takeLatest(userDeleteRequest.type, deleteUser);
+};
+
+const watchDeleteProductRequest = function* () {
+  yield takeLatest(productDeleteRequest.type, deleteProduct);
 };
 
 export default function* adminSaga() {
   yield all([
     fork(watchUsersRequest),
-    fork(watchDeleteRequest),
-    fork(watchUpdateRequest),
+    fork(watchUpdateUserRequest),
+    fork(watchUpdateProductRequest),
+    fork(watchDeleteUserRequest),
+    fork(watchDeleteProductRequest),
   ]);
 }
