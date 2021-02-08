@@ -2,6 +2,7 @@ import {
   getProductListRequest,
   getProductListSuccess,
   getProductListError,
+  clearProductList,
 } from "./productList";
 import {
   getProductRequest,
@@ -61,6 +62,7 @@ export {
   getProductListRequest,
   getProductListSuccess,
   getProductListError,
+  clearProductList,
   getProductRequest,
   getProductSuccess,
   getProductError,
