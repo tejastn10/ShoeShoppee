@@ -9,6 +9,12 @@ import {
   updatePrivilegeRequest,
   updatePrivilegeSuccess,
   updatePrivilegeError,
+  productDeleteRequest,
+  productDeleteSuccess,
+  productDeleteError,
+  updateProductRequest,
+  updateProductSuccess,
+  updateProductError,
   clearAdminState,
 } from "../actions/actions";
 import { AdminState } from "../@types";
@@ -68,6 +74,30 @@ const reducer = createReducer(initialState, (builder) => {
       state.errors.results = null;
       state.messages.message = null;
       state.users = null;
+    })
+    .addCase(productDeleteRequest, (state, _action) => {
+      state.isLoading = true;
+      state.messages.message = null;
+    })
+    .addCase(productDeleteSuccess, (state, action) => {
+      state.isLoading = false;
+      state.messages = action.payload;
+    })
+    .addCase(productDeleteError, (state, action) => {
+      state.isLoading = false;
+      state.errors.results = action.payload;
+    })
+    .addCase(updateProductRequest, (state, _action) => {
+      state.isLoading = true;
+      state.messages.message = null;
+    })
+    .addCase(updateProductSuccess, (state, action) => {
+      state.isLoading = false;
+      state.messages = action.payload;
+    })
+    .addCase(updateProductError, (state, action) => {
+      state.isLoading = false;
+      state.errors.results = action.payload;
     })
     .addDefaultCase((state, _action) => {
       state.isLoading = false;
