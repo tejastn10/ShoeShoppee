@@ -67,8 +67,20 @@ export const updateUserPrivilege: any = ({ id, isAdmin }: any) => {
   return API.put(URL, { isAdmin });
 };
 
-export const deleteUser: any = (id: any) => {
+export const updateProduct: any = ({ id, count, price }: any) => {
+  const URL = `${API_ENDPOINT}/api/products/${id}`;
+
+  return API.put(URL, { count, price });
+};
+
+export const deleteUser: any = (id: string) => {
   const URL = `${API_ENDPOINT}/api/users/${id}`;
+
+  return API.deleteResource(URL);
+};
+
+export const deleteProduct: any = (id: string) => {
+  const URL = `${API_ENDPOINT}/api/products/${id}`;
 
   return API.deleteResource(URL);
 };
