@@ -9,12 +9,15 @@ import {
   updatePrivilegeRequest,
   updatePrivilegeSuccess,
   updatePrivilegeError,
-  productDeleteRequest,
-  productDeleteSuccess,
-  productDeleteError,
+  createProductRequest,
+  createProductSuccess,
+  createProductError,
   updateProductRequest,
   updateProductSuccess,
   updateProductError,
+  productDeleteRequest,
+  productDeleteSuccess,
+  productDeleteError,
   clearAdminState,
 } from "../actions/actions";
 import { AdminState } from "../@types";
@@ -75,15 +78,15 @@ const reducer = createReducer(initialState, (builder) => {
       state.messages.message = null;
       state.users = null;
     })
-    .addCase(productDeleteRequest, (state, _action) => {
+    .addCase(createProductRequest, (state, _action) => {
       state.isLoading = true;
       state.messages.message = null;
     })
-    .addCase(productDeleteSuccess, (state, action) => {
+    .addCase(createProductSuccess, (state, action) => {
       state.isLoading = false;
       state.messages = action.payload;
     })
-    .addCase(productDeleteError, (state, action) => {
+    .addCase(createProductError, (state, action) => {
       state.isLoading = false;
       state.errors.results = action.payload;
     })
@@ -96,6 +99,18 @@ const reducer = createReducer(initialState, (builder) => {
       state.messages = action.payload;
     })
     .addCase(updateProductError, (state, action) => {
+      state.isLoading = false;
+      state.errors.results = action.payload;
+    })
+    .addCase(productDeleteRequest, (state, _action) => {
+      state.isLoading = true;
+      state.messages.message = null;
+    })
+    .addCase(productDeleteSuccess, (state, action) => {
+      state.isLoading = false;
+      state.messages = action.payload;
+    })
+    .addCase(productDeleteError, (state, action) => {
       state.isLoading = false;
       state.errors.results = action.payload;
     })
