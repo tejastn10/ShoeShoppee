@@ -10,7 +10,7 @@ const reviewSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-const productSchema: Schema = new Schema(
+const productSchema = new Schema<IProduct>(
   {
     user: {
       type: Schema.Types.ObjectId,
