@@ -15,12 +15,15 @@ import {
   userDeleteRequest,
   userDeleteSuccess,
   userDeleteError,
-  productDeleteRequest,
-  productDeleteSuccess,
-  productDeleteError,
+  createProductRequest,
+  createProductSuccess,
+  createProductError,
   updateProductRequest,
   updateProductSuccess,
   updateProductError,
+  productDeleteRequest,
+  productDeleteSuccess,
+  productDeleteError,
 } from "../actions/actions";
 
 const getUsers = function* (action: Action) {
@@ -71,6 +74,22 @@ const deleteUser = function* (action: Action) {
   }
 };
 
+const createProduct = function* (action: Action) {
+  try {
+    if (createProductRequest.match(action)) {
+      const res = yield call(API.createProduct, action.payload);
+      const data = res.data;
+      if (res.status !== 201) {
+        yield put(createProductError(data.error));
+      } else {
+        yield put(createProductSuccess(data));
+      }
+    }
+  } catch (error) {
+    yield put(createProductError(getCustomError(error.response.data)));
+  }
+};
+
 const updateProduct = function* (action: Action) {
   try {
     if (updateProductRequest.match(action)) {
@@ -107,6 +126,10 @@ const watchUsersRequest = function* () {
   yield takeLatest(getUserListRequest.type, getUsers);
 };
 
+const watchCreateProductRequest = function* () {
+  yield takeLatest(createProductRequest.type, createProduct);
+};
+
 const watchUpdateUserRequest = function* () {
   yield takeLatest(updatePrivilegeRequest.type, updateUserPrivilege);
 };
@@ -126,6 +149,7 @@ const watchDeleteProductRequest = function* () {
 export default function* adminSaga() {
   yield all([
     fork(watchUsersRequest),
+    fork(watchCreateProductRequest),
     fork(watchUpdateUserRequest),
     fork(watchUpdateProductRequest),
     fork(watchDeleteUserRequest),
