@@ -61,6 +61,12 @@ export const getUsers: any = () => {
   return API.get(URL);
 };
 
+export const createProduct: any = (product: any) => {
+  const URL = `${API_ENDPOINT}/api/products`;
+
+  return API.post(URL, product);
+};
+
 export const updateUserPrivilege: any = ({ id, isAdmin }: any) => {
   const URL = `${API_ENDPOINT}/api/users/${id}`;
 
