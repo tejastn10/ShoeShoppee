@@ -18,21 +18,33 @@ export const getProductById = async (req: Request, res: Response) => {
 };
 
 export const postProduct = async (req: Request, res: Response) => {
+  const {
+    user,
+    name,
+    image,
+    brand,
+    category,
+    type,
+    description,
+    price,
+    count,
+  } = req.body;
+
   const product = new Product({
-    user: req.body.user._id,
-    name: "sample",
+    user: user._id,
+    name,
     image: "/images/file.jpg",
-    brand: "sample",
-    category: "sample",
-    type: "sample",
-    description: "sample",
+    brand,
+    category,
+    type,
+    description,
     reviews: [],
-    price: 1000,
-    count: 10,
+    price,
+    count,
   });
 
-  const createdProduct = await product.save();
-  res.status(201).json(createdProduct);
+  await product.save();
+  res.status(201).json({ message: "Product Created" });
 };
 
 export const putProduct = async (req: Request, res: Response) => {

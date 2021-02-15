@@ -28,20 +28,21 @@ const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.getProductById = getProductById;
 const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { user, name, image, brand, category, type, description, price, count, } = req.body;
     const product = new models_1.Product({
-        user: req.body.user._id,
-        name: "sample",
+        user: user._id,
+        name,
         image: "/images/file.jpg",
-        brand: "sample",
-        category: "sample",
-        type: "sample",
-        description: "sample",
+        brand,
+        category,
+        type,
+        description,
         reviews: [],
-        price: 1000,
-        count: 10,
+        price,
+        count,
     });
-    const createdProduct = yield product.save();
-    res.status(201).json(createdProduct);
+    yield product.save();
+    res.status(201).json({ message: "Product Created" });
 });
 exports.postProduct = postProduct;
 const putProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
