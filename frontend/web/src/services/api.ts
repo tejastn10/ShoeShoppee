@@ -96,3 +96,10 @@ export const deleteProduct: any = (id: string) => {
 
   return API.deleteResource(URL);
 };
+
+export const getOrders: any = () => {
+  const URL = `${API_ENDPOINT}/api/orders`;
+
+  return API.get(URL);
+};
+
