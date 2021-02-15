@@ -143,4 +143,48 @@ export const productDeleteError = createAction(
   }
 );
 
+export const getOrderListRequest = createAction(
+  AdminActionTypes.ORDER_LIST_REQUEST
+);
+export const getOrderListSuccess = createAction(
+  AdminActionTypes.ORDER_LIST_SUCCESS,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const getOrderListError = createAction(
+  AdminActionTypes.ORDER_LIST_ERROR,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const updateOrderRequest = createAction(
+  AdminActionTypes.UPDATE_ORDER_REQUEST,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const updateOrderSuccess = createAction(
+  AdminActionTypes.UPDATE_ORDER_SUCCESS,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const updateOrderError = createAction(
+  AdminActionTypes.UPDATE_ORDER_ERROR,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+
 export const clearAdminState = createAction(AdminActionTypes.CLEAR_ADMIN_STATE);

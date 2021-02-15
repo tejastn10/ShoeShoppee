@@ -67,6 +67,12 @@ import {
   productDeleteRequest,
   productDeleteSuccess,
   productDeleteError,
+  getOrderListRequest,
+  getOrderListSuccess,
+  getOrderListError,
+  updateOrderRequest,
+  updateOrderSuccess,
+  updateOrderError,
   clearAdminState,
 } from "./admin";
 
@@ -127,5 +133,11 @@ export {
   productDeleteRequest,
   productDeleteSuccess,
   productDeleteError,
+  getOrderListRequest,
+  getOrderListSuccess,
+  getOrderListError,
+  updateOrderRequest,
+  updateOrderSuccess,
+  updateOrderError,
   clearAdminState,
 };
