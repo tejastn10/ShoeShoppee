@@ -1,4 +1,4 @@
-import { CartItem, ShippingAddress } from ".";
+import { CartItem, Profile, ShippingAddress } from ".";
 import { CustomError } from "../../utils/api-helper";
 
 export interface Order {
@@ -13,6 +13,7 @@ export interface Order {
   totalPrice: number;
   isPaid: boolean;
   isDelivered: boolean;
+  user: Profile | null;
 }
 
 export interface Errors {
@@ -25,12 +26,16 @@ export interface OrderState {
   errors: Errors;
   listError: Errors;
   orders: Order[] | null;
+  order: Order | null;
 }
 
 export enum OrderActionTypes {
   CREATE_ORDER_REQUEST = "@@order/CREATE_ORDER_REQUEST",
   CREATE_ORDER_SUCCESS = "@@order/CREATE_ORDER_SUCCESS",
   CREATE_ORDER_ERROR = "@@order/CREATE_ORDER_ERROR",
+  ORDER_REQUEST = "@@order/ORDER_REQUEST",
+  ORDER_SUCCESS = "@@order/ORDER_SUCCESS",
+  ORDER_ERROR = "@@order/ORDER_ERROR",
   RESET_ORDER = "@@order/RESET_ORDER",
   ORDER_LIST_REQUEST = "@@order/ORDER_LIST_REQUEST",
   ORDER_LIST_SUCCESS = "@@order/ORDER_LIST_SUCCESS",
