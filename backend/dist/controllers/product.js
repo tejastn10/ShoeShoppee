@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProductById = exports.getAllPoducts = void 0;
+exports.deleteProduct = exports.putProduct = exports.postProduct = exports.getProductById = exports.getAllPoducts = void 0;
 const models_1 = require("./../models");
 const getAllPoducts = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const products = yield models_1.Product.find({});
@@ -27,3 +27,48 @@ const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getProductById = getProductById;
+const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { user, name, image, brand, category, type, description, price, count, } = req.body;
+    const product = new models_1.Product({
+        user: user._id,
+        name,
+        image: "/images/file.jpg",
+        brand,
+        category,
+        type,
+        description,
+        reviews: [],
+        price,
+        count,
+    });
+    yield product.save();
+    res.status(201).json({ message: "Product Created" });
+});
+exports.postProduct = postProduct;
+const putProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const product = yield models_1.Product.findById(req.params.id);
+    const { count, price } = req.body;
+    if (product) {
+        product.count = count ? count : product.count;
+        product.price = price ? price : product.price;
+        yield product.save();
+        res.json({ message: "Product Updated" });
+    }
+    else {
+        res.status(404);
+        throw new Error("Product Not found");
+    }
+});
+exports.putProduct = putProduct;
+const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const product = yield models_1.Product.findById(req.params.id);
+    if (product) {
+        yield product.remove();
+        res.json({ message: "Product deleted" });
+    }
+    else {
+        res.status(404);
+        throw new Error("Product Not found");
+    }
+});
+exports.deleteProduct = deleteProduct;

@@ -14,6 +14,7 @@ import {
   ShippingAddress,
 } from "./cart";
 import { Order, OrderState, OrderActionTypes } from "./order";
+import { AdminState, AdminActionTypes } from "./admin";
 
 export {
   ProductListActionTypes,
@@ -22,6 +23,7 @@ export {
   UserProfileActionTypes,
   CartActionTypes,
   OrderActionTypes,
+  AdminActionTypes,
 };
 export type {
   Product,
@@ -37,4 +39,5 @@ export type {
   ShippingAddress,
   Order,
   OrderState,
+  AdminState,
 };

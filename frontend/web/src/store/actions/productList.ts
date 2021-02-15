@@ -20,3 +20,7 @@ export const getProductListError = createAction(
     };
   }
 );
+
+export const clearProductList = createAction(
+  ProductListActionTypes.CLEAR_PRODUCT_LIST
+);

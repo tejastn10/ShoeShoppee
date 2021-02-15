@@ -10,6 +10,7 @@ import { Product } from "../containers/Product";
 import { Cart } from "../containers/Cart";
 import { Checkout } from "../containers/Checkout";
 import { OrderDetails } from "../containers/OrderDetails";
+import { Admin } from "../containers/admin/Admin";
 
 export const Routes = () => {
   return (
@@ -19,11 +20,12 @@ export const Routes = () => {
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/search/*" component={Search} />
+        <Route path="/search" component={Search} />
         <Route path="/product/:id" component={Product} />
-        <Route path="/cart/:id?" component={Cart} />
+        <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/orders/:id" component={OrderDetails} />
+        <Route path="/adminpanel" component={Admin} />
       </Switch>
     </>
   );

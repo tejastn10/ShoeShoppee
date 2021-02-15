@@ -17,3 +17,15 @@ exports.router.post("/", express_async_handler_1.default(auth_1.protect), expres
 // @route    GET /api/orders/all
 // @access   Private
 exports.router.get("/all", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(order_1.getOrders));
+// @desc     Get all Orders
+// @route    GET /api/orders
+// @access   Private/Admin
+exports.router.get("/", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(auth_1.admin), express_async_handler_1.default(order_1.getAllOrders));
+// @desc     Get Order by Id
+// @route    GET /api/orders/:id
+// @access   Private
+exports.router.get("/:id", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(order_1.getOrderById));
+// @desc     Update order to be Delivered
+// @route    GET /api/orders/:id/p&d
+// @access   Private/Admin
+exports.router.put("/:id/p&d", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(auth_1.admin), express_async_handler_1.default(order_1.updateOrder));

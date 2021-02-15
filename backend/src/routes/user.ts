@@ -5,8 +5,11 @@ import {
   getUserProfile,
   putUpdateUser,
   postRegisterUser,
+  getUsers,
+  putUpdateUserById,
+  deleteUser,
 } from "../controllers/user";
-import { protect } from "../middleware/auth";
+import { protect, admin } from "../middleware/auth";
 
 export const router: Router = Router();
 
@@ -29,3 +32,33 @@ router.get("/profile", asyncHandler(protect), asyncHandler(getUserProfile));
 // @route    PUT /api/users/profile
 // @access   Private
 router.put("/profile", asyncHandler(protect), asyncHandler(putUpdateUser));
+
+// @desc     Get All Users
+// @route    GET /api/users
+// @access   Private/Admin
+router.get(
+  "/",
+  asyncHandler(protect),
+  asyncHandler(admin),
+  asyncHandler(getUsers)
+);
+
+// @desc     Update User by id
+// @route    PUT /api/users/:id
+// @access   Private/Admin
+router.put(
+  "/:id",
+  asyncHandler(protect),
+  asyncHandler(admin),
+  asyncHandler(putUpdateUserById)
+);
+
+// @desc     Delete a User
+// @route    DELETE /api/users/:id
+// @access   Private/Admin
+router.delete(
+  "/:id",
+  asyncHandler(protect),
+  asyncHandler(admin),
+  asyncHandler(deleteUser)
+);

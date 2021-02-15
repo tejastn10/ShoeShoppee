@@ -11,6 +11,7 @@ import { AuthStateReducer, AuthInitialState } from "./auth";
 import { UserProfileStateReducer, UserProfileInitialState } from "./user";
 import { CartStateReducer, CartInitialState } from "./cart";
 import { OrderStateReducer, OrderInitialState } from "./order";
+import { AdminStateReducer, AdminInitialState } from "./admin";
 
 const reducers = {
   productList: ProductListStateReducer,
@@ -19,6 +20,7 @@ const reducers = {
   userProfile: UserProfileStateReducer,
   cart: CartStateReducer,
   orders: OrderStateReducer,
+  admin: AdminStateReducer,
 };
 
 export const rootReducer = () => {
@@ -33,4 +35,5 @@ export {
   UserProfileInitialState,
   CartInitialState,
   OrderInitialState,
+  AdminInitialState,
 };

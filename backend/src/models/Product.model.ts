@@ -10,7 +10,7 @@ const reviewSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-const productSchema: Schema = new Schema(
+const productSchema = new Schema<IProduct>(
   {
     user: {
       type: Schema.Types.ObjectId,
@@ -43,13 +43,11 @@ const productSchema: Schema = new Schema(
     },
     rating: {
       type: Number,
-      required: true,
       default: 0,
     },
     reviews: [reviewSchema],
     numReviews: {
       type: Number,
-      required: true,
       default: 0,
     },
     price: {

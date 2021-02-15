@@ -35,3 +35,16 @@ export const protect = async (
 
   next();
 };
+
+export const admin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (req.body.user && req.body.user.isAdmin) {
+    next();
+  } else {
+    res.status(401);
+    throw new Error("Not Authorized as an Admin");
+  }
+};

@@ -13,7 +13,7 @@ const orderItemSchema: Schema = new Schema({
   qty: { type: Number, required: true },
 });
 
-const orderSchema: Schema = new Schema(
+const orderSchema = new Schema<IOrder>(
   {
     user: {
       type: Schema.Types.ObjectId,

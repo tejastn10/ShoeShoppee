@@ -3,6 +3,7 @@ import {
   getProductListRequest,
   getProductListSuccess,
   getProductListError,
+  clearProductList,
 } from "../actions/actions";
 import { ProductListState } from "../@types";
 
@@ -26,6 +27,10 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(getProductListError, (state, action) => {
       state.isLoading = false;
       state.errors.results = action.payload;
+    })
+    .addCase(clearProductList, (state, _action) => {
+      state.isLoading = false;
+      state.products = null;
     })
     .addDefaultCase((state, _action) => {
       state.isLoading = false;

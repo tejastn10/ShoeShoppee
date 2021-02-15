@@ -3,7 +3,7 @@ import { IUser } from "../@types/User";
 
 import { compare, genSalt, hash } from "bcryptjs";
 
-const userSchema: Schema = new Schema(
+const userSchema = new Schema<IUser>(
   {
     name: {
       type: String,

@@ -25,3 +25,15 @@ exports.router.get("/profile", express_async_handler_1.default(auth_1.protect), 
 // @route    PUT /api/users/profile
 // @access   Private
 exports.router.put("/profile", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(user_1.putUpdateUser));
+// @desc     Get All Users
+// @route    GET /api/users
+// @access   Private/Admin
+exports.router.get("/", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(auth_1.admin), express_async_handler_1.default(user_1.getUsers));
+// @desc     Update User by id
+// @route    PUT /api/users/:id
+// @access   Private/Admin
+exports.router.put("/:id", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(auth_1.admin), express_async_handler_1.default(user_1.putUpdateUserById));
+// @desc     Delete a User
+// @route    DELETE /api/users/:id
+// @access   Private/Admin
+exports.router.delete("/:id", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(auth_1.admin), express_async_handler_1.default(user_1.deleteUser));

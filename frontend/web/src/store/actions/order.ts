@@ -25,6 +25,30 @@ export const createOrderError = createAction(
     };
   }
 );
+export const orderRequest = createAction(
+  OrderActionTypes.ORDER_REQUEST,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const orderSuccess = createAction(
+  OrderActionTypes.ORDER_SUCCESS,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const orderError = createAction(
+  OrderActionTypes.ORDER_ERROR,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
 export const resetOrder = createAction(OrderActionTypes.RESET_ORDER);
 
 export const ordersListRequest = createAction(

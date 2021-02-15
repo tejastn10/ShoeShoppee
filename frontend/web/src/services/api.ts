@@ -49,8 +49,62 @@ export const createOrder: any = (order: any) => {
   return API.post(URL, order);
 };
 
+export const getOrder: any = (id: any) => {
+  const URL = `${API_ENDPOINT}/api/orders/${id}`;
+
+  return API.get(URL);
+};
+
 export const getOrderList: any = () => {
   const URL = `${API_ENDPOINT}/api/orders/all`;
 
   return API.get(URL);
+};
+
+export const getUsers: any = () => {
+  const URL = `${API_ENDPOINT}/api/users`;
+
+  return API.get(URL);
+};
+
+export const createProduct: any = (product: any) => {
+  const URL = `${API_ENDPOINT}/api/products`;
+
+  return API.post(URL, product);
+};
+
+export const updateUserPrivilege: any = ({ id, isAdmin }: any) => {
+  const URL = `${API_ENDPOINT}/api/users/${id}`;
+
+  return API.put(URL, { isAdmin });
+};
+
+export const updateProduct: any = ({ id, count, price }: any) => {
+  const URL = `${API_ENDPOINT}/api/products/${id}`;
+
+  return API.put(URL, { count, price });
+};
+
+export const deleteUser: any = (id: string) => {
+  const URL = `${API_ENDPOINT}/api/users/${id}`;
+
+  return API.deleteResource(URL);
+};
+
+export const deleteProduct: any = (id: string) => {
+  const URL = `${API_ENDPOINT}/api/products/${id}`;
+
+  return API.deleteResource(URL);
+};
+
+export const getOrders: any = () => {
+  const URL = `${API_ENDPOINT}/api/orders`;
+
+  return API.get(URL);
+};
+
+export const updateOrder: any = (id: string) => {
+  const URL = `${API_ENDPOINT}/api/orders/${id}/p&d`;
+
+  return API.put(URL, {});
 };

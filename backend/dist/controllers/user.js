@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postRegisterUser = exports.putUpdateUser = exports.getUserProfile = exports.postAuthUser = void 0;
+exports.deleteUser = exports.putUpdateUserById = exports.getUsers = exports.postRegisterUser = exports.putUpdateUser = exports.getUserProfile = exports.postAuthUser = void 0;
 const generateToken_1 = require("../utils/generateToken");
 const models_1 = require("./../models");
 const postAuthUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -88,3 +88,33 @@ const postRegisterUser = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.postRegisterUser = postRegisterUser;
+const getUsers = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const users = yield models_1.User.find({});
+    res.json(users);
+});
+exports.getUsers = getUsers;
+const putUpdateUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield models_1.User.findById(req.params.id);
+    if (user) {
+        user.isAdmin = req.body.isAdmin;
+        const updatedUser = yield user.save();
+        res.json({ message: "User Privileges updated" });
+    }
+    else {
+        res.status(404);
+        throw new Error("❌ User Not Found!");
+    }
+});
+exports.putUpdateUserById = putUpdateUserById;
+const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield models_1.User.findById(req.params.id);
+    if (user) {
+        yield user.remove();
+        res.json({ message: "User deleted!" });
+    }
+    else {
+        res.status(404);
+        throw new Error("User Not found!");
+    }
+});
+exports.deleteUser = deleteUser;
