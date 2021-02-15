@@ -29,6 +29,7 @@ import {
   clearProductList,
   productDeleteRequest,
   updateProductRequest,
+  getOrderListRequest,
 } from "../../store/actions/actions";
 import { ApplicationState } from "../../store/store";
 
@@ -50,7 +51,7 @@ export const Admin = () => {
   const productList = useSelector<ApplicationState, ProductListState>(
     (state) => state.productList
   );
-  const { isLoading, errors, messages, users } = adminState;
+  const { isLoading, errors, messages, users, orders } = adminState;
 
   const deleteUser = (id: string) => {
     if (id) {
@@ -76,7 +77,7 @@ export const Admin = () => {
     setPrice(null);
   };
 
-  const productsColumn = [
+  const productColumns = [
     {
       title: "Name",
       dataIndex: "name",
@@ -239,6 +240,61 @@ export const Admin = () => {
     },
   ];
 
+  const orderColumns = [
+    {
+      title: "OrderID",
+      dataIndex: "_id",
+    },
+    {
+      title: "Payment",
+      dataIndex: "isPaid",
+      render: (isPaid: boolean) => {
+        return isPaid ? (
+          <Tag color="green" key="1">
+            Paid
+          </Tag>
+        ) : (
+          <Tag color="red" key="1">
+            Not Paid
+          </Tag>
+        );
+      },
+    },
+    {
+      title: "Delivered",
+      dataIndex: "isDelivered",
+      render: (isDelivered: boolean) => {
+        return isDelivered ? (
+          <Tag color="green" key="0">
+            Delivered
+          </Tag>
+        ) : (
+          <Tag color="yellow" key="0">
+            Not Delivered
+          </Tag>
+        );
+      },
+    },
+    {
+      title: "Total Items",
+      dataIndex: "totalItems",
+    },
+    {
+      title: "Total Price",
+      dataIndex: "totalPrice",
+    },
+    {
+      title: "Order Details",
+      render: ({ _id }: any) => {
+        return (
+          <Button onClick={() => history.push(`orders/${_id}`)}>
+            View Details
+          </Button>
+        );
+      },
+    },
+  ];
+
   useEffect(() => {
     if (authState.auth?.isAdmin) {
       dispatch(getUserListRequest());
@@ -248,6 +304,10 @@ export const Admin = () => {
 
     if (!productList.products) {
       dispatch(getProductListRequest());
+    }
+
+    if (!orders) {
+      dispatch(getOrderListRequest());
     }
 
     if (errors.results) {
@@ -264,6 +324,7 @@ export const Admin = () => {
     errors.results,
     history,
     messages.message,
+    orders,
     productList.products,
   ]);
 
@@ -300,9 +361,20 @@ export const Admin = () => {
             <Loading />
           ) : (
             <Table
-              columns={productsColumn}
+              columns={productColumns}
               dataSource={productList.products!}
               rowKey={(product) => product._id!}
+            />
+          )}
+        </Card>
+        <Card title="All Orders">
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <Table
+              columns={orderColumns}
+              dataSource={orders!}
+              rowKey={(order) => order._id!}
             />
           )}
         </Card>
