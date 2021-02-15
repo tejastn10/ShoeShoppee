@@ -103,3 +103,8 @@ export const getOrders: any = () => {
   return API.get(URL);
 };
 
+export const updateOrder: any = (id: string) => {
+  const URL = `${API_ENDPOINT}/api/orders/${id}/p&d`;
+
+  return API.put(URL, {});
+};
