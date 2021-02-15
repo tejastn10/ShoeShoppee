@@ -9,6 +9,9 @@ import {
   createOrderRequest,
   createOrderSuccess,
   createOrderError,
+  orderRequest,
+  orderSuccess,
+  orderError,
   ordersListRequest,
   ordersListSuccess,
   ordersListError,
@@ -27,6 +30,22 @@ const createOrder = function* (action: Action) {
     }
   } catch (error) {
     yield put(createOrderError(getCustomError(error.response.data)));
+  }
+};
+
+const getOrder = function* (action: Action) {
+  try {
+    if (orderRequest.match(action)) {
+      const res = yield call(API.getOrder, action.payload);
+      const data = res.data;
+      if (res.status !== 200) {
+        yield put(orderError(data.error));
+      } else {
+        yield put(orderSuccess(data));
+      }
+    }
+  } catch (error) {
+    yield put(orderError(getCustomError(error.response.data)));
   }
 };
 
@@ -50,10 +69,18 @@ const watchCreateOrderRequest = function* () {
   yield takeLatest(createOrderRequest.type, createOrder);
 };
 
+const watchOrderRequest = function* () {
+  yield takeLatest(orderRequest.type, getOrder);
+};
+
 const watchOrderListRequest = function* () {
   yield takeLatest(ordersListRequest.type, orderList);
 };
 
 export default function* orderSaga() {
-  yield all([fork(watchCreateOrderRequest), fork(watchOrderListRequest)]);
+  yield all([
+    fork(watchCreateOrderRequest),
+    fork(watchOrderListRequest),
+    fork(watchOrderRequest),
+  ]);
 }
