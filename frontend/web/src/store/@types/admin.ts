@@ -1,5 +1,5 @@
 import { CustomError } from "../../utils/api-helper";
-import { Profile } from "./index";
+import { Order, Profile } from "./index";
 
 export interface Errors {
   results: CustomError | null;
@@ -14,6 +14,7 @@ export interface AdminState {
   errors: Errors;
   messages: Message;
   users: Profile[] | null;
+  orders: Order[] | null;
 }
 
 export enum AdminActionTypes {
@@ -35,5 +36,11 @@ export enum AdminActionTypes {
   UPDATE_PRODUCT_REQUEST = "@@admin/UPDATE_PRODUCT_REQUEST",
   UPDATE_PRODUCT_SUCCESS = "@@admin/UPDATE_PRODUCT_SUCCESS",
   UPDATE_PRODUCT_ERROR = "@@admin/UPDATE_PRODUCT_ERROR",
+  ORDER_LIST_REQUEST = "@@admin/ORDER_LIST_REQUEST",
+  ORDER_LIST_SUCCESS = "@@admin/ORDER_LIST_SUCCESS",
+  ORDER_LIST_ERROR = "@@admin/ORDER_LIST_ERROR",
+  UPDATE_ORDER_REQUEST = "@@admin/UPDATE_ORDER_REQUEST",
+  UPDATE_ORDER_SUCCESS = "@@admin/UPDATE_ORDER_SUCCESS",
+  UPDATE_ORDER_ERROR = "@@admin/UPDATE_ORDER_ERROR",
   CLEAR_ADMIN_STATE = "@@admin/CLEAR_ADMIN_STATE",
 }
