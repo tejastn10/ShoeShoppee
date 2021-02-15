@@ -24,6 +24,12 @@ import {
   productDeleteRequest,
   productDeleteSuccess,
   productDeleteError,
+  getOrderListRequest,
+  getOrderListSuccess,
+  getOrderListError,
+  updateOrderRequest,
+  updateOrderSuccess,
+  updateOrderError,
 } from "../actions/actions";
 
 const getUsers = function* (action: Action) {
@@ -122,6 +128,38 @@ const deleteProduct = function* (action: Action) {
   }
 };
 
+const getOrders = function* (action: Action) {
+  try {
+    if (getOrderListRequest.match(action)) {
+      const res = yield call(API.getOrders, action.payload);
+      const data = res.data;
+      if (res.status !== 200) {
+        yield put(getOrderListError(data.error));
+      } else {
+        yield put(getOrderListSuccess(data));
+      }
+    }
+  } catch (error) {
+    yield put(getOrderListError(getCustomError(error.response.data)));
+  }
+};
+
+const updateOrder = function* (action: Action) {
+  try {
+    if (updateOrderRequest.match(action)) {
+      const res = yield call(API.updateOrder, action.payload);
+      const data = res.data;
+      if (res.status !== 200) {
+        yield put(updateOrderError(data.error));
+      } else {
+        yield put(updateOrderSuccess(data));
+      }
+    }
+  } catch (error) {
+    yield put(updateOrderError(getCustomError(error.response.data)));
+  }
+};
+
 const watchUsersRequest = function* () {
   yield takeLatest(getUserListRequest.type, getUsers);
 };
@@ -146,6 +184,14 @@ const watchDeleteProductRequest = function* () {
   yield takeLatest(productDeleteRequest.type, deleteProduct);
 };
 
+const watchOrdersRequest = function* () {
+  yield takeLatest(getOrderListRequest.type, getOrders);
+};
+
+const watchUpdateOrderRequest = function* () {
+  yield takeLatest(updateOrderRequest.type, updateOrder);
+};
+
 export default function* adminSaga() {
   yield all([
     fork(watchUsersRequest),
@@ -154,5 +200,7 @@ export default function* adminSaga() {
     fork(watchUpdateProductRequest),
     fork(watchDeleteUserRequest),
     fork(watchDeleteProductRequest),
+    fork(watchOrdersRequest),
+    fork(watchUpdateOrderRequest),
   ]);
 }
