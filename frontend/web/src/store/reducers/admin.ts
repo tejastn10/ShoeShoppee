@@ -18,6 +18,12 @@ import {
   productDeleteRequest,
   productDeleteSuccess,
   productDeleteError,
+  getOrderListRequest,
+  getOrderListSuccess,
+  getOrderListError,
+  updateOrderRequest,
+  updateOrderSuccess,
+  updateOrderError,
   clearAdminState,
 } from "../actions/actions";
 import { AdminState } from "../@types";
@@ -31,6 +37,7 @@ const initialState: AdminState = {
     message: null,
   },
   users: null,
+  orders: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -111,6 +118,31 @@ const reducer = createReducer(initialState, (builder) => {
       state.messages = action.payload;
     })
     .addCase(productDeleteError, (state, action) => {
+      state.isLoading = false;
+      state.errors.results = action.payload;
+    })
+    .addCase(getOrderListRequest, (state, _action) => {
+      state.isLoading = true;
+      state.errors.results = null;
+      state.orders = null;
+    })
+    .addCase(getOrderListSuccess, (state, action) => {
+      state.isLoading = false;
+      state.orders = action.payload;
+    })
+    .addCase(getOrderListError, (state, action) => {
+      state.isLoading = false;
+      state.errors.results = action.payload;
+    })
+    .addCase(updateOrderRequest, (state, _action) => {
+      state.isLoading = true;
+      state.messages.message = null;
+    })
+    .addCase(updateOrderSuccess, (state, action) => {
+      state.isLoading = false;
+      state.messages = action.payload;
+    })
+    .addCase(updateOrderError, (state, action) => {
       state.isLoading = false;
       state.errors.results = action.payload;
     })
