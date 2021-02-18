@@ -2,6 +2,7 @@ import express, { json, Application, Request, Response } from "express";
 import cors from "cors";
 import "colors";
 import { config } from "dotenv";
+import morgan from "morgan";
 
 import { connectDB } from "./config/db";
 import { notFound, errorHandler } from "./middleware/error";
@@ -14,13 +15,13 @@ config();
 
 const app: Application = express();
 
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
 connectDB();
 app.use(cors());
 app.use(json());
-
-app.get("/", (_req: Request, res: Response) =>
-  res.send("API Running on Port 5000")
-);
 
 app.use("/api/orders", orderRoutes);
 app.use("/api/products", productRoutes);

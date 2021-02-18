@@ -26,6 +26,7 @@ const express_1 = __importStar(require("express"));
 const cors_1 = __importDefault(require("cors"));
 require("colors");
 const dotenv_1 = require("dotenv");
+const morgan_1 = __importDefault(require("morgan"));
 const db_1 = require("./config/db");
 const error_1 = require("./middleware/error");
 const order_1 = require("./routes/order");
@@ -33,10 +34,12 @@ const product_1 = require("./routes/product");
 const user_1 = require("./routes/user");
 dotenv_1.config();
 const app = express_1.default();
+if (process.env.NODE_ENV === "development") {
+    app.use(morgan_1.default("dev"));
+}
 db_1.connectDB();
 app.use(cors_1.default());
 app.use(express_1.json());
-app.get("/", (_req, res) => res.send("API Running on Port 5000"));
 app.use("/api/orders", order_1.router);
 app.use("/api/products", product_1.router);
 app.use("/api/users", user_1.router);
