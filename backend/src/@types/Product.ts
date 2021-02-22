@@ -10,6 +10,7 @@ export interface IProduct extends Document {
   description: string;
   rating: number;
   reviews: {
+    user: Schema.Types.ObjectId;
     name: string;
     rating: number;
     comment: string;
