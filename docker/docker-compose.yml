@@ -1,0 +1,19 @@
+version: "3"
+services:
+  web:
+    build:
+      context: ../frontend/web
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/frontend/node_modules
+      - /app/frontend/src/styles
+      - ../frontend/web:/app/frontend
+  server:
+    build:
+      context: ../backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - /app/backend/node_modules
+      - ../backend:/app/backend
