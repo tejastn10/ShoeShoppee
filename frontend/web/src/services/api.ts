@@ -108,3 +108,9 @@ export const updateOrder: any = (id: string) => {
 
   return API.put(URL, {});
 };
+
+export const createReview: any = ({ id, rating, comment }: any) => {
+  const URL = `${API_ENDPOINT}/api/products/${id}/review`;
+
+  return API.post(URL, { rating, comment });
+};
