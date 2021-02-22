@@ -21,6 +21,31 @@ export const getProductListError = createAction(
   }
 );
 
+export const searchProductRequest = createAction(
+  ProductListActionTypes.SEARCH_PRODUCT_REQUEST,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const searchProductSuccess = createAction(
+  ProductListActionTypes.SEARCH_PRODUCT_SUCCESS,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const searchProductError = createAction(
+  ProductListActionTypes.SEARCH_PRODUCT_ERROR,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+
 export const clearProductList = createAction(
   ProductListActionTypes.CLEAR_PRODUCT_LIST
 );
