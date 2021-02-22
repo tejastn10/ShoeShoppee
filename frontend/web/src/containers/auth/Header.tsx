@@ -12,7 +12,7 @@ import {
   DownOutlined,
   VerifiedOutlined,
 } from "@ant-design/icons";
-import { Badge, Button, Dropdown, Input, Menu, message } from "antd";
+import { Badge, Button, Dropdown, Menu, message } from "antd";
 
 import { ApplicationState } from "../../store/store";
 import { AuthState, CartState } from "../../store/@types";
@@ -23,8 +23,7 @@ import {
   clearOrders,
   clearAdminState,
 } from "../../store/actions/actions";
-
-const { Search } = Input;
+import { SearchBox } from "../product/SearchBox";
 
 export const Header = () => {
   const authState = useSelector<ApplicationState, AuthState>(
@@ -93,13 +92,7 @@ export const Header = () => {
           ShoeShoppee
         </div>
       </Link>
-      <Search
-        className="search"
-        allowClear
-        bordered={false}
-        placeholder="Search"
-        enterButton
-      />
+      <SearchBox />
       {authState.auth ? (
         <div>
           <Dropdown overlay={menu} trigger={["click"]}>
