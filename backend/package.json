@@ -9,10 +9,8 @@
     "watch-ts": "tsc -w",
     "server": "nodemon dist/app.js",
     "web": "yarn --cwd ../frontend/web/ start",
-    "mobile": "yarn --cwd ../frontend/mobile/ start",
     "start": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node\" -c \"blue.bold,yellow.bold\" \"yarn run watch-ts\" \"yarn run server\"",
-    "dev1": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node,React\" -c \"blue.bold,yellow.bold,cyan.bold\" \"yarn run watch-ts\" \"yarn run server\" \"yarn run web\"",
-    "dev2": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node,RN\" -c \"blue.bold,yellow.bold,cyan.bold\" \"yarn run watch-ts\" \"yarn run server\" \"yarn run mobile\""
+    "dev": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node,React\" -c \"blue.bold,yellow.bold,cyan.bold\" \"yarn run watch-ts\" \"yarn run server\" \"yarn run web\""
   },
   "author": "",
   "license": "ISC",
