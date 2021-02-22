@@ -1,6 +1,8 @@
-import { Input, message } from "antd";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+
+import { Input, message } from "antd";
+
 import { searchProductRequest } from "../../store/actions/actions";
 
 const { Search } = Input;
