@@ -6,6 +6,7 @@ import {
   postProduct,
   putProduct,
   deleteProduct,
+  postReview,
 } from "../controllers/product";
 import { protect, admin } from "../middleware/auth";
 
@@ -50,3 +51,8 @@ router.delete(
   asyncHandler(admin),
   asyncHandler(deleteProduct)
 );
+
+// @desc     Add a Product Review
+// @route    POST /api/products/:id/review
+// @access   Private
+router.post("/:id/review", asyncHandler(protect), asyncHandler(postReview));
