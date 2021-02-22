@@ -101,6 +101,7 @@ export const Product = () => {
               disabled={productDetail?.count === 0 ? true : false}
               defaultValue={1}
               min={1}
+              key={0}
               max={productDetail?.count}
               onChange={(num: any) => setQty(num)}
             />,
@@ -108,6 +109,7 @@ export const Product = () => {
               disabled={productDetail?.count === 0 ? true : false}
               className="cart-btn"
               type="primary"
+              key={1}
               onClick={addToCartHandler}
             >
               <ShoppingCartOutlined />
@@ -173,7 +175,7 @@ export const Product = () => {
                 ) : (
                   productDetail?.reviews.map((review) => {
                     return (
-                      <Card>
+                      <Card key={review.name}>
                         <div style={{ marginBottom: "10px" }}>
                           <h2>{review.name}</h2>
                           <Rating rating={review.rating!} />
