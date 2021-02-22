@@ -13,6 +13,12 @@ export const fetchProductList: any = () => {
   return API.get(URL);
 };
 
+export const searchProduct: any = ({ keyword = "" }: any) => {
+  const URL = `${API_ENDPOINT}/api/products/search?keyword=${keyword}`;
+
+  return API.get(URL);
+};
+
 export const fetchProductDetails: any = (id: string) => {
   const URL = `${API_ENDPOINT}/api/products/${id}`;
 
