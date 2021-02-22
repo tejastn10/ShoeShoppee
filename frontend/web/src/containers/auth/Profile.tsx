@@ -22,15 +22,15 @@ import {
   Tag,
 } from "antd";
 
-import { ApplicationState } from "../store/store";
-import { AuthState, UserProfileState, OrderState } from "../store/@types";
+import { ApplicationState } from "../../store/store";
+import { AuthState, UserProfileState, OrderState } from "../../store/@types";
 import {
   getUserProfileRequest,
   updateUserProfileRequest,
   ordersListRequest,
-} from "../store/actions/actions";
+} from "../../store/actions/actions";
 
-import { Loading } from "../components/Loading";
+import { Loading } from "../../components/Loading";
 
 type validationStatus = "success" | "error" | "validating";
 

@@ -9,6 +9,9 @@ import {
   getProductListRequest,
   getProductListSuccess,
   getProductListError,
+  searchProductRequest,
+  searchProductSuccess,
+  searchProductError,
 } from "../actions/actions";
 
 const getProductList = function* (action: Action) {
@@ -23,7 +26,23 @@ const getProductList = function* (action: Action) {
       }
     }
   } catch (error) {
-    yield put(getProductListError(getCustomError(error.response.data)));
+    yield put(getProductListError(getCustomError(error)));
+  }
+};
+
+const searchProduct = function* (action: Action) {
+  try {
+    if (searchProductRequest.match(action)) {
+      const res = yield call(API.searchProduct, action.payload);
+      const data = res.data;
+      if (res.status !== 200) {
+        yield put(searchProductError(data.error));
+      } else {
+        yield put(searchProductSuccess(data));
+      }
+    }
+  } catch (error) {
+    yield put(searchProductError(getCustomError(error.response.data)));
   }
 };
 
@@ -31,6 +50,10 @@ const watchProductListRequest = function* () {
   yield takeLatest(getProductListRequest.type, getProductList);
 };
 
+const watchSearchProductRequest = function* () {
+  yield takeLatest(searchProductRequest.type, searchProduct);
+};
+
 export default function* productListSaga() {
-  yield all([fork(watchProductListRequest)]);
+  yield all([fork(watchProductListRequest), fork(watchSearchProductRequest)]);
 }

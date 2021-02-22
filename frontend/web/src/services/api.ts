@@ -13,6 +13,12 @@ export const fetchProductList: any = () => {
   return API.get(URL);
 };
 
+export const searchProduct: any = ({ keyword = "" }: any) => {
+  const URL = `${API_ENDPOINT}/api/products/search?keyword=${keyword}`;
+
+  return API.get(URL);
+};
+
 export const fetchProductDetails: any = (id: string) => {
   const URL = `${API_ENDPOINT}/api/products/${id}`;
 
@@ -107,4 +113,10 @@ export const updateOrder: any = (id: string) => {
   const URL = `${API_ENDPOINT}/api/orders/${id}/p&d`;
 
   return API.put(URL, {});
+};
+
+export const createReview: any = ({ id, rating, comment }: any) => {
+  const URL = `${API_ENDPOINT}/api/products/${id}/review`;
+
+  return API.post(URL, { rating, comment });
 };

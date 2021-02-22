@@ -12,19 +12,18 @@ import {
   DownOutlined,
   VerifiedOutlined,
 } from "@ant-design/icons";
-import { Badge, Button, Dropdown, Input, Menu, message } from "antd";
+import { Badge, Button, Dropdown, Menu, message } from "antd";
 
-import { ApplicationState } from "../store/store";
-import { AuthState, CartState } from "../store/@types";
+import { ApplicationState } from "../../store/store";
+import { AuthState, CartState } from "../../store/@types";
 import {
   clearUserProfile,
   logoutUser,
   clearCart,
   clearOrders,
   clearAdminState,
-} from "../store/actions/actions";
-
-const { Search } = Input;
+} from "../../store/actions/actions";
+import { SearchBox } from "../product/SearchBox";
 
 export const Header = () => {
   const authState = useSelector<ApplicationState, AuthState>(
@@ -93,15 +92,9 @@ export const Header = () => {
           ShoeShoppee
         </div>
       </Link>
-      <Search
-        className="search"
-        allowClear
-        bordered={false}
-        placeholder="Search"
-        enterButton
-      />
+      <SearchBox />
       {authState.auth ? (
-        <div>
+        <div className="appbar">
           <Dropdown overlay={menu} trigger={["click"]}>
             <Button type="link" onClick={(e) => e.preventDefault}>
               <UserOutlined />
@@ -115,7 +108,7 @@ export const Header = () => {
           </Button>
         </div>
       ) : (
-        <div>
+        <div className="appbar">
           <Link to="/login">
             <Button type="primary">
               <LoginOutlined />

@@ -6,6 +6,8 @@ import {
   postProduct,
   putProduct,
   deleteProduct,
+  postReview,
+  searchProduct,
 } from "../controllers/product";
 import { protect, admin } from "../middleware/auth";
 
@@ -15,6 +17,11 @@ export const router: Router = Router();
 // @route    GET /api/products
 // @access   Public
 router.get("/", asyncHandler(getAllPoducts));
+
+// @desc     Search Products
+// @route    GET /api/products/search
+// @access   Public
+router.get("/search", asyncHandler(searchProduct));
 
 // @desc     Fetch a Product
 // @route    GET /api/products/:id
@@ -50,3 +57,8 @@ router.delete(
   asyncHandler(admin),
   asyncHandler(deleteProduct)
 );
+
+// @desc     Add a Product Review
+// @route    POST /api/products/:id/review
+// @access   Private
+router.post("/:id/review", asyncHandler(protect), asyncHandler(postReview));

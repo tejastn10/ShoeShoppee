@@ -13,6 +13,10 @@ exports.router = express_1.Router();
 // @route    GET /api/products
 // @access   Public
 exports.router.get("/", express_async_handler_1.default(product_1.getAllPoducts));
+// @desc     Search Products
+// @route    GET /api/products/search
+// @access   Public
+exports.router.get("/search", express_async_handler_1.default(product_1.searchProduct));
 // @desc     Fetch a Product
 // @route    GET /api/products/:id
 // @access   Public
@@ -29,3 +33,7 @@ exports.router.put("/:id", express_async_handler_1.default(auth_1.protect), expr
 // @route    DELETE /api/products/:id
 // @access   Private/Admin
 exports.router.delete("/:id", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(auth_1.admin), express_async_handler_1.default(product_1.deleteProduct));
+// @desc     Add a Product Review
+// @route    POST /api/products/:id/review
+// @access   Private
+exports.router.post("/:id/review", express_async_handler_1.default(auth_1.protect), express_async_handler_1.default(product_1.postReview));

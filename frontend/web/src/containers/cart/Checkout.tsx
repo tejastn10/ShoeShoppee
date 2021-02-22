@@ -4,8 +4,8 @@ import { useHistory } from "react-router-dom";
 
 import { Card, PageHeader, Steps } from "antd";
 
-import { ApplicationState } from "../store/store";
-import { CartState } from "../store/@types";
+import { ApplicationState } from "../../store/store";
+import { CartState } from "../../store/@types";
 
 import { Shipping } from "./Shipping";
 import { Payment } from "./Payment";

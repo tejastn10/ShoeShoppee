@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Card, Form, Input, Button } from "antd";
 import { HomeOutlined, ArrowRightOutlined } from "@ant-design/icons";
-import { ApplicationState } from "../store/store";
-import { CartState } from "../store/@types";
-import { saveAddress } from "../store/actions/actions";
+import { ApplicationState } from "../../store/store";
+import { CartState } from "../../store/@types";
+import { saveAddress } from "../../store/actions/actions";
 
 type Address = {
   address: string;

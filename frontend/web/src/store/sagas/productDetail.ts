@@ -9,6 +9,9 @@ import {
   getProductRequest,
   getProductSuccess,
   getProductError,
+  createProductReviewRequest,
+  createProductReviewSuccess,
+  createProductReviewError,
 } from "../actions/actions";
 
 const getProductDetails = function* (action: Action) {
@@ -27,10 +30,33 @@ const getProductDetails = function* (action: Action) {
   }
 };
 
+const createProductReview = function* (action: Action) {
+  try {
+    if (createProductReviewRequest.match(action)) {
+      const res = yield call(API.createReview, action.payload);
+      const data = res.data;
+      if (res.status !== 201) {
+        yield put(createProductReviewError(data.error));
+      } else {
+        yield put(createProductReviewSuccess(data));
+      }
+    }
+  } catch (error) {
+    yield put(createProductReviewError(getCustomError(error.response.data)));
+  }
+};
+
 const watchProductDetailsRequest = function* () {
   yield takeLatest(getProductRequest.type, getProductDetails);
 };
 
+const watchProductReviewRequest = function* () {
+  yield takeLatest(createProductReviewRequest.type, createProductReview);
+};
+
 export default function* productDetailsSaga() {
-  yield all([fork(watchProductDetailsRequest)]);
+  yield all([
+    fork(watchProductDetailsRequest),
+    fork(watchProductReviewRequest),
+  ]);
 }

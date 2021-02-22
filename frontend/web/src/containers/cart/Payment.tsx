@@ -5,9 +5,9 @@ import { Card, Radio, Button, message } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { RadioChangeEvent } from "antd/lib/radio";
 
-import { ApplicationState } from "../store/store";
-import { CartState } from "../store/@types";
-import { savePaymentMethod } from "../store/actions/cart";
+import { ApplicationState } from "../../store/store";
+import { CartState } from "../../store/@types";
+import { savePaymentMethod } from "../../store/actions/cart";
 
 type PaymentProps = {
   prev: () => void;

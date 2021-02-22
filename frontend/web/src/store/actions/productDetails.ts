@@ -25,3 +25,28 @@ export const getProductError = createAction(
     };
   }
 );
+
+export const createProductReviewRequest = createAction(
+  ProductDetailsActionTypes.CREATE_PRODUCT_REVIEW_REQUEST,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const createProductReviewSuccess = createAction(
+  ProductDetailsActionTypes.CREATE_PRODUCT_REVIEW_SUCCESS,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
+export const createProductReviewError = createAction(
+  ProductDetailsActionTypes.CREATE_PRODUCT_REVIEW_ERROR,
+  (data: any) => {
+    return {
+      payload: data,
+    };
+  }
+);
