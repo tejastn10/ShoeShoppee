@@ -62,6 +62,41 @@ export const putProduct = async (req: Request, res: Response) => {
   }
 };
 
+export const postReview = async (req: Request, res: Response) => {
+  const product = await Product.findById(req.params.id);
+  const { rating, comment } = req.body;
+
+  if (product) {
+    const reviewed = product.reviews.find(
+      (r) => r.user.toString() === req.body.user._id.toString()
+    );
+
+    if (reviewed) {
+      res.status(400);
+      throw new Error("Product already reviewed");
+    }
+
+    const review = {
+      user: req.body.user._id,
+      name: req.body.user.name,
+      rating: Number(rating),
+      comment,
+    };
+
+    product.reviews.push(review);
+    product.numReviews = product.reviews.length;
+    product.rating =
+      product.reviews.reduce((acc, r) => r.rating + acc, 0) /
+      product.reviews.length;
+
+    await product.save();
+    res.status(201).json({ message: "Review added" });
+  } else {
+    res.status(404);
+    throw new Error("Product Not found");
+  }
+};
+
 export const deleteProduct = async (req: Request, res: Response) => {
   const product = await Product.findById(req.params.id);
 
