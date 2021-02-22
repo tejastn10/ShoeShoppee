@@ -20,7 +20,7 @@ export const Routes = () => {
         <Route exact path="/login" component={LogIn} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/profile" component={Profile} />
-        <Route path="/search" component={Search} />
+        <Route path="/search/:keyword?" component={Search} />
         <Route path="/product/:id" component={Product} />
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
