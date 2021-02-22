@@ -94,7 +94,7 @@ export const Header = () => {
       </Link>
       <SearchBox />
       {authState.auth ? (
-        <div>
+        <div className="appbar">
           <Dropdown overlay={menu} trigger={["click"]}>
             <Button type="link" onClick={(e) => e.preventDefault}>
               <UserOutlined />
@@ -108,7 +108,7 @@ export const Header = () => {
           </Button>
         </div>
       ) : (
-        <div>
+        <div className="appbar">
           <Link to="/login">
             <Button type="primary">
               <LoginOutlined />
