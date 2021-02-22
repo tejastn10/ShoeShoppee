@@ -16,16 +16,16 @@ import {
 } from "antd";
 import { ArrowLeftOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
-import { CartSummary } from "../components/CartSummary";
-import { OrderItem } from "../components/OrderItem";
+import { CartSummary } from "../../components/CartSummary";
+import { OrderItem } from "../../components/OrderItem";
 
-import { CartState, OrderState } from "../store/@types";
-import { ApplicationState } from "../store/store";
+import { CartState, OrderState } from "../../store/@types";
+import { ApplicationState } from "../../store/store";
 import {
   createOrderRequest,
   resetOrder,
   emptyCart,
-} from "../store/actions/actions";
+} from "../../store/actions/actions";
 
 type PlaceOrderProps = {
   prev: () => void;

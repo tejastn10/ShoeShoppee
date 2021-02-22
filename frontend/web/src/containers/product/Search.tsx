@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { Empty, message, PageHeader, Row, Card } from "antd";
-import { CardItem } from "../components/CardItem";
 
-import { ProductListState } from "../store/@types";
+import { ProductListState } from "../../store/@types";
 
-import { getProductListRequest } from "../store/actions/actions";
-import { ApplicationState } from "../store/store";
-import { Loading } from "../components/Loading";
+import { getProductListRequest } from "../../store/actions/actions";
+import { ApplicationState } from "../../store/store";
+import { Loading } from "../../components/Loading";
+import { CardItem } from "../../components/CardItem";
 
 export const Search = () => {
   const dispatch = useDispatch();

@@ -20,8 +20,8 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 
-import { OrderItem } from "../components/OrderItem";
-import { CartSummary } from "../components/CartSummary";
+import { OrderItem } from "../../components/OrderItem";
+import { CartSummary } from "../../components/CartSummary";
 
 import {
   AuthState,
@@ -30,12 +30,12 @@ import {
   PriceSummary,
   Profile,
   AdminState,
-} from "../store/@types";
-import { ApplicationState } from "../store/store";
+} from "../../store/@types";
+import { ApplicationState } from "../../store/store";
 import { useEffect } from "react";
-import { orderRequest } from "../store/actions/order";
-import { Loading } from "../components/Loading";
-import { updateOrderRequest } from "../store/actions/admin";
+import { orderRequest } from "../../store/actions/order";
+import { Loading } from "../../components/Loading";
+import { updateOrderRequest } from "../../store/actions/admin";
 
 interface OrderPramas {
   id: string;

@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Input, Select, Modal, message } from "antd";
 import { PlusOutlined, CloseOutlined } from "@ant-design/icons";
 
-import { createProductReviewRequest } from "../store/actions/actions";
-import { ApplicationState } from "../store/store";
-import { ProductDetailsState } from "../store/@types";
+import { createProductReviewRequest } from "../../store/actions/actions";
+import { ApplicationState } from "../../store/store";
+import { ProductDetailsState } from "../../store/@types";
 
 type FormProps = {
   visible: boolean;

@@ -10,12 +10,16 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 
-import { CartState, CartItem as item } from "../store/@types";
-import { addToCart, emptyCart, removeFromCart } from "../store/actions/actions";
-import { ApplicationState } from "../store/store";
+import { CartState, CartItem as item } from "../../store/@types";
+import {
+  addToCart,
+  emptyCart,
+  removeFromCart,
+} from "../../store/actions/actions";
+import { ApplicationState } from "../../store/store";
 
-import { OrderItem } from "../components/OrderItem";
-import { CartSummary } from "../components/CartSummary";
+import { OrderItem } from "../../components/OrderItem";
+import { CartSummary } from "../../components/CartSummary";
 
 export const Cart = () => {
   const dispatch = useDispatch();

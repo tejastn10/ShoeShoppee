@@ -18,13 +18,13 @@ import {
 } from "antd";
 import { FormOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
-import { AuthState, ProductDetailsState } from "../store/@types";
-import { addToCart, getProductRequest } from "../store/actions/actions";
-import { ApplicationState } from "../store/store";
+import { AuthState, ProductDetailsState } from "../../store/@types";
+import { addToCart, getProductRequest } from "../../store/actions/actions";
+import { ApplicationState } from "../../store/store";
 
 import { ProductReviewForm } from "./ProductReviewForm";
-import { Loading } from "../components/Loading";
-import { Rating } from "../components/Rating";
+import { Loading } from "../../components/Loading";
+import { Rating } from "../../components/Rating";
 
 interface ProductPramas {
   id: string;

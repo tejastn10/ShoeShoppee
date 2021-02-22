@@ -14,15 +14,15 @@ import {
 } from "@ant-design/icons";
 import { Badge, Button, Dropdown, Input, Menu, message } from "antd";
 
-import { ApplicationState } from "../store/store";
-import { AuthState, CartState } from "../store/@types";
+import { ApplicationState } from "../../store/store";
+import { AuthState, CartState } from "../../store/@types";
 import {
   clearUserProfile,
   logoutUser,
   clearCart,
   clearOrders,
   clearAdminState,
-} from "../store/actions/actions";
+} from "../../store/actions/actions";
 
 const { Search } = Input;
 
