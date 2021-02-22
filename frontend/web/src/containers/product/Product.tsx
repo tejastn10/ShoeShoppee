@@ -85,6 +85,7 @@ export const Product = () => {
       setVisible(!visible);
       console.log("clicked");
     } else {
+      message.warning("Please login to write a review");
       history.push("/login");
     }
   };
