@@ -9,8 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProduct = exports.postReview = exports.putProduct = exports.postProduct = exports.getProductById = exports.getAllPoducts = void 0;
+exports.deleteProduct = exports.postReview = exports.putProduct = exports.postProduct = exports.getProductById = exports.getAllPoducts = exports.searchProduct = void 0;
 const models_1 = require("./../models");
+const searchProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const keyword = req.query.keyword
+        ? {
+            name: {
+                $regex: req.query.keyword,
+                $options: "i",
+            },
+        }
+        : {};
+    const products = yield models_1.Product.find(Object.assign({}, keyword));
+    if (products.length === 0) {
+        res.status(404);
+        throw new Error("Searched Products not found");
+    }
+    else {
+        res.json(products);
+    }
+});
+exports.searchProduct = searchProduct;
 const getAllPoducts = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const products = yield models_1.Product.find({});
     res.json(products);

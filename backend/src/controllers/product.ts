@@ -2,6 +2,24 @@ import { Request, Response } from "express";
 
 import { Product } from "./../models";
 
+export const searchProduct = async (req: Request, res: Response) => {
+  const keyword: any = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
+    : {};
+  const products = await Product.find({ ...keyword });
+  if (products.length === 0) {
+    res.status(404);
+    throw new Error("Searched Products not found");
+  } else {
+    res.json(products);
+  }
+};
+
 export const getAllPoducts = async (_req: Request, res: Response) => {
   const products = await Product.find({});
   res.json(products);
