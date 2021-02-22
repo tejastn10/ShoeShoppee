@@ -8,6 +8,9 @@ import {
   getProductRequest,
   getProductSuccess,
   getProductError,
+  createProductReviewRequest,
+  createProductReviewSuccess,
+  createProductReviewError,
 } from "./productDetails";
 import {
   loginAuthRequest,
@@ -84,6 +87,9 @@ export {
   getProductRequest,
   getProductSuccess,
   getProductError,
+  createProductReviewRequest,
+  createProductReviewSuccess,
+  createProductReviewError,
   loginAuthRequest,
   loginAuthSuccess,
   loginAuthError,
