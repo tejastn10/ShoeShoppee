@@ -16,12 +16,13 @@ import {
   InputNumber,
   notification,
 } from "antd";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { FormOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
-import { ProductDetailsState } from "../store/@types";
+import { AuthState, ProductDetailsState } from "../store/@types";
 import { addToCart, getProductRequest } from "../store/actions/actions";
 import { ApplicationState } from "../store/store";
 
+import { ProductReviewForm } from "./ProductReviewForm";
 import { Loading } from "../components/Loading";
 import { Rating } from "../components/Rating";
 
@@ -34,15 +35,25 @@ export const Product = () => {
   const history = useHistory();
   const { id }: ProductPramas = useParams();
   const [qty, setQty] = useState(1);
+  const [visible, setVisible] = useState(false);
 
   const product = useSelector<ApplicationState, ProductDetailsState>(
     (state) => state.productDetails
+  );
+  const authState = useSelector<ApplicationState, AuthState>(
+    (state) => state.authState
   );
   const { productDetail, isLoading, errors } = product;
 
   useEffect(() => {
     dispatch(getProductRequest(id));
   }, [dispatch, id]);
+
+  useEffect(() => {
+    if (product.messages.message !== null) {
+      dispatch(getProductRequest(id));
+    }
+  }, [dispatch, id, product.messages.message]);
 
   useEffect(() => {
     if (errors.results) {
@@ -69,6 +80,15 @@ export const Product = () => {
     }
   };
 
+  const addProductReview = () => {
+    if (authState.auth?._id) {
+      setVisible(!visible);
+      console.log("clicked");
+    } else {
+      history.push("/login");
+    }
+  };
+
   return (
     <div className="container">
       <Card>
@@ -77,24 +97,22 @@ export const Product = () => {
           onBack={() => history.goBack()}
           title={productDetail ? productDetail?.brand : "Product"}
           extra={[
-            <>
-              <InputNumber
-                disabled={productDetail?.count === 0 ? true : false}
-                defaultValue={1}
-                min={1}
-                max={productDetail?.count}
-                onChange={(num: any) => setQty(num)}
-              />
-              <Button
-                disabled={productDetail?.count === 0 ? true : false}
-                className="cart-btn"
-                type="primary"
-                onClick={addToCartHandler}
-              >
-                <ShoppingCartOutlined />
-                Add To Cart
-              </Button>
-            </>,
+            <InputNumber
+              disabled={productDetail?.count === 0 ? true : false}
+              defaultValue={1}
+              min={1}
+              max={productDetail?.count}
+              onChange={(num: any) => setQty(num)}
+            />,
+            <Button
+              disabled={productDetail?.count === 0 ? true : false}
+              className="cart-btn"
+              type="primary"
+              onClick={addToCartHandler}
+            >
+              <ShoppingCartOutlined />
+              Add To Cart
+            </Button>,
           ]}
         />
       </Card>
@@ -131,17 +149,39 @@ export const Product = () => {
                     </div>
                     <h4>IN STOCK</h4>
                     <p>{productDetail?.count} Products</p>
+                    <Button
+                      className="cart-btn"
+                      type="primary"
+                      onClick={addProductReview}
+                    >
+                      <FormOutlined />
+                      Add Product Review
+                    </Button>
                   </div>
                 </Card>
               </Col>
             </Row>
             <Card title="Reviews">
+              <ProductReviewForm
+                visible={visible}
+                setVisible={setVisible}
+                productId={id}
+              />
               <div>
-                {productDetail?.reviews ? (
+                {productDetail?.reviews.length === 0 ? (
                   <Empty />
                 ) : (
                   productDetail?.reviews.map((review) => {
-                    return <>{review}</>;
+                    return (
+                      <Card>
+                        <div style={{ marginBottom: "10px" }}>
+                          <h2>{review.name}</h2>
+                          <Rating rating={review.rating!} />
+                          <p>{review.comment}</p>
+                          <p>{review.createdAt.substring(0, 10)}</p>
+                        </div>
+                      </Card>
+                    );
                   })
                 )}
               </div>
