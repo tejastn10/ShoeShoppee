@@ -37,7 +37,7 @@ import { orderRequest } from "../../store/actions/order";
 import { Loading } from "../../components/Loading";
 import { updateOrderRequest } from "../../store/actions/admin";
 
-interface OrderPramas {
+interface OrderParams {
   id: string;
 }
 
@@ -49,7 +49,7 @@ interface OrderDetail {
 }
 
 export const OrderDetails = () => {
-  const { id }: OrderPramas = useParams();
+  const { id }: OrderParams = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
 
