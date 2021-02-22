@@ -3,6 +3,9 @@ import {
   getProductListRequest,
   getProductListSuccess,
   getProductListError,
+  searchProductRequest,
+  searchProductSuccess,
+  searchProductError,
   clearProductList,
 } from "../actions/actions";
 import { ProductListState } from "../@types";
@@ -25,6 +28,19 @@ const reducer = createReducer(initialState, (builder) => {
       state.products = action.payload;
     })
     .addCase(getProductListError, (state, action) => {
+      state.isLoading = false;
+      state.errors.results = action.payload;
+    })
+    .addCase(searchProductRequest, (state, _action) => {
+      state.isLoading = true;
+      state.errors.results = null;
+      state.products = null;
+    })
+    .addCase(searchProductSuccess, (state, action) => {
+      state.isLoading = false;
+      state.products = action.payload;
+    })
+    .addCase(searchProductError, (state, action) => {
       state.isLoading = false;
       state.errors.results = action.payload;
     })
