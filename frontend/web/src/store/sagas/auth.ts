@@ -35,7 +35,6 @@ const registerAuth = function* (action: Action) {
     if (registerAuthRequest.match(action)) {
       const res = yield call(API.registerUser, action.payload);
       const data = res.data;
-      console.log(res.status);
       if (res.status !== 201) {
         yield put(registerAuthError(data.error));
       } else {

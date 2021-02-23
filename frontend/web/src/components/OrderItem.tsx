@@ -1,17 +1,24 @@
+// React
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
+// UI Library
 import { Button, Card, Col, Row, Image, Statistic, InputNumber } from "antd";
 import { DeleteRowOutlined } from "@ant-design/icons";
 
+// Custom Types
 import { CartItem as item } from "../store/@types";
-
 type Props = {
   item: any;
   removeFromCart?: (id: string) => void;
   addToCart?: ({ id, name, image, price, count, qty }: item) => void;
 };
 
-export const OrderItem = ({ item, removeFromCart, addToCart }: Props) => {
+export const OrderItem: FC<Props> = ({
+  item,
+  removeFromCart,
+  addToCart,
+}: Props) => {
   const { id, name, image, price, count, qty } = item;
 
   return (

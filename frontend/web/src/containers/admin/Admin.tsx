@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+// React
+import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+// UI Library
 import {
   message,
   Button,
@@ -20,7 +22,8 @@ import {
   QuestionCircleOutlined,
 } from "@ant-design/icons";
 
-import { AdminState, AuthState, ProductListState } from "../../store/@types";
+// Redux
+import { ApplicationState } from "../../store/store";
 import {
   getUserListRequest,
   userDeleteRequest,
@@ -31,12 +34,15 @@ import {
   updateProductRequest,
   getOrderListRequest,
 } from "../../store/actions/actions";
-import { ApplicationState } from "../../store/store";
 
+// Custom Components
 import { Loading } from "../../components/Loading";
 import { ProductForm } from "./ProductForm";
 
-export const Admin = () => {
+// Custom Types
+import { AdminState, AuthState, ProductListState } from "../../store/@types";
+
+export const Admin: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [visible, setVisible] = useState(false);
@@ -301,32 +307,32 @@ export const Admin = () => {
     } else {
       history.push("/");
     }
+  }, [authState.auth?.isAdmin, dispatch, history]);
 
+  useEffect(() => {
     if (!productList.products) {
       dispatch(getProductListRequest());
     }
+  }, [dispatch, productList.products]);
 
+  useEffect(() => {
     if (!orders) {
       dispatch(getOrderListRequest());
     }
+  }, [dispatch, orders]);
 
+  useEffect(() => {
     if (errors.results) {
       message.error(errors.results.message);
       history.push("/");
     }
+  }, [errors.results, history]);
 
+  useEffect(() => {
     if (messages.message) {
       message.success(messages.message);
     }
-  }, [
-    authState.auth?.isAdmin,
-    dispatch,
-    errors.results,
-    history,
-    messages.message,
-    orders,
-    productList.products,
-  ]);
+  }, [messages.message]);
 
   return (
     <div className="container">

@@ -1,15 +1,20 @@
-import { Col, Card, Statistic } from "antd";
+// React
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
-import { Product } from "../store/@types";
+// UI Library
+import { Col, Card, Statistic } from "antd";
 
+// Custom Components
 import { Rating } from "./Rating";
 
-type CardProps = {
+// Custom Types
+import { Product } from "../store/@types";
+type Props = {
   product: Product;
 };
 
-export const CardItem = ({ product }: CardProps) => {
+export const CardItem: FC<Props> = ({ product }: Props) => {
   return (
     <Col className="gutter-row" span={6}>
       <Link to={`/product/${product._id}`}>

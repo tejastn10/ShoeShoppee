@@ -1,13 +1,17 @@
+// React
+import { FC } from "react";
+
+// UI Library
 import { Card, Statistic } from "antd";
 
+// Custom Types
 import { PriceSummary } from "../store/@types";
-
-type SummaryProps = {
+type Props = {
   totalItems: number;
   price: PriceSummary;
 };
 
-export const CartSummary = ({ totalItems, price }: SummaryProps) => {
+export const CartSummary: FC<Props> = ({ totalItems, price }: Props) => {
   return (
     <>
       <Card type="inner" bordered={false}>

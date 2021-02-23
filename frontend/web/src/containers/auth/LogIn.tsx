@@ -1,20 +1,24 @@
-import { useEffect } from "react";
+// React
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
-import { LockOutlined, UserOutlined, LoginOutlined } from "@ant-design/icons";
+// UI Library
 import { Button, Divider, Form, Input, message } from "antd";
+import { LockOutlined, UserOutlined, LoginOutlined } from "@ant-design/icons";
 
+// Redux
 import { ApplicationState } from "../../store/store";
-import { AuthState } from "../../store/@types";
 import { loginAuthRequest } from "../../store/actions/actions";
 
+// Custom Types
+import { AuthState } from "../../store/@types";
 type submitProps = {
   email: string;
   password: string;
 };
 
-export const LogIn = () => {
+export const LogIn: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 

@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+// React
+import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 
+// UI Library
 import {
   Col,
   Divider,
@@ -18,19 +20,22 @@ import {
 } from "antd";
 import { FormOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
-import { AuthState, ProductDetailsState } from "../../store/@types";
-import { addToCart, getProductRequest } from "../../store/actions/actions";
+// Redux
 import { ApplicationState } from "../../store/store";
+import { addToCart, getProductRequest } from "../../store/actions/actions";
 
+// Custom Components
 import { ProductReviewForm } from "./ProductReviewForm";
 import { Loading } from "../../components/Loading";
 import { Rating } from "../../components/Rating";
 
+// Custom Types
+import { AuthState, ProductDetailsState } from "../../store/@types";
 interface ProductPramas {
   id: string;
 }
 
-export const Product = () => {
+export const Product: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id }: ProductPramas = useParams();

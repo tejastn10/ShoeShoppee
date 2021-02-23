@@ -1,19 +1,23 @@
-import { useEffect } from "react";
+// React
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
+// UI Library
+import { Button, Divider, Form, Input, message } from "antd";
 import {
   LockOutlined,
   UserOutlined,
   MailOutlined,
   UserAddOutlined,
 } from "@ant-design/icons";
-import { Button, Divider, Form, Input, message } from "antd";
 
+// Redux
 import { ApplicationState } from "../../store/store";
-import { AuthState } from "../../store/@types";
 import { registerAuthRequest } from "../../store/actions/actions";
 
+// Custom Types
+import { AuthState } from "../../store/@types";
 type submitProps = {
   name: string;
   email: string;
@@ -21,7 +25,7 @@ type submitProps = {
   password2: string;
 };
 
-export const Register = () => {
+export const Register: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 

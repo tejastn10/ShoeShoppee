@@ -1,14 +1,18 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+// React
+import { FC, Dispatch, SetStateAction, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+// UI Library
 import { Button, Form, Input, Select, Modal, message } from "antd";
 import { PlusOutlined, CloseOutlined } from "@ant-design/icons";
 
-import { createProductReviewRequest } from "../../store/actions/actions";
+// Redux
 import { ApplicationState } from "../../store/store";
-import { ProductDetailsState } from "../../store/@types";
+import { createProductReviewRequest } from "../../store/actions/actions";
 
-type FormProps = {
+// Custom Types
+import { ProductDetailsState } from "../../store/@types";
+type Props = {
   visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
   productId: string;
@@ -16,11 +20,11 @@ type FormProps = {
 
 const { Option } = Select;
 
-export const ProductReviewForm = ({
+export const ProductReviewForm: FC<Props> = ({
   visible,
   setVisible,
   productId,
-}: FormProps) => {
+}: Props) => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const productState = useSelector<ApplicationState, ProductDetailsState>(

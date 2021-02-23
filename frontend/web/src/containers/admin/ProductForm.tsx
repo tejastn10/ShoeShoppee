@@ -1,6 +1,8 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+// React
+import { FC, Dispatch, SetStateAction, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+// UI Library
 import { Button, Form, Input, Upload, Modal } from "antd";
 import {
   PlusOutlined,
@@ -13,16 +15,18 @@ import {
   UploadOutlined,
 } from "@ant-design/icons";
 
-import { createProductRequest } from "../../store/actions/admin";
+// Redux
 import { ApplicationState } from "../../store/store";
-import { AdminState } from "../../store/@types";
+import { createProductRequest } from "../../store/actions/admin";
 
-type FormProps = {
+// Custom Types
+import { AdminState } from "../../store/@types";
+type Props = {
   visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
 };
 
-export const ProductForm = ({ visible, setVisible }: FormProps) => {
+export const ProductForm: FC<Props> = ({ visible, setVisible }: Props) => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
   const adminState = useSelector<ApplicationState, AdminState>(

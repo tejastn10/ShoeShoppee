@@ -1,19 +1,25 @@
-import { useEffect, useState } from "react";
+// React
+import { FC, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+// UI Library
 import { Card, PageHeader, Steps } from "antd";
 
+// Redux
 import { ApplicationState } from "../../store/store";
-import { CartState } from "../../store/@types";
 
+// Custom Components
 import { Shipping } from "./Shipping";
 import { Payment } from "./Payment";
 import { PlaceOrder } from "./PlaceOrder";
 
+// Custom Types
+import { CartState } from "../../store/@types";
+
 const { Step } = Steps;
 
-export const Checkout = () => {
+export const Checkout: FC = () => {
   const [current, setCurrent] = useState(0);
   const history = useHistory();
   const cart = useSelector<ApplicationState, CartState>((state) => state.cart);

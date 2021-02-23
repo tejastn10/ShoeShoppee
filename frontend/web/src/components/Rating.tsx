@@ -1,11 +1,15 @@
+// React
+import { FC } from "react";
+
+// UI Library
 import { Rate } from "antd";
 
-type RateProps = {
+type Props = {
   rating: number;
   reviews?: number;
 };
 
-export const Rating = ({ rating, reviews }: RateProps) => {
+export const Rating: FC<Props> = ({ rating, reviews }: Props) => {
   return (
     <>
       <Rate allowHalf defaultValue={rating} />

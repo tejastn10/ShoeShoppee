@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+// React
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+// UI Library
 import {
   Button,
   message,
@@ -16,10 +18,7 @@ import {
 } from "antd";
 import { ArrowLeftOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
-import { CartSummary } from "../../components/CartSummary";
-import { OrderItem } from "../../components/OrderItem";
-
-import { CartState, OrderState } from "../../store/@types";
+// Redux
 import { ApplicationState } from "../../store/store";
 import {
   createOrderRequest,
@@ -27,11 +26,17 @@ import {
   emptyCart,
 } from "../../store/actions/actions";
 
-type PlaceOrderProps = {
+// Custom Components
+import { CartSummary } from "../../components/CartSummary";
+import { OrderItem } from "../../components/OrderItem";
+
+// Custom Types
+import { CartState, OrderState } from "../../store/@types";
+type Props = {
   prev: () => void;
 };
 
-export const PlaceOrder = ({ prev }: PlaceOrderProps) => {
+export const PlaceOrder: FC<Props> = ({ prev }: Props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const cart = useSelector<ApplicationState, CartState>((state) => state.cart);

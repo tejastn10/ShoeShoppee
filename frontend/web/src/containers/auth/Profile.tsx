@@ -1,13 +1,9 @@
-import { useState, useEffect } from "react";
+// React
+import { FC, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import {
-  LockOutlined,
-  UserOutlined,
-  MailOutlined,
-  UserSwitchOutlined,
-} from "@ant-design/icons";
+// UI Library
 import {
   Button,
   Card,
@@ -21,19 +17,27 @@ import {
   Table,
   Tag,
 } from "antd";
+import {
+  LockOutlined,
+  UserOutlined,
+  MailOutlined,
+  UserSwitchOutlined,
+} from "@ant-design/icons";
 
+// Redux
 import { ApplicationState } from "../../store/store";
-import { AuthState, UserProfileState, OrderState } from "../../store/@types";
 import {
   getUserProfileRequest,
   updateUserProfileRequest,
   ordersListRequest,
 } from "../../store/actions/actions";
 
+// Custom Components
 import { Loading } from "../../components/Loading";
 
+// Custom Types
+import { AuthState, UserProfileState, OrderState } from "../../store/@types";
 type validationStatus = "success" | "error" | "validating";
-
 type submitProps = {
   name?: string;
   email?: string;
@@ -41,7 +45,7 @@ type submitProps = {
   password2?: string;
 };
 
-export const Profile = () => {
+export const Profile: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 

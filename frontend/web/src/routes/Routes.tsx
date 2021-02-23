@@ -1,18 +1,28 @@
+// React
+import { FC } from "react";
 import { Route, Switch } from "react-router-dom";
 
+// Auth
 import { LogIn } from "../containers/auth/LogIn";
 import { Register } from "../containers/auth/Register";
 import { Profile } from "../containers/auth/Profile";
 
-import { Landing } from "../components/Landing";
-import { Search } from "../containers/product/Search";
-import { Product } from "../containers/product/Product";
+// Admin
+import { Admin } from "../containers/admin/Admin";
+
+// Cart
 import { Cart } from "../containers/cart/Cart";
 import { Checkout } from "../containers/cart/Checkout";
 import { OrderDetails } from "../containers/cart/OrderDetails";
-import { Admin } from "../containers/admin/Admin";
 
-export const Routes = () => {
+// Product
+import { Search } from "../containers/product/Search";
+import { Product } from "../containers/product/Product";
+
+// Custom Component
+import { Landing } from "../components/Landing";
+
+export const Routes: FC = () => {
   return (
     <>
       <Route exact path="/" component={Landing} />

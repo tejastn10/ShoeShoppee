@@ -1,6 +1,9 @@
+// React
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
+// UI Library
 import {
   Card,
   Button,
@@ -20,9 +23,16 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 
+// Redux
+import { ApplicationState } from "../../store/store";
+import { orderRequest, updateOrderRequest } from "../../store/actions/actions";
+
+// Custom Components
 import { OrderItem } from "../../components/OrderItem";
 import { CartSummary } from "../../components/CartSummary";
+import { Loading } from "../../components/Loading";
 
+// Custom Types
 import {
   AuthState,
   OrderState,
@@ -31,16 +41,9 @@ import {
   Profile,
   AdminState,
 } from "../../store/@types";
-import { ApplicationState } from "../../store/store";
-import { useEffect } from "react";
-import { orderRequest } from "../../store/actions/order";
-import { Loading } from "../../components/Loading";
-import { updateOrderRequest } from "../../store/actions/admin";
-
 interface OrderParams {
   id: string;
 }
-
 interface OrderDetail {
   order: Order;
   price: PriceSummary;
@@ -48,7 +51,7 @@ interface OrderDetail {
   user: Profile;
 }
 
-export const OrderDetails = () => {
+export const OrderDetails: FC = () => {
   const { id }: OrderParams = useParams();
   const history = useHistory();
   const dispatch = useDispatch();

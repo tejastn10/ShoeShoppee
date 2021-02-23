@@ -1,27 +1,32 @@
-import { useEffect } from "react";
+// React
+import { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+// UI Library
 import { Button, Card, PageHeader, Row, Col, message, Empty } from "antd";
-
 import {
   ShoppingCartOutlined,
   MoneyCollectOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
 
-import { CartState, CartItem as item } from "../../store/@types";
+// Redux
+import { ApplicationState } from "../../store/store";
 import {
   addToCart,
   emptyCart,
   removeFromCart,
 } from "../../store/actions/actions";
-import { ApplicationState } from "../../store/store";
 
+// Custom Components
 import { OrderItem } from "../../components/OrderItem";
 import { CartSummary } from "../../components/CartSummary";
 
-export const Cart = () => {
+// Custom Types
+import { CartState, CartItem as item } from "../../store/@types";
+
+export const Cart: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 

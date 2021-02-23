@@ -1,7 +1,11 @@
-import { ShoppingFilled } from "@ant-design/icons";
-import { Button } from "antd";
+// React
+import { FC } from "react";
 
-export const Footer = () => {
+// UI Library
+import { Button } from "antd";
+import { ShoppingFilled } from "@ant-design/icons";
+
+export const Footer: FC = () => {
   return (
     <div className="footer">
       <div>

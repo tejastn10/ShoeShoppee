@@ -1,24 +1,29 @@
-import { useEffect, useState } from "react";
+// React
+import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
+// UI Library
 import { Empty, message, PageHeader, Pagination, Row, Card } from "antd";
 
-import { Product, ProductListState } from "../../store/@types";
-
+// Redux
+import { ApplicationState } from "../../store/store";
 import {
   getProductListRequest,
   searchProductRequest,
 } from "../../store/actions/actions";
-import { ApplicationState } from "../../store/store";
+
+// Custom Components
 import { Loading } from "../../components/Loading";
 import { CardItem } from "../../components/CardItem";
 
+// Custom Types
+import { Product, ProductListState } from "../../store/@types";
 interface SearchParams {
   keyword: string;
 }
 
-export const Search = () => {
+export const Search: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { keyword }: SearchParams = useParams();

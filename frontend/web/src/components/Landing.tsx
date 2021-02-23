@@ -1,8 +1,11 @@
+// React
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
+// UI Library
 import { Card, Carousel, Col, Divider, Row } from "antd";
 
-export const Landing = () => {
+export const Landing: FC = () => {
   return (
     <div>
       <Carousel className="container" effect="fade" autoplay>

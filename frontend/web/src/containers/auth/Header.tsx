@@ -1,6 +1,10 @@
+// React
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+// UI Library
+import { Badge, Button, Dropdown, Menu, message } from "antd";
 import {
   ShoppingFilled,
   ShoppingCartOutlined,
@@ -12,10 +16,9 @@ import {
   DownOutlined,
   VerifiedOutlined,
 } from "@ant-design/icons";
-import { Badge, Button, Dropdown, Menu, message } from "antd";
 
+// Redux
 import { ApplicationState } from "../../store/store";
-import { AuthState, CartState } from "../../store/@types";
 import {
   clearUserProfile,
   logoutUser,
@@ -23,9 +26,14 @@ import {
   clearOrders,
   clearAdminState,
 } from "../../store/actions/actions";
+
+// Custom Component
 import { SearchBox } from "../product/SearchBox";
 
-export const Header = () => {
+// Custom Types
+import { AuthState, CartState } from "../../store/@types";
+
+export const Header: FC = () => {
   const authState = useSelector<ApplicationState, AuthState>(
     (state) => state.authState
   );
