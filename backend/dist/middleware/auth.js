@@ -23,12 +23,12 @@ const protect = (req, res, next) => __awaiter(void 0, void 0, void 0, function* 
         }
         catch (error) {
             res.status(401);
-            throw new Error("Not Authorized! Token Failed ❌");
+            throw new Error("❌ Not Authorized! Token Failed");
         }
     }
     if (!token) {
         res.status(401);
-        throw new Error("Not Authorized! Token not found");
+        throw new Error("❌ Not Authorized! Token not found");
     }
     next();
 });
@@ -39,7 +39,7 @@ const admin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
     }
     else {
         res.status(401);
-        throw new Error("Not Authorized as an Admin");
+        throw new Error("❌ Not Authorized as an Admin");
     }
 });
 exports.admin = admin;

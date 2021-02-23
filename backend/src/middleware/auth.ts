@@ -24,13 +24,13 @@ export const protect = async (
       req.body.user = await User.findById(decoded.id).select("-password");
     } catch (error) {
       res.status(401);
-      throw new Error("Not Authorized! Token Failed ❌");
+      throw new Error("❌ Not Authorized! Token Failed");
     }
   }
 
   if (!token) {
     res.status(401);
-    throw new Error("Not Authorized! Token not found");
+    throw new Error("❌ Not Authorized! Token not found");
   }
 
   next();
@@ -45,6 +45,6 @@ export const admin = async (
     next();
   } else {
     res.status(401);
-    throw new Error("Not Authorized as an Admin");
+    throw new Error("❌ Not Authorized as an Admin");
   }
 };

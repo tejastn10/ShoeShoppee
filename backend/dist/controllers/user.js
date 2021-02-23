@@ -24,7 +24,7 @@ const postAuthUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
     else {
         res.status(401);
-        throw new Error("Invalid Email or Password!");
+        throw new Error("❗ Invalid Email or Password!");
     }
 });
 exports.postAuthUser = postAuthUser;
@@ -72,7 +72,7 @@ const postRegisterUser = (req, res) => __awaiter(void 0, void 0, void 0, functio
     const userExists = yield models_1.User.findOne({ email });
     if (userExists) {
         res.status(400);
-        throw new Error("User Already Registered!");
+        throw new Error("❗ User Already Registered!");
     }
     const user = yield models_1.User.create({ name, email, password });
     if (user) {
@@ -84,7 +84,7 @@ const postRegisterUser = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
     else {
         res.status(400);
-        throw new Error("Invalid User data!");
+        throw new Error("❗ Invalid User data!");
     }
 });
 exports.postRegisterUser = postRegisterUser;
@@ -97,8 +97,8 @@ const putUpdateUserById = (req, res) => __awaiter(void 0, void 0, void 0, functi
     const user = yield models_1.User.findById(req.params.id);
     if (user) {
         user.isAdmin = req.body.isAdmin;
-        const updatedUser = yield user.save();
-        res.json({ message: "User Privileges updated" });
+        yield user.save();
+        res.json({ message: "✅ User Privileges updated" });
     }
     else {
         res.status(404);
@@ -110,11 +110,11 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const user = yield models_1.User.findById(req.params.id);
     if (user) {
         yield user.remove();
-        res.json({ message: "User deleted!" });
+        res.json({ message: "🗑 User deleted!" });
     }
     else {
         res.status(404);
-        throw new Error("User Not found!");
+        throw new Error("❌ User Not found!");
     }
 });
 exports.deleteUser = deleteUser;

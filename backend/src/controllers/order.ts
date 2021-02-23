@@ -16,7 +16,7 @@ export const postNewOrder = async (req: Request, res: Response) => {
 
   if (orderItems && orderItems.length === 0) {
     res.status(400);
-    throw new Error("No Items in the Order");
+    throw new Error("❌ No Items in the Order");
   } else {
     const order = new Order({
       user: req.body.user._id,
@@ -55,7 +55,7 @@ export const getOrderById = async (req: Request, res: Response) => {
     res.json(order);
   } else {
     res.status(404);
-    throw new Error("Order Not Found");
+    throw new Error("❌ Order Not Found");
   }
 };
 
@@ -69,9 +69,9 @@ export const updateOrder = async (req: Request, res: Response) => {
     order.paidOn = new Date();
     await order.save();
 
-    res.json({ message: "Product Delivered and Amount received" });
+    res.json({ message: "✅ Product Delivered and Amount received" });
   } else {
     res.status(404);
-    throw new Error("Order Not Found");
+    throw new Error("❌ Order Not Found");
   }
 };

@@ -15,7 +15,7 @@ const postNewOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     const { orderItems, totalItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice, } = yield req.body;
     if (orderItems && orderItems.length === 0) {
         res.status(400);
-        throw new Error("No Items in the Order");
+        throw new Error("❌ No Items in the Order");
     }
     else {
         const order = new models_1.Order({
@@ -51,7 +51,7 @@ const getOrderById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
     else {
         res.status(404);
-        throw new Error("Order Not Found");
+        throw new Error("❌ Order Not Found");
     }
 });
 exports.getOrderById = getOrderById;
@@ -63,11 +63,11 @@ const updateOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         order.deliveredOn = new Date();
         order.paidOn = new Date();
         yield order.save();
-        res.json({ message: "Product Delivered and Amount received" });
+        res.json({ message: "✅ Product Delivered and Amount received" });
     }
     else {
         res.status(404);
-        throw new Error("Order Not Found");
+        throw new Error("❌ Order Not Found");
     }
 });
 exports.updateOrder = updateOrder;

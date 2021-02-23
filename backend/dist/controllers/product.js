@@ -23,7 +23,7 @@ const searchProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const products = yield models_1.Product.find(Object.assign({}, keyword));
     if (products.length === 0) {
         res.status(404);
-        throw new Error("Searched Products not found");
+        throw new Error("❌ Searched Products not found");
     }
     else {
         res.json(products);
@@ -42,7 +42,7 @@ const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
     else {
         res.status(404);
-        throw new Error("Product Not found");
+        throw new Error("❌ Product Not found");
     }
 });
 exports.getProductById = getProductById;
@@ -71,11 +71,11 @@ const putProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         product.count = count ? count : product.count;
         product.price = price ? price : product.price;
         yield product.save();
-        res.json({ message: "Product Updated" });
+        res.json({ message: "✅ Product Updated" });
     }
     else {
         res.status(404);
-        throw new Error("Product Not found");
+        throw new Error("❌ Product Not found");
     }
 });
 exports.putProduct = putProduct;
@@ -86,7 +86,7 @@ const postReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const reviewed = product.reviews.find((r) => r.user.toString() === req.body.user._id.toString());
         if (reviewed) {
             res.status(400);
-            throw new Error("Product already reviewed");
+            throw new Error("❗ Product already reviewed");
         }
         const review = {
             user: req.body.user._id,
@@ -100,11 +100,11 @@ const postReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             product.reviews.reduce((acc, r) => r.rating + acc, 0) /
                 product.reviews.length;
         yield product.save();
-        res.status(201).json({ message: "Review added" });
+        res.status(201).json({ message: "✅ Review added" });
     }
     else {
         res.status(404);
-        throw new Error("Product Not found");
+        throw new Error("❌ Product Not found");
     }
 });
 exports.postReview = postReview;
@@ -112,11 +112,11 @@ const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const product = yield models_1.Product.findById(req.params.id);
     if (product) {
         yield product.remove();
-        res.json({ message: "Product deleted" });
+        res.json({ message: "🗑 Product deleted" });
     }
     else {
         res.status(404);
-        throw new Error("Product Not found");
+        throw new Error("❌ Product Not found");
     }
 });
 exports.deleteProduct = deleteProduct;

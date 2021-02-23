@@ -14,7 +14,7 @@ export const searchProduct = async (req: Request, res: Response) => {
   const products = await Product.find({ ...keyword });
   if (products.length === 0) {
     res.status(404);
-    throw new Error("Searched Products not found");
+    throw new Error("❌ Searched Products not found");
   } else {
     res.json(products);
   }
@@ -31,7 +31,7 @@ export const getProductById = async (req: Request, res: Response) => {
     res.json(product);
   } else {
     res.status(404);
-    throw new Error("Product Not found");
+    throw new Error("❌ Product Not found");
   }
 };
 
@@ -73,10 +73,10 @@ export const putProduct = async (req: Request, res: Response) => {
     product.count = count ? count : product.count;
     product.price = price ? price : product.price;
     await product.save();
-    res.json({ message: "Product Updated" });
+    res.json({ message: "✅ Product Updated" });
   } else {
     res.status(404);
-    throw new Error("Product Not found");
+    throw new Error("❌ Product Not found");
   }
 };
 
@@ -91,7 +91,7 @@ export const postReview = async (req: Request, res: Response) => {
 
     if (reviewed) {
       res.status(400);
-      throw new Error("Product already reviewed");
+      throw new Error("❗ Product already reviewed");
     }
 
     const review = {
@@ -108,10 +108,10 @@ export const postReview = async (req: Request, res: Response) => {
       product.reviews.length;
 
     await product.save();
-    res.status(201).json({ message: "Review added" });
+    res.status(201).json({ message: "✅ Review added" });
   } else {
     res.status(404);
-    throw new Error("Product Not found");
+    throw new Error("❌ Product Not found");
   }
 };
 
@@ -120,9 +120,9 @@ export const deleteProduct = async (req: Request, res: Response) => {
 
   if (product) {
     await product.remove();
-    res.json({ message: "Product deleted" });
+    res.json({ message: "🗑 Product deleted" });
   } else {
     res.status(404);
-    throw new Error("Product Not found");
+    throw new Error("❌ Product Not found");
   }
 };
