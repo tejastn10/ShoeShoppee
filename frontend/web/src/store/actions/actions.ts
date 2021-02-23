@@ -5,6 +5,7 @@ import {
   searchProductRequest,
   searchProductSuccess,
   searchProductError,
+  clearProductListError,
   clearProductList,
 } from "./productList";
 import {
@@ -93,6 +94,7 @@ export {
   searchProductRequest,
   searchProductSuccess,
   searchProductError,
+  clearProductListError,
   clearProductList,
   getProductRequest,
   getProductSuccess,

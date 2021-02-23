@@ -9,6 +9,7 @@ import { Empty, message, PageHeader, Pagination, Row, Card } from "antd";
 // Redux
 import { ApplicationState } from "../../store/store";
 import {
+  clearProductListError,
   getProductListRequest,
   searchProductRequest,
 } from "../../store/actions/actions";
@@ -48,8 +49,9 @@ export const Search: FC = () => {
   useEffect(() => {
     if (errors.results) {
       message.error(errors.results.message);
+      dispatch(clearProductListError());
     }
-  }, [errors.results]);
+  }, [dispatch, errors.results]);
 
   useEffect(() => {
     if (products) {

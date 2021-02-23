@@ -46,6 +46,9 @@ export const searchProductError = createAction(
   }
 );
 
+export const clearProductListError = createAction(
+  ProductListActionTypes.CLEAR_PRODUCT_LIST_ERROR
+);
 export const clearProductList = createAction(
   ProductListActionTypes.CLEAR_PRODUCT_LIST
 );
