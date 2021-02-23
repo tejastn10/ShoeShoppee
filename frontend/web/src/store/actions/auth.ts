@@ -51,3 +51,5 @@ export const registerAuthError = createAction(
     };
   }
 );
+
+export const clearAuthError = createAction(AuthActionTypes.CLEAR_AUTH_ERROR);

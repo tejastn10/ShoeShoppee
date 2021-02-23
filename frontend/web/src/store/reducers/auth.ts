@@ -7,6 +7,7 @@ import {
   registerAuthRequest,
   registerAuthSuccess,
   registerAuthError,
+  clearAuthError,
 } from "../actions/actions";
 import { AuthState } from "../@types";
 import {
@@ -62,6 +63,9 @@ const reducer = createReducer(initialState, (builder) => {
       clearFromLocalStorage("user");
       state.isLoading = false;
       state.auth = null;
+    })
+    .addCase(clearAuthError, (state, _action) => {
+      state.errors.results = null;
     })
     .addDefaultCase((state, _action) => {
       state.isLoading = false;

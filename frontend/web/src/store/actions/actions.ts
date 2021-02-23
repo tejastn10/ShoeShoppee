@@ -23,6 +23,7 @@ import {
   registerAuthRequest,
   registerAuthSuccess,
   registerAuthError,
+  clearAuthError,
 } from "./auth";
 import {
   getUserProfileRequest,
@@ -103,6 +104,7 @@ export {
   registerAuthRequest,
   registerAuthSuccess,
   registerAuthError,
+  clearAuthError,
   getUserProfileRequest,
   getUserProfileSuccess,
   getUserProfileError,

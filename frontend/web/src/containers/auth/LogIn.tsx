@@ -9,7 +9,7 @@ import { LockOutlined, UserOutlined, LoginOutlined } from "@ant-design/icons";
 
 // Redux
 import { ApplicationState } from "../../store/store";
-import { loginAuthRequest } from "../../store/actions/actions";
+import { clearAuthError, loginAuthRequest } from "../../store/actions/actions";
 
 // Custom Types
 import { AuthState } from "../../store/@types";
@@ -30,8 +30,9 @@ export const LogIn: FC = () => {
   useEffect(() => {
     if (errors.results) {
       message.error(errors.results.message);
+      dispatch(clearAuthError());
     }
-  }, [errors.results]);
+  }, [dispatch, errors.results]);
 
   useEffect(() => {
     if (auth) {

@@ -14,7 +14,10 @@ import {
 
 // Redux
 import { ApplicationState } from "../../store/store";
-import { registerAuthRequest } from "../../store/actions/actions";
+import {
+  registerAuthRequest,
+  clearAuthError,
+} from "../../store/actions/actions";
 
 // Custom Types
 import { AuthState } from "../../store/@types";
@@ -37,8 +40,9 @@ export const Register: FC = () => {
   useEffect(() => {
     if (errors.results) {
       message.error(errors.results.message);
+      dispatch(clearAuthError());
     }
-  }, [errors.results]);
+  }, [dispatch, errors.results]);
 
   useEffect(() => {
     if (auth) {
