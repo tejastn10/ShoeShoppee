@@ -50,3 +50,7 @@ export const createProductReviewError = createAction(
     };
   }
 );
+
+export const clearProductDetailsError = createAction(
+  ProductDetailsActionTypes.CLEAR_PRODUCT_DETAILS_ERROR
+);

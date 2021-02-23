@@ -6,6 +6,7 @@ import {
   createProductReviewRequest,
   createProductReviewSuccess,
   createProductReviewError,
+  clearProductDetailsError,
 } from "../actions/actions";
 import { ProductDetailsState } from "../@types";
 
@@ -48,6 +49,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(createProductReviewError, (state, action) => {
       state.isLoading = false;
       state.errors.results = action.payload;
+    })
+    .addCase(clearProductDetailsError, (state, _action) => {
+      state.errors.results = null;
     })
     .addDefaultCase((state, _action) => {
       state.isLoading = false;

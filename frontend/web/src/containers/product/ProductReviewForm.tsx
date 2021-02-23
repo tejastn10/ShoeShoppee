@@ -8,7 +8,10 @@ import { PlusOutlined, CloseOutlined } from "@ant-design/icons";
 
 // Redux
 import { ApplicationState } from "../../store/store";
-import { createProductReviewRequest } from "../../store/actions/actions";
+import {
+  clearProductDetailsError,
+  createProductReviewRequest,
+} from "../../store/actions/actions";
 
 // Custom Types
 import { ProductDetailsState } from "../../store/@types";
@@ -49,8 +52,9 @@ export const ProductReviewForm: FC<Props> = ({
   useEffect(() => {
     if (errors.results !== null) {
       message.error(errors.results.message);
+      dispatch(clearProductDetailsError());
     }
-  }, [errors.results]);
+  }, [dispatch, errors.results]);
 
   return (
     <Modal

@@ -14,6 +14,7 @@ import {
   createProductReviewRequest,
   createProductReviewSuccess,
   createProductReviewError,
+  clearProductDetailsError,
 } from "./productDetails";
 import {
   loginAuthRequest,
@@ -99,6 +100,7 @@ export {
   createProductReviewRequest,
   createProductReviewSuccess,
   createProductReviewError,
+  clearProductDetailsError,
   loginAuthRequest,
   loginAuthSuccess,
   loginAuthError,

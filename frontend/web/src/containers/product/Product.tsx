@@ -22,7 +22,11 @@ import { FormOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
 // Redux
 import { ApplicationState } from "../../store/store";
-import { addToCart, getProductRequest } from "../../store/actions/actions";
+import {
+  addToCart,
+  clearProductDetailsError,
+  getProductRequest,
+} from "../../store/actions/actions";
 
 // Custom Components
 import { ProductReviewForm } from "./ProductReviewForm";
@@ -63,8 +67,9 @@ export const Product: FC = () => {
   useEffect(() => {
     if (errors.results) {
       message.error(errors.results.message);
+      dispatch(clearProductDetailsError());
     }
-  }, [errors.results]);
+  }, [dispatch, errors.results]);
 
   useEffect(() => {
     if (productDetail && productDetail.count === 0) {
