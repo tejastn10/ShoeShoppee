@@ -1,13 +1,9 @@
-import { CustomError } from "../../utils/api-helper";
+import { Errors } from ".";
 
 export interface Auth {
   _id: string;
   isAdmin: boolean;
   token: string;
-}
-
-export interface Errors {
-  results: CustomError | null;
 }
 
 export interface AuthState {

@@ -1,5 +1,4 @@
-import { CartItem, Profile, ShippingAddress } from ".";
-import { CustomError } from "../../utils/api-helper";
+import { CartItem, Errors, Profile, ShippingAddress } from ".";
 
 export interface Order {
   _id: string;
@@ -14,10 +13,6 @@ export interface Order {
   isPaid: boolean;
   isDelivered: boolean;
   user: Profile | null;
-}
-
-export interface Errors {
-  results: CustomError | null;
 }
 
 export interface OrderState {

@@ -1,3 +1,4 @@
+import { CustomError } from "../../utils/api-helper";
 import { ProductListState, ProductListActionTypes } from "./productList";
 import {
   Product,
@@ -15,6 +16,10 @@ import {
 } from "./cart";
 import { Order, OrderState, OrderActionTypes } from "./order";
 import { AdminState, AdminActionTypes } from "./admin";
+
+export interface Errors {
+  results: CustomError | null;
+}
 
 export {
   ProductListActionTypes,

@@ -1,9 +1,4 @@
-import { CustomError } from "../../utils/api-helper";
-import { Order, Profile } from "./index";
-
-export interface Errors {
-  results: CustomError | null;
-}
+import { Errors, Order, Profile } from ".";
 
 interface Message {
   message: string | null;

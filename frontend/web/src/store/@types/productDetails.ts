@@ -1,4 +1,4 @@
-import { CustomError } from "../../utils/api-helper";
+import { Errors } from ".";
 
 export interface Product {
   _id?: string;
@@ -19,10 +19,6 @@ export interface Product {
   numReviews: number;
   price: number;
   count: number;
-}
-
-export interface Errors {
-  results: CustomError | null;
 }
 
 interface Message {

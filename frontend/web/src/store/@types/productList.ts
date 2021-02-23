@@ -1,9 +1,4 @@
-import { CustomError } from "../../utils/api-helper";
-import { Product } from "./productDetails";
-
-export interface Errors {
-  results: CustomError | null;
-}
+import { Errors, Product } from ".";
 
 export interface ProductListState {
   isLoading: boolean;

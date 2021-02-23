@@ -1,14 +1,10 @@
-import { CustomError } from "../../utils/api-helper";
+import { Errors } from ".";
 
 export interface Profile {
   _id: string;
   name: string;
   email: string;
   isAdmin: string;
-}
-
-export interface Errors {
-  results: CustomError | null;
 }
 
 export interface UserProfileState {
