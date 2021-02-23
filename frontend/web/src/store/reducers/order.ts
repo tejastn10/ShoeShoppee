@@ -10,6 +10,7 @@ import {
   ordersListRequest,
   ordersListSuccess,
   ordersListError,
+  clearOrdersError,
   clearOrders,
 } from "../actions/actions";
 import { OrderState } from "../@types";
@@ -71,6 +72,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(ordersListError, (state, action) => {
       state.isLoading = false;
       state.listError = action.payload;
+    })
+    .addCase(clearOrdersError, (state, _action) => {
+      state.errors.results = null;
     })
     .addCase(clearOrders, (state, _action) => {
       state.orders = null;

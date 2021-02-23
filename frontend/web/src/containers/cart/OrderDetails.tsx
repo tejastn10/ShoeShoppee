@@ -25,7 +25,11 @@ import {
 
 // Redux
 import { ApplicationState } from "../../store/store";
-import { orderRequest, updateOrderRequest } from "../../store/actions/actions";
+import {
+  clearOrdersError,
+  orderRequest,
+  updateOrderRequest,
+} from "../../store/actions/actions";
 
 // Custom Components
 import { OrderItem } from "../../components/OrderItem";
@@ -82,8 +86,9 @@ export const OrderDetails: FC = () => {
   useEffect(() => {
     if (errors.results) {
       message.error(errors.results.message);
+      dispatch(clearOrdersError());
     }
-  }, [errors.results]);
+  }, [dispatch, errors.results]);
 
   useEffect(() => {
     if (messages.message) {

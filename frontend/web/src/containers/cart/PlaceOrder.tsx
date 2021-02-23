@@ -24,6 +24,7 @@ import {
   createOrderRequest,
   resetOrder,
   emptyCart,
+  clearOrdersError,
 } from "../../store/actions/actions";
 
 // Custom Components
@@ -71,6 +72,7 @@ export const PlaceOrder: FC<Props> = ({ prev }: Props) => {
     }
     if (errors.results !== null) {
       message.error(orderState.errors.results);
+      dispatch(clearOrdersError());
     }
   }, [
     dispatch,

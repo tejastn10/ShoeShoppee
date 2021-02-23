@@ -70,4 +70,8 @@ export const ordersListError = createAction(
     };
   }
 );
+
+export const clearOrdersError = createAction(
+  OrderActionTypes.CLEAR_ORDERS_ERROR
+);
 export const clearOrders = createAction(OrderActionTypes.CLEAR_ORDERS);

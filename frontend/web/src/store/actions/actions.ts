@@ -53,6 +53,7 @@ import {
   ordersListRequest,
   ordersListSuccess,
   ordersListError,
+  clearOrdersError,
   clearOrders,
 } from "./order";
 import {
@@ -129,6 +130,7 @@ export {
   ordersListRequest,
   ordersListSuccess,
   ordersListError,
+  clearOrdersError,
   clearOrders,
   getUserListRequest,
   getUserListSuccess,
