@@ -48,3 +48,7 @@ export const updateUserProfileError = createAction(
     };
   }
 );
+
+export const clearUserError = createAction(
+  UserProfileActionTypes.CLEAR_USER_ERROR
+);

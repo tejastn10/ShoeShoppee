@@ -7,6 +7,7 @@ import {
   updateUserProfileRequest,
   updateUserProfileSuccess,
   updateUserProfileError,
+  clearUserError,
 } from "../actions/actions";
 import { UserProfileState } from "../@types";
 
@@ -47,6 +48,9 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(clearUserProfile, (state, _action) => {
       state.isLoading = false;
       state.profile = null;
+    })
+    .addCase(clearUserError, (state, _action) => {
+      state.errors.results = null;
     })
     .addDefaultCase((state, _action) => {
       state.isLoading = false;

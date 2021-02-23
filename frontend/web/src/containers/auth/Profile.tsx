@@ -30,7 +30,7 @@ import {
   getUserProfileRequest,
   updateUserProfileRequest,
   ordersListRequest,
-  clearAuthError,
+  clearUserError,
 } from "../../store/actions/actions";
 
 // Custom Components
@@ -72,7 +72,7 @@ export const Profile: FC = () => {
   useEffect(() => {
     if (errors.results) {
       message.error(errors.results.message);
-      dispatch(clearAuthError());
+      dispatch(clearUserError());
       setValidationStatus("error");
       setFeedback(true);
     }

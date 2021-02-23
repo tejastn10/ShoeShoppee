@@ -35,6 +35,7 @@ import {
   updateUserProfileRequest,
   updateUserProfileSuccess,
   updateUserProfileError,
+  clearUserError,
 } from "./user";
 import {
   addToCart,
@@ -118,6 +119,7 @@ export {
   updateUserProfileRequest,
   updateUserProfileSuccess,
   updateUserProfileError,
+  clearUserError,
   addToCart,
   removeFromCart,
   emptyCart,
