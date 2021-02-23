@@ -17,7 +17,7 @@
 .cnt {
   background-color: #e5e5e5;
   margin: 0 1%;
-  margin-top: 6rem;
+  margin-top: 7rem;
   width: 98%;
 }
 
@@ -148,4 +148,15 @@
 .payment > label > span {
   font-weight: bold;
   font-size: 1.5rem;
+}
+
+.notfound {
+  background: #ffffff;
+  font-size: 4rem;
+  text-align: center;
+  padding: 10rem;
+}
+
+.notfound-btn {
+  font-size: 2rem;
 }

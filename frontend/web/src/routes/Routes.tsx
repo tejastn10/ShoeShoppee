@@ -21,22 +21,22 @@ import { Product } from "../containers/product/Product";
 
 // Custom Component
 import { Landing } from "../components/Landing";
+import { NotFound } from "../components/404NotFound";
 
 export const Routes: FC = () => {
   return (
-    <>
+    <Switch>
       <Route exact path="/" component={Landing} />
-      <Switch>
-        <Route exact path="/login" component={LogIn} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/profile" component={Profile} />
-        <Route path="/search/:keyword?" component={Search} />
-        <Route path="/product/:id" component={Product} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/checkout" component={Checkout} />
-        <Route path="/orders/:id" component={OrderDetails} />
-        <Route path="/adminpanel" component={Admin} />
-      </Switch>
-    </>
+      <Route exact path="/login" component={LogIn} />
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/profile" component={Profile} />
+      <Route path="/search/:keyword?" component={Search} />
+      <Route path="/product/:id" component={Product} />
+      <Route path="/cart" component={Cart} />
+      <Route path="/checkout" component={Checkout} />
+      <Route path="/orders/:id" component={OrderDetails} />
+      <Route path="/adminpanel" component={Admin} />
+      <Route path="*" component={NotFound} />
+    </Switch>
   );
 };
