@@ -33,6 +33,7 @@ import {
   productDeleteRequest,
   updateProductRequest,
   getOrderListRequest,
+  clearAdminError,
 } from "../../store/actions/actions";
 
 // Custom Components
@@ -324,9 +325,10 @@ export const Admin: FC = () => {
   useEffect(() => {
     if (errors.results) {
       message.error(errors.results.message);
+      dispatch(clearAdminError());
       history.push("/");
     }
-  }, [errors.results, history]);
+  }, [dispatch, errors.results, history]);
 
   useEffect(() => {
     if (messages.message) {

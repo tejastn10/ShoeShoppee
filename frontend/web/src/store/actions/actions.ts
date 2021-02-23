@@ -81,6 +81,7 @@ import {
   updateOrderSuccess,
   updateOrderError,
   clearAdminState,
+  clearAdminError,
 } from "./admin";
 
 export {
@@ -154,4 +155,5 @@ export {
   updateOrderSuccess,
   updateOrderError,
   clearAdminState,
+  clearAdminError,
 };

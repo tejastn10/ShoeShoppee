@@ -188,3 +188,4 @@ export const updateOrderError = createAction(
 );
 
 export const clearAdminState = createAction(AdminActionTypes.CLEAR_ADMIN_STATE);
+export const clearAdminError = createAction(AdminActionTypes.CLEAR_ADMIN_ERROR);
