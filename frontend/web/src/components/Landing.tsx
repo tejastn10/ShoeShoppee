@@ -15,17 +15,17 @@ export const Landing: FC = () => {
           </Link>
         </div>
         <div>
-          <Link to={`/search/formal`}>
+          <Link to={`/search/`}>
             <h3>Formal</h3>
           </Link>
         </div>
         <div>
-          <Link to={`/search/casual`}>
+          <Link to={`/search/`}>
             <h3>Casual</h3>
           </Link>
         </div>
         <div>
-          <Link to={`/search/sports`}>
+          <Link to={`/search/`}>
             <h3>Sports</h3>
           </Link>
         </div>
@@ -35,39 +35,39 @@ export const Landing: FC = () => {
         <Row gutter={12}>
           <Col span={8}>
             <Card className="cardtitle" title="Men" bordered={false}>
-              <Link to={`/search/formal/men`}>
+              <Link to={`/search/`}>
                 <Card.Grid className="category-links">Formal</Card.Grid>
               </Link>
-              <Link to={`/search/casual/men`}>
+              <Link to={`/search/`}>
                 <Card.Grid className="category-links">Casual</Card.Grid>
               </Link>
-              <Link to={`/search/sports/men`}>
+              <Link to={`/search/`}>
                 <Card.Grid className="category-links">Sports</Card.Grid>
               </Link>
             </Card>
           </Col>
           <Col span={8}>
             <Card className="cardtitle" title="Women" bordered={false}>
-              <Link to={`/search/formal/women`}>
+              <Link to={`/search/`}>
                 <Card.Grid className="category-links">Formal</Card.Grid>
               </Link>
-              <Link to={`/search/casual/women`}>
+              <Link to={`/search/`}>
                 <Card.Grid className="category-links">Casual</Card.Grid>
               </Link>
-              <Link to={`/search/sports/women`}>
+              <Link to={`/search/`}>
                 <Card.Grid className="category-links">Sports</Card.Grid>
               </Link>
             </Card>
           </Col>
           <Col span={8}>
             <Card className="cardtitle" title="Children" bordered={false}>
-              <Link to={`/search/formal/children`}>
+              <Link to={`/search/`}>
                 <Card.Grid className="category-links">Formal</Card.Grid>
               </Link>
-              <Link to={`/search/casual/children`}>
+              <Link to={`/search/`}>
                 <Card.Grid className="category-links">Casual</Card.Grid>
               </Link>
-              <Link to={`/search/sports/children`}>
+              <Link to={`/search/`}>
                 <Card.Grid className="category-links">Sports</Card.Grid>
               </Link>
             </Card>
