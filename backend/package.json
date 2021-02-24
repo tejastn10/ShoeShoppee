@@ -7,10 +7,11 @@
     "data:import": "node dist/seeder",
     "data:destroy": "node dist/seeder -d",
     "watch-ts": "tsc -w",
-    "server": "nodemon dist/app.js",
+    "start": "node dist/app.js",
+    "serve": "nodemon dist/app.js",
     "web": "yarn --cwd ../frontend/web/ start",
-    "start": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node\" -c \"blue.bold,yellow.bold\" \"yarn run watch-ts\" \"yarn run server\"",
-    "dev": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node,React\" -c \"blue.bold,yellow.bold,cyan.bold\" \"yarn run watch-ts\" \"yarn run server\" \"yarn run web\""
+    "server": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node\" -c \"blue.bold,yellow.bold\" \"yarn run watch-ts\" \"yarn run serve\"",
+    "dev": "concurrently -k -p \"[{name}]\" -n \"Typescript,Node,React\" -c \"blue.bold,yellow.bold,cyan.bold\" \"yarn run watch-ts\" \"yarn run serve\" \"yarn run web\""
   },
   "author": "",
   "license": "ISC",
