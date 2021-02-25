@@ -126,7 +126,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Brad Traversy's Proshop repository for the backend and frontend flow -> [link to repo][repo]
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[screenshot]: documentation/images/1landingPage.png
+[screenshot]: documentation/images/1.png
 [article]: https://dev.to/anishkargaonkar/structuring-react-application-for-scale-part-i-8bm
 [repo]:https://github.com/bradtraversy/proshop_mern
 <!-- [deployedproject]: -->
