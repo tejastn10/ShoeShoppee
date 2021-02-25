@@ -1,4 +1,3 @@
-import {} from "mongoose";
 import { config } from "dotenv";
 import "colors";
 
