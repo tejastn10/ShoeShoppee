@@ -27,6 +27,7 @@ web-build/
 theme.css
 
 # misc
+.eslintcache
 .DS_Store
 .env
 .env.local
