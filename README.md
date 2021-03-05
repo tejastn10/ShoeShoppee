@@ -79,7 +79,7 @@ Make sure you have Node and TypeScript installed on your machine.
       NODE_ENV = development
       PORT = 5000
       MONGO_URI = <URI>
-      JWT_SECRET = clocked
+      JWT_SECRET = <Secret Key>
       ```
 
       `frontend/web/.env` file
