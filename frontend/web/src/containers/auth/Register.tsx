@@ -49,12 +49,8 @@ export const Register: FC = () => {
     }
   }, [history, auth]);
 
-  const onFinish = ({ name, email, password, password2 }: submitProps) => {
-    if (password !== password2) {
-      message.error("Passwords do not match!");
-    } else {
-      dispatch(registerAuthRequest({ name, email, password }));
-    }
+  const onFinish = ({ name, email, password }: submitProps) => {
+    dispatch(registerAuthRequest({ name, email, password }));
   };
   return (
     <>
@@ -110,11 +106,25 @@ export const Register: FC = () => {
           </Form.Item>
           <Form.Item
             name="password2"
+            dependencies={["password"]}
+            hasFeedback
             rules={[
               {
                 required: true,
                 message: "Please confirm your Password!",
               },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error(
+                      "The two passwords that you entered do not match!"
+                    )
+                  );
+                },
+              }),
             ]}
           >
             <Input.Password
