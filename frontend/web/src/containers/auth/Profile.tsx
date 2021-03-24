@@ -1,6 +1,6 @@
 // React
 import { FC, useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 // UI Library
@@ -25,7 +25,6 @@ import {
 } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import {
   getUserProfileRequest,
   updateUserProfileRequest,
@@ -37,9 +36,9 @@ import {
 import { Loading } from "../../components/Loading";
 
 // Custom Types
-import { UserProfileState } from "../../store/@types";
 import { useAuth } from "../../hooks/useAuth";
 import { useOrder } from "../../hooks/useOrder";
+import { useProfile } from "../../hooks/useProfile";
 type validationStatus = "success" | "error" | "validating";
 type submitProps = {
   name?: string;
@@ -58,9 +57,7 @@ export const Profile: FC = () => {
   const [feedback, setFeedback] = useState(false);
 
   const { authState } = useAuth();
-  const profileState = useSelector<ApplicationState, UserProfileState>(
-    (state) => state.userProfile
-  );
+  const { profileState } = useProfile();
   const { orderState } = useOrder();
 
   const { auth } = authState;
