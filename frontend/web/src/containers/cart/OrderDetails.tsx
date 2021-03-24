@@ -1,6 +1,6 @@
 // React
 import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
 // UI Library
@@ -24,7 +24,6 @@ import {
 } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import {
   clearOrdersError,
   orderRequest,
@@ -37,15 +36,10 @@ import { CartSummary } from "../../components/CartSummary";
 import { Loading } from "../../components/Loading";
 
 // Custom Types
-import {
-  OrderState,
-  Order,
-  PriceSummary,
-  Profile,
-  AdminState,
-} from "../../store/@types";
+import { Order, PriceSummary, Profile } from "../../store/@types";
 import { useAuth } from "../../hooks/useAuth";
 import { useAdmin } from "../../hooks/useAdmin";
+import { useOrder } from "../../hooks/useOrder";
 interface OrderParams {
   id: string;
 }
@@ -65,9 +59,7 @@ export const OrderDetails: FC = () => {
 
   const { adminState } = useAdmin();
 
-  const orderState = useSelector<ApplicationState, OrderState>(
-    (state) => state.orders
-  );
+  const { orderState } = useOrder();
 
   if (!authState.auth?._id) {
     history.push("/");

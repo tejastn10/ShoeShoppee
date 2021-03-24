@@ -37,8 +37,9 @@ import {
 import { Loading } from "../../components/Loading";
 
 // Custom Types
-import { UserProfileState, OrderState } from "../../store/@types";
+import { UserProfileState } from "../../store/@types";
 import { useAuth } from "../../hooks/useAuth";
+import { useOrder } from "../../hooks/useOrder";
 type validationStatus = "success" | "error" | "validating";
 type submitProps = {
   name?: string;
@@ -60,13 +61,11 @@ export const Profile: FC = () => {
   const profileState = useSelector<ApplicationState, UserProfileState>(
     (state) => state.userProfile
   );
-  const ordersState = useSelector<ApplicationState, OrderState>(
-    (state) => state.orders
-  );
+  const { orderState } = useOrder();
 
   const { auth } = authState;
   const { profile, isLoading, errors } = profileState;
-  const { orders } = ordersState;
+  const { orders } = orderState;
 
   useEffect(() => {
     if (errors.results) {
