@@ -1,6 +1,6 @@
 // React
 import { FC, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 
 // UI Library
@@ -21,7 +21,6 @@ import {
 import { FormOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import {
   addToCart,
   clearProductDetailsError,
@@ -33,8 +32,10 @@ import { ProductReviewForm } from "./ProductReviewForm";
 import { Loading } from "../../components/Loading";
 import { Rating } from "../../components/Rating";
 
+// Custom Hooks
+import { useAuth, useProductDetail } from "../../hooks";
+
 // Custom Types
-import { AuthState, ProductDetailsState } from "../../store/@types";
 interface ProductPramas {
   id: string;
 }
@@ -43,26 +44,23 @@ export const Product: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id }: ProductPramas = useParams();
+
   const [qty, setQty] = useState<number>(1);
   const [visible, setVisible] = useState(false);
 
-  const product = useSelector<ApplicationState, ProductDetailsState>(
-    (state) => state.productDetails
-  );
-  const authState = useSelector<ApplicationState, AuthState>(
-    (state) => state.authState
-  );
-  const { productDetail, isLoading, errors } = product;
+  const { authState } = useAuth();
+  const { productState } = useProductDetail();
+  const { productDetail, isLoading, errors } = productState;
 
   useEffect(() => {
     dispatch(getProductRequest(id));
   }, [dispatch, id]);
 
   useEffect(() => {
-    if (product.messages.message !== null) {
+    if (productState.messages.message !== null) {
       dispatch(getProductRequest(id));
     }
-  }, [dispatch, id, product.messages.message]);
+  }, [dispatch, id, productState.messages.message]);
 
   useEffect(() => {
     if (errors.results) {

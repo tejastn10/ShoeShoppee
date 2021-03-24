@@ -1,17 +1,18 @@
 // React
 import { FC, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // UI Library
 import { Card, Form, Input, Button } from "antd";
 import { HomeOutlined, ArrowRightOutlined } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import { saveAddress } from "../../store/actions/actions";
 
+// Custom Hooks
+import { useCart } from "../../hooks/useCart";
+
 // Custom Types
-import { CartState } from "../../store/@types";
 type Address = {
   address: string;
   city: string;
@@ -23,12 +24,11 @@ type Props = {
 };
 
 export const Shipping: FC<Props> = ({ next }: Props) => {
-  const cartState = useSelector<ApplicationState, CartState>(
-    (state) => state.cart
-  );
   const dispatch = useDispatch();
 
+  const { cartState } = useCart();
   const { shippingAddress } = cartState;
+
   const [address] = useState(shippingAddress ? shippingAddress.address : "");
   const [city] = useState(shippingAddress ? shippingAddress.city : "");
   const [state] = useState(shippingAddress ? shippingAddress.state : "");

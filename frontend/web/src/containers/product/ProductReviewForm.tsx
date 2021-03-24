@@ -1,20 +1,21 @@
 // React
 import { FC, Dispatch, SetStateAction, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // UI Library
 import { Button, Form, Input, Select, Modal, message } from "antd";
 import { PlusOutlined, CloseOutlined } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import {
   clearProductDetailsError,
   createProductReviewRequest,
 } from "../../store/actions/actions";
 
+// Custom Hooks
+import { useProductDetail } from "../../hooks";
+
 // Custom Types
-import { ProductDetailsState } from "../../store/@types";
 type Props = {
   visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
@@ -30,10 +31,8 @@ export const ProductReviewForm: FC<Props> = ({
 }: Props) => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const productState = useSelector<ApplicationState, ProductDetailsState>(
-    (state) => state.productDetails
-  );
 
+  const { productState } = useProductDetail();
   const { errors, messages } = productState;
 
   const onFinish = ({ rating, comment }: any) => {

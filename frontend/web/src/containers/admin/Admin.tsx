@@ -1,6 +1,6 @@
 // React
 import { FC, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 // UI Library
@@ -23,7 +23,6 @@ import {
 } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import {
   getUserListRequest,
   userDeleteRequest,
@@ -41,7 +40,9 @@ import { Loading } from "../../components/Loading";
 import { ProductForm } from "./ProductForm";
 
 // Custom Types
-import { AdminState, AuthState, ProductListState } from "../../store/@types";
+import { useAuth } from "../../hooks/useAuth";
+import { useAdmin } from "../../hooks/useAdmin";
+import { useProductList } from "../../hooks/useProductList";
 
 export const Admin: FC = () => {
   const dispatch = useDispatch();
@@ -49,15 +50,9 @@ export const Admin: FC = () => {
   const [visible, setVisible] = useState(false);
   const [Count, setCount] = useState(null);
   const [Price, setPrice] = useState(null);
-  const adminState = useSelector<ApplicationState, AdminState>(
-    (state) => state.admin
-  );
-  const authState = useSelector<ApplicationState, AuthState>(
-    (state) => state.authState
-  );
-  const productList = useSelector<ApplicationState, ProductListState>(
-    (state) => state.productList
-  );
+  const { authState } = useAuth();
+  const { adminState } = useAdmin();
+  const { productList } = useProductList();
   const { isLoading, errors, messages, users, orders } = adminState;
 
   const deleteUser = (id: string) => {

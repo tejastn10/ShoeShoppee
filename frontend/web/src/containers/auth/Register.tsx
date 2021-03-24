@@ -1,6 +1,6 @@
 // React
 import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
 // UI Library
@@ -13,14 +13,15 @@ import {
 } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import {
   registerAuthRequest,
   clearAuthError,
 } from "../../store/actions/actions";
 
+// Custom Hooks
+import { useAuth } from "../../hooks";
+
 // Custom Types
-import { AuthState } from "../../store/@types";
 type submitProps = {
   name: string;
   email: string;
@@ -32,10 +33,8 @@ export const Register: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const userState = useSelector<ApplicationState, AuthState>(
-    (state) => state.authState
-  );
-  const { errors, auth } = userState;
+  const { authState } = useAuth();
+  const { errors, auth } = authState;
 
   useEffect(() => {
     if (errors.results) {

@@ -1,6 +1,6 @@
 // React
 import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 // UI Library
@@ -12,7 +12,6 @@ import {
 } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import {
   addToCart,
   emptyCart,
@@ -23,15 +22,18 @@ import {
 import { OrderItem } from "../../components/OrderItem";
 import { CartSummary } from "../../components/CartSummary";
 
+// Custom Hooks
+import { useCart } from "../../hooks";
+
 // Custom Types
-import { CartState, CartItem as item } from "../../store/@types";
+import { CartItem as item } from "../../store/@types";
 
 export const Cart: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const cart = useSelector<ApplicationState, CartState>((state) => state.cart);
-  const { cartList, price, totalItems } = cart;
+  const { cartState } = useCart();
+  const { cartList, price, totalItems } = cartState;
 
   useEffect(() => {
     if (cartList === null || cartList.length === 0) {

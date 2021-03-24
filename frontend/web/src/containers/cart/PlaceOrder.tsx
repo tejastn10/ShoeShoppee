@@ -1,6 +1,6 @@
 // React
 import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 // UI Library
@@ -19,7 +19,6 @@ import {
 import { ArrowLeftOutlined, CheckCircleOutlined } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import {
   createOrderRequest,
   resetOrder,
@@ -31,8 +30,10 @@ import {
 import { CartSummary } from "../../components/CartSummary";
 import { OrderItem } from "../../components/OrderItem";
 
+// Custom Hooks
+import { useCart, useOrder } from "../../hooks";
+
 // Custom Types
-import { CartState, OrderState } from "../../store/@types";
 type Props = {
   prev: () => void;
 };
@@ -40,12 +41,17 @@ type Props = {
 export const PlaceOrder: FC<Props> = ({ prev }: Props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const cart = useSelector<ApplicationState, CartState>((state) => state.cart);
-  const { totalItems, shippingAddress, paymentMethod, cartList, price } = cart;
 
-  const orderState = useSelector<ApplicationState, OrderState>(
-    (state) => state.orders
-  );
+  const { cartState } = useCart();
+  const {
+    totalItems,
+    shippingAddress,
+    paymentMethod,
+    cartList,
+    price,
+  } = cartState;
+
+  const { orderState } = useOrder();
   const { success, errors, orders } = orderState;
 
   const placeOrder = () => {

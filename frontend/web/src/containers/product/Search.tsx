@@ -1,13 +1,12 @@
 // React
 import { FC, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
 // UI Library
 import { Empty, message, PageHeader, Pagination, Row, Card } from "antd";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import {
   clearProductListError,
   getProductListRequest,
@@ -18,8 +17,11 @@ import {
 import { Loading } from "../../components/Loading";
 import { CardItem } from "../../components/CardItem";
 
+// Custom Hooks
+import { useProductList } from "../../hooks";
+
 // Custom Types
-import { Product, ProductListState } from "../../store/@types";
+import { Product } from "../../store/@types";
 interface SearchParams {
   keyword: string;
 }
@@ -33,9 +35,7 @@ export const Search: FC = () => {
   const [pageItems, setPageItems] = useState<Product[] | null>(null);
   const [totalItemsCount, setTotalItemsCount] = useState(0);
 
-  const productList = useSelector<ApplicationState, ProductListState>(
-    (state) => state.productList
-  );
+  const { productList } = useProductList();
   const { products, isLoading, errors } = productList;
 
   useEffect(() => {
