@@ -16,11 +16,10 @@ import {
 } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import { createProductRequest } from "../../store/actions/admin";
 
 // Custom Types
-import { AdminState } from "../../store/@types";
+import { useAdmin } from "../../hooks/useAdmin";
 type Props = {
   visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
@@ -29,9 +28,7 @@ type Props = {
 export const ProductForm: FC<Props> = ({ visible, setVisible }: Props) => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const adminState = useSelector<ApplicationState, AdminState>(
-    (state) => state.admin
-  );
+  const { adminState } = useAdmin();
 
   const onUpload = async (info: any) => {
     console.log(info.file);

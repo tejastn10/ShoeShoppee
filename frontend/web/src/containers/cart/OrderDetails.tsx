@@ -45,6 +45,7 @@ import {
   AdminState,
 } from "../../store/@types";
 import { useAuth } from "../../hooks/useAuth";
+import { useAdmin } from "../../hooks/useAdmin";
 interface OrderParams {
   id: string;
 }
@@ -62,9 +63,7 @@ export const OrderDetails: FC = () => {
 
   const { authState } = useAuth();
 
-  const adminState = useSelector<ApplicationState, AdminState>(
-    (state) => state.admin
-  );
+  const { adminState } = useAdmin();
 
   const orderState = useSelector<ApplicationState, OrderState>(
     (state) => state.orders
