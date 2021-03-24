@@ -48,7 +48,6 @@ export const LogIn: FC = () => {
       <div className="form">
         <Form
           name="normal_login"
-          className="login-form"
           initialValues={{
             remember: true,
           }}

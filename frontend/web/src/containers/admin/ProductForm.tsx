@@ -1,6 +1,6 @@
 // React
 import { FC, Dispatch, SetStateAction, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // UI Library
 import { Button, Form, Input, Upload, Modal } from "antd";
@@ -59,7 +59,6 @@ export const ProductForm: FC<Props> = ({ visible, setVisible }: Props) => {
       <Form
         form={form}
         name="normal_login"
-        className="login-form"
         initialValues={{
           remember: true,
         }}

@@ -43,7 +43,6 @@ export const Shipping: FC<Props> = ({ next }: Props) => {
     <Card className="shipping" title={<HomeOutlined />}>
       <Form
         name="normal_login"
-        className="login-form"
         initialValues={{
           address: `${address}`,
           city: `${city}`,

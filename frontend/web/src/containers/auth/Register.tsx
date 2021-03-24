@@ -60,8 +60,7 @@ export const Register: FC = () => {
     <>
       <div className="form">
         <Form
-          name="normal_login"
-          className="login-form"
+          name="normal_register"
           initialValues={{
             remember: true,
           }}
