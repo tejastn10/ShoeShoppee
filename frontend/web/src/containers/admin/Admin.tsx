@@ -41,7 +41,8 @@ import { Loading } from "../../components/Loading";
 import { ProductForm } from "./ProductForm";
 
 // Custom Types
-import { AdminState, AuthState, ProductListState } from "../../store/@types";
+import { AdminState, ProductListState } from "../../store/@types";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Admin: FC = () => {
   const dispatch = useDispatch();
@@ -49,11 +50,9 @@ export const Admin: FC = () => {
   const [visible, setVisible] = useState(false);
   const [Count, setCount] = useState(null);
   const [Price, setPrice] = useState(null);
+  const { authState } = useAuth();
   const adminState = useSelector<ApplicationState, AdminState>(
     (state) => state.admin
-  );
-  const authState = useSelector<ApplicationState, AuthState>(
-    (state) => state.authState
   );
   const productList = useSelector<ApplicationState, ProductListState>(
     (state) => state.productList

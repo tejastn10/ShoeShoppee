@@ -38,13 +38,13 @@ import { Loading } from "../../components/Loading";
 
 // Custom Types
 import {
-  AuthState,
   OrderState,
   Order,
   PriceSummary,
   Profile,
   AdminState,
 } from "../../store/@types";
+import { useAuth } from "../../hooks/useAuth";
 interface OrderParams {
   id: string;
 }
@@ -60,9 +60,7 @@ export const OrderDetails: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const authState = useSelector<ApplicationState, AuthState>(
-    (state) => state.authState
-  );
+  const { authState } = useAuth();
 
   const adminState = useSelector<ApplicationState, AdminState>(
     (state) => state.admin

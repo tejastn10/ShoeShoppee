@@ -37,7 +37,8 @@ import {
 import { Loading } from "../../components/Loading";
 
 // Custom Types
-import { AuthState, UserProfileState, OrderState } from "../../store/@types";
+import { UserProfileState, OrderState } from "../../store/@types";
+import { useAuth } from "../../hooks/useAuth";
 type validationStatus = "success" | "error" | "validating";
 type submitProps = {
   name?: string;
@@ -55,9 +56,7 @@ export const Profile: FC = () => {
   );
   const [feedback, setFeedback] = useState(false);
 
-  const authState = useSelector<ApplicationState, AuthState>(
-    (state) => state.authState
-  );
+  const { authState } = useAuth();
   const profileState = useSelector<ApplicationState, UserProfileState>(
     (state) => state.userProfile
   );

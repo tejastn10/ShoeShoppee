@@ -34,7 +34,8 @@ import { Loading } from "../../components/Loading";
 import { Rating } from "../../components/Rating";
 
 // Custom Types
-import { AuthState, ProductDetailsState } from "../../store/@types";
+import { ProductDetailsState } from "../../store/@types";
+import { useAuth } from "../../hooks/useAuth";
 interface ProductPramas {
   id: string;
 }
@@ -49,9 +50,7 @@ export const Product: FC = () => {
   const product = useSelector<ApplicationState, ProductDetailsState>(
     (state) => state.productDetails
   );
-  const authState = useSelector<ApplicationState, AuthState>(
-    (state) => state.authState
-  );
+  const { authState } = useAuth();
   const { productDetail, isLoading, errors } = product;
 
   useEffect(() => {

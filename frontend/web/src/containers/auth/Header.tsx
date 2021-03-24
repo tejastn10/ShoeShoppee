@@ -31,12 +31,11 @@ import {
 import { SearchBox } from "../product/SearchBox";
 
 // Custom Types
-import { AuthState, CartState } from "../../store/@types";
+import { CartState } from "../../store/@types";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Header: FC = () => {
-  const authState = useSelector<ApplicationState, AuthState>(
-    (state) => state.authState
-  );
+  const { authState } = useAuth();
   const cartState = useSelector<ApplicationState, CartState>(
     (state) => state.cart
   );

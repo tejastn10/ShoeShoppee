@@ -1,6 +1,6 @@
 // React
 import { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
 // UI Library
@@ -8,11 +8,10 @@ import { Button, Divider, Form, Input, message } from "antd";
 import { LockOutlined, UserOutlined, LoginOutlined } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import { clearAuthError, loginAuthRequest } from "../../store/actions/actions";
 
 // Custom Types
-import { AuthState } from "../../store/@types";
+import { useAuth } from "../../hooks/useAuth";
 type submitProps = {
   email: string;
   password: string;
@@ -22,9 +21,7 @@ export const LogIn: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const authState = useSelector<ApplicationState, AuthState>(
-    (state) => state.authState
-  );
+  const { authState } = useAuth();
   const { errors, auth } = authState;
 
   useEffect(() => {
