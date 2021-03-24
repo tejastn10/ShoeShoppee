@@ -1,13 +1,9 @@
 // React
 import { FC, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 // UI Library
 import { Card, PageHeader, Steps } from "antd";
-
-// Redux
-import { ApplicationState } from "../../store/store";
 
 // Custom Components
 import { Shipping } from "./Shipping";
@@ -15,14 +11,14 @@ import { Payment } from "./Payment";
 import { PlaceOrder } from "./PlaceOrder";
 
 // Custom Types
-import { CartState } from "../../store/@types";
+import { useCart } from "../../hooks/useCart";
 
 const { Step } = Steps;
 
 export const Checkout: FC = () => {
   const [current, setCurrent] = useState(0);
   const history = useHistory();
-  const cart = useSelector<ApplicationState, CartState>((state) => state.cart);
+  const { cartState } = useCart();
   const next = () => {
     setCurrent(current + 1);
   };
@@ -32,10 +28,10 @@ export const Checkout: FC = () => {
   };
 
   useEffect(() => {
-    if (cart.totalItems === 0) {
+    if (cartState.totalItems === 0) {
       history.push("/cart");
     }
-  }, [cart.totalItems, history]);
+  }, [cartState.totalItems, history]);
 
   const steps = [
     { title: "Shipping Address", content: <Shipping next={next} /> },

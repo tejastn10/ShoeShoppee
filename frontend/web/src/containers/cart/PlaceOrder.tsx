@@ -32,7 +32,8 @@ import { CartSummary } from "../../components/CartSummary";
 import { OrderItem } from "../../components/OrderItem";
 
 // Custom Types
-import { CartState, OrderState } from "../../store/@types";
+import { OrderState } from "../../store/@types";
+import { useCart } from "../../hooks/useCart";
 type Props = {
   prev: () => void;
 };
@@ -40,8 +41,14 @@ type Props = {
 export const PlaceOrder: FC<Props> = ({ prev }: Props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const cart = useSelector<ApplicationState, CartState>((state) => state.cart);
-  const { totalItems, shippingAddress, paymentMethod, cartList, price } = cart;
+  const { cartState } = useCart();
+  const {
+    totalItems,
+    shippingAddress,
+    paymentMethod,
+    cartList,
+    price,
+  } = cartState;
 
   const orderState = useSelector<ApplicationState, OrderState>(
     (state) => state.orders

@@ -1,6 +1,6 @@
 // React
 import { FC, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 // UI Library
 import { Card, Radio, Button, message } from "antd";
@@ -8,20 +8,17 @@ import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 import { RadioChangeEvent } from "antd/lib/radio";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import { savePaymentMethod } from "../../store/actions/actions";
 
 // Custom Types
-import { CartState } from "../../store/@types";
+import { useCart } from "../../hooks/useCart";
 type Props = {
   prev: () => void;
   next: () => void;
 };
 
 export const Payment: FC<Props> = ({ prev, next }: Props) => {
-  const cartState = useSelector<ApplicationState, CartState>(
-    (state) => state.cart
-  );
+  const { cartState } = useCart();
   const dispatch = useDispatch();
 
   const { paymentMethod } = cartState;

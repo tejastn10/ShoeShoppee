@@ -1,6 +1,6 @@
 // React
 import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 // UI Library
@@ -18,7 +18,6 @@ import {
 } from "@ant-design/icons";
 
 // Redux
-import { ApplicationState } from "../../store/store";
 import {
   clearUserProfile,
   logoutUser,
@@ -31,14 +30,12 @@ import {
 import { SearchBox } from "../product/SearchBox";
 
 // Custom Types
-import { CartState } from "../../store/@types";
 import { useAuth } from "../../hooks/useAuth";
+import { useCart } from "../../hooks/useCart";
 
 export const Header: FC = () => {
   const { authState } = useAuth();
-  const cartState = useSelector<ApplicationState, CartState>(
-    (state) => state.cart
-  );
+  const { cartState } = useCart();
   const dispatch = useDispatch();
 
   const qty = cartState.cartList?.reduce((acc, item) => acc + item.qty, 0);
