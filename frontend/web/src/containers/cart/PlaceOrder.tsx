@@ -30,9 +30,10 @@ import {
 import { CartSummary } from "../../components/CartSummary";
 import { OrderItem } from "../../components/OrderItem";
 
+// Custom Hooks
+import { useCart, useOrder } from "../../hooks";
+
 // Custom Types
-import { useCart } from "../../hooks/useCart";
-import { useOrder } from "../../hooks/useOrder";
 type Props = {
   prev: () => void;
 };
@@ -40,6 +41,7 @@ type Props = {
 export const PlaceOrder: FC<Props> = ({ prev }: Props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const { cartState } = useCart();
   const {
     totalItems,

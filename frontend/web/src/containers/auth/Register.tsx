@@ -18,8 +18,10 @@ import {
   clearAuthError,
 } from "../../store/actions/actions";
 
+// Custom Hooks
+import { useAuth } from "../../hooks";
+
 // Custom Types
-import { useAuth } from "../../hooks/useAuth";
 type submitProps = {
   name: string;
   email: string;

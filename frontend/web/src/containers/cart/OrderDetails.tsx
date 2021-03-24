@@ -35,11 +35,11 @@ import { OrderItem } from "../../components/OrderItem";
 import { CartSummary } from "../../components/CartSummary";
 import { Loading } from "../../components/Loading";
 
+// Custom Hooks
+import { useAuth, useAdmin, useOrder } from "../../hooks";
+
 // Custom Types
 import { Order, PriceSummary, Profile } from "../../store/@types";
-import { useAuth } from "../../hooks/useAuth";
-import { useAdmin } from "../../hooks/useAdmin";
-import { useOrder } from "../../hooks/useOrder";
 interface OrderParams {
   id: string;
 }
@@ -56,9 +56,7 @@ export const OrderDetails: FC = () => {
   const dispatch = useDispatch();
 
   const { authState } = useAuth();
-
   const { adminState } = useAdmin();
-
   const { orderState } = useOrder();
 
   if (!authState.auth?._id) {

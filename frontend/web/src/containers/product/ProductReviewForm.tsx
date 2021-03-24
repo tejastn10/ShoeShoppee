@@ -12,8 +12,10 @@ import {
   createProductReviewRequest,
 } from "../../store/actions/actions";
 
+// Custom Hooks
+import { useProductDetail } from "../../hooks";
+
 // Custom Types
-import { useProductDetail } from "../../hooks/useProductDetail";
 type Props = {
   visible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
@@ -29,8 +31,8 @@ export const ProductReviewForm: FC<Props> = ({
 }: Props) => {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const { productState } = useProductDetail();
 
+  const { productState } = useProductDetail();
   const { errors, messages } = productState;
 
   const onFinish = ({ rating, comment }: any) => {

@@ -10,18 +10,21 @@ import { RadioChangeEvent } from "antd/lib/radio";
 // Redux
 import { savePaymentMethod } from "../../store/actions/actions";
 
+// Custom Hooks
+import { useCart } from "../../hooks";
+
 // Custom Types
-import { useCart } from "../../hooks/useCart";
 type Props = {
   prev: () => void;
   next: () => void;
 };
 
 export const Payment: FC<Props> = ({ prev, next }: Props) => {
-  const { cartState } = useCart();
   const dispatch = useDispatch();
 
+  const { cartState } = useCart();
   const { paymentMethod } = cartState;
+
   const [payment, setPayment] = useState(paymentMethod);
 
   const onChange = (e: RadioChangeEvent) => {

@@ -35,10 +35,10 @@ import {
 // Custom Components
 import { Loading } from "../../components/Loading";
 
+// Custom Hooks
+import { useAuth, useOrder, useProfile } from "../../hooks";
+
 // Custom Types
-import { useAuth } from "../../hooks/useAuth";
-import { useOrder } from "../../hooks/useOrder";
-import { useProfile } from "../../hooks/useProfile";
 type validationStatus = "success" | "error" | "validating";
 type submitProps = {
   name?: string;

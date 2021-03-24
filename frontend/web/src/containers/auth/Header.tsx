@@ -29,14 +29,14 @@ import {
 // Custom Component
 import { SearchBox } from "../product/SearchBox";
 
-// Custom Types
-import { useAuth } from "../../hooks/useAuth";
-import { useCart } from "../../hooks/useCart";
+// Custom Hooks
+import { useAuth, useCart } from "../../hooks";
 
 export const Header: FC = () => {
+  const dispatch = useDispatch();
+
   const { authState } = useAuth();
   const { cartState } = useCart();
-  const dispatch = useDispatch();
 
   const qty = cartState.cartList?.reduce((acc, item) => acc + item.qty, 0);
 

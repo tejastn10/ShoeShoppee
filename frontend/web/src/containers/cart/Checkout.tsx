@@ -10,15 +10,17 @@ import { Shipping } from "./Shipping";
 import { Payment } from "./Payment";
 import { PlaceOrder } from "./PlaceOrder";
 
-// Custom Types
-import { useCart } from "../../hooks/useCart";
+// Custom Hooks
+import { useCart } from "../../hooks";
 
 const { Step } = Steps;
 
 export const Checkout: FC = () => {
   const [current, setCurrent] = useState(0);
   const history = useHistory();
+
   const { cartState } = useCart();
+
   const next = () => {
     setCurrent(current + 1);
   };

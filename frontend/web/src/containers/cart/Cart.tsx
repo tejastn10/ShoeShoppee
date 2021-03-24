@@ -22,9 +22,11 @@ import {
 import { OrderItem } from "../../components/OrderItem";
 import { CartSummary } from "../../components/CartSummary";
 
+// Custom Hooks
+import { useCart } from "../../hooks";
+
 // Custom Types
 import { CartItem as item } from "../../store/@types";
-import { useCart } from "../../hooks/useCart";
 
 export const Cart: FC = () => {
   const dispatch = useDispatch();

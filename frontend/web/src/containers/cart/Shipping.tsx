@@ -9,8 +9,10 @@ import { HomeOutlined, ArrowRightOutlined } from "@ant-design/icons";
 // Redux
 import { saveAddress } from "../../store/actions/actions";
 
-// Custom Types
+// Custom Hooks
 import { useCart } from "../../hooks/useCart";
+
+// Custom Types
 type Address = {
   address: string;
   city: string;
@@ -22,10 +24,11 @@ type Props = {
 };
 
 export const Shipping: FC<Props> = ({ next }: Props) => {
-  const { cartState } = useCart();
   const dispatch = useDispatch();
 
+  const { cartState } = useCart();
   const { shippingAddress } = cartState;
+
   const [address] = useState(shippingAddress ? shippingAddress.address : "");
   const [city] = useState(shippingAddress ? shippingAddress.city : "");
   const [state] = useState(shippingAddress ? shippingAddress.state : "");

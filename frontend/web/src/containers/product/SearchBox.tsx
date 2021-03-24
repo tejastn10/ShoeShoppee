@@ -14,6 +14,7 @@ const { Search } = Input;
 export const SearchBox: FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+
   const onSearch = (value: string) => {
     if (value) {
       const keyword = value.trim();

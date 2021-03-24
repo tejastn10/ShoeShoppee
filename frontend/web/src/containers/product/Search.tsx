@@ -17,9 +17,11 @@ import {
 import { Loading } from "../../components/Loading";
 import { CardItem } from "../../components/CardItem";
 
+// Custom Hooks
+import { useProductList } from "../../hooks";
+
 // Custom Types
 import { Product } from "../../store/@types";
-import { useProductList } from "../../hooks/useProductList";
 interface SearchParams {
   keyword: string;
 }

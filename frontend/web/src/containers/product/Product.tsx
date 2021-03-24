@@ -32,9 +32,10 @@ import { ProductReviewForm } from "./ProductReviewForm";
 import { Loading } from "../../components/Loading";
 import { Rating } from "../../components/Rating";
 
+// Custom Hooks
+import { useAuth, useProductDetail } from "../../hooks";
+
 // Custom Types
-import { useAuth } from "../../hooks/useAuth";
-import { useProductDetail } from "../../hooks/useProductDetail";
 interface ProductPramas {
   id: string;
 }
@@ -43,11 +44,12 @@ export const Product: FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id }: ProductPramas = useParams();
+
   const [qty, setQty] = useState<number>(1);
   const [visible, setVisible] = useState(false);
 
-  const { productState } = useProductDetail();
   const { authState } = useAuth();
+  const { productState } = useProductDetail();
   const { productDetail, isLoading, errors } = productState;
 
   useEffect(() => {
