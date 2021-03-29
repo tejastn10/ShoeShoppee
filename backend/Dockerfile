@@ -1,5 +1,6 @@
-FROM node:alpine
+FROM node:14.16-alpine
 
+ENV NODE_ENV=production
 WORKDIR "/app"
 
 RUN yarn global add typescript

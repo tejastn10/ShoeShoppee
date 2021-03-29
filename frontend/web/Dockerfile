@@ -1,6 +1,7 @@
 # Initial Stage
-FROM node:alpine as builder
+FROM node:14.16-alpine as builder
 
+ENV NODE_ENV=production
 WORKDIR "/app"
 
 RUN yarn global add typescript
