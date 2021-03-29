@@ -1,0 +1,33 @@
+version: "3.4"
+
+services:
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - 3000:80
+  backend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./backend
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - JWT_SECRET=clocked
+      - MONGO_URI
+  frontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./frontend/web
+    volumes:
+      - /app/node_modules
+      - /app/src/styles
+      - ./frontend/web:/app
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_DEVELOPMENT_API_ENDPOINT=/devURL
